@@ -1,11 +1,58 @@
-/* Background Setup */
-.login-container {
+/* Header Styling */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between; /* Space out left, center, right sections */
+    align-items: center;
+    padding: 15px 60px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    z-index: 1000;/* Ensures the header stays above other content */
+}
+
+/* Logo Styling */
+.logo {
+    height: auto; /* Adjust logo size */
+    width: auto;
+}
+
+/* Navigation Bar */
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 70px;
+    margin: 35px;
+    padding: 10;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    text-decoration: none;
+    font-size: 18px;
+    color: black;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+nav ul li a:hover {
+    color: red;
+}
+
+  /* Login Page Styling */
+  .login-container {
     background: url("../assets/login.jpg") no-repeat center center/cover;
     width: 100vw;
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
   }
   
   /* Glassmorphic Login Box */
