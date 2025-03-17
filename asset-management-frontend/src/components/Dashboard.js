@@ -1,10 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import "./Dashboard.css"; // Import CSS file
+import { FaBell, FaCog } from "react-icons/fa"; // Import FontAwesome icons
+import "./Dashboard.css";
 import logo from "../assets/logo.png";
-import i1 from "../assets/notifications.png";
-import i2 from "../assets/settings.png";
-import { FaBell, FaCog } from "react-icons/fa";
 
 const Dashboard = () => {
     const navigate = useNavigate();
@@ -23,21 +21,20 @@ const Dashboard = () => {
                 <nav>
                     <ul>
                         <li><a href="/dashboard">Dashboard</a></li>
-                        <li><a href="/assets">Asset Issues</a></li>
+                        <li><a href="/add-asset">Add Asset</a></li>
                         <li><a href="/technicians">Technicians</a></li>
                         <li><a href="/reports">Reports</a></li>
                     </ul>
                 </nav>
 
                 <div className="admin-icons">
-                    {/* Fix for icons: Use correct path or FontAwesome */}
-                    <img src={i1} alt="icon1" className="admin-icon" />
-                    <img src={i2} alt="Settings" className="admin-icon" />
+                    <FaBell className="admin-icon" />  {/* Notification Icon */}
+                    <FaCog className="admin-icon" />   {/* Settings Icon */}
                     <button onClick={handleLogout} className="logout-button">Logout</button>
                 </div>
             </header>
 
-            {/* Dashboard Content */}
+            {/* Main Content */}
             <main className="main-content">
                 <h1>Welcome, Admin</h1>
 
