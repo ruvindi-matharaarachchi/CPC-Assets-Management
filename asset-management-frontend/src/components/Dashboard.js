@@ -4,6 +4,7 @@ import "./Dashboard.css"; // Import CSS file
 import logo from "../assets/logo.png";
 import i1 from "../assets/notifications.png";
 import i2 from "../assets/settings.png";
+import { FaBell, FaCog } from "react-icons/fa";
 
 const Dashboard = () => {
     const navigate = useNavigate();
