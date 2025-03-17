@@ -5,7 +5,7 @@ const User = require("../models/User");
 
 const router = express.Router();
 
-// Admin Login
+// Admin Login Route
 router.post("/login", async (req, res) => {
   const { username, password } = req.body;
 
@@ -29,30 +29,7 @@ router.post("/login", async (req, res) => {
 
     res.json({ token, user: { id: user._id, username: user.username, role: user.role } });
   } catch (error) {
-    res.status(500).json({ message: "Server Error" });
-  }
-});
-
-// Admin Registration (For Initial Setup)
-router.post("/register", async (req, res) => {
-  const { username, password } = req.body;
-
-  try {
-    let user = await User.findOne({ username });
-
-    if (user) {
-      return res.status(400).json({ message: "User already exists" });
-    }
-
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    user = new User({ username, password: hashedPassword, role: "admin" });
-
-    await user.save();
-
-    res.json({ message: "Admin user created successfully" });
-  } catch (error) {
-    res.status(500).json({ message: "Server Error" });
+    res.status(500).json({ message: "Server Error", error: error.message });
   }
 });
 
