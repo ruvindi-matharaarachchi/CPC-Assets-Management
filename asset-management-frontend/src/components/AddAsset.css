@@ -39,10 +39,29 @@
     border-radius: 5px;
     cursor: pointer;
     font-weight: bold;
+    margin-top: 10px;
 }
 
 .submit-button:hover {
     background: darkgreen;
+}
+
+/* View Assets Button */
+.view-assets-button {
+    background: #3498db;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: 0.3s;
+}
+
+.view-assets-button:hover {
+    background: #2980b9;
 }
 
 /* Success/Error Messages */

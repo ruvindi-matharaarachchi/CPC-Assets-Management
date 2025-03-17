@@ -31,6 +31,7 @@ const AssetList = () => {
                             <td>{asset.model}</td>
                             <td>{asset.serialNumber}</td>
                             <td>
+                                {/* View Button (Redirects to View Asset Page) */}
                                 <Link to={`/assets/${asset._id}`} className="view-button">🔍 View</Link>
                             </td>
                         </tr>

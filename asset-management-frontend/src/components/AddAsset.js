@@ -30,10 +30,10 @@ const AddAsset = () => {
 
         try {
             const response = await axios.post("http://localhost:5000/api/assets", asset);
-            setMessage("Asset added successfully!");
-            setTimeout(() => navigate("/dashboard"), 2000);
+            setMessage("✅ Asset added successfully!");
+            setTimeout(() => navigate("/assets"), 2000); // Redirect to Asset List
         } catch (error) {
-            setMessage("Error adding asset. Please try again.");
+            setMessage("❌ Error adding asset. Please try again.");
         }
     };
 
@@ -69,8 +69,13 @@ const AddAsset = () => {
 
                 <input type="number" name="price" placeholder="Price (in USD)" value={asset.price} onChange={handleChange} required />
 
-                <button type="submit" className="submit-button">Add Asset</button>
+                <button type="submit" className="submit-button">➕ Add Asset</button>
             </form>
+
+            {/* View Assets Button */}
+            <button className="view-assets-button" onClick={() => navigate("/assets")}>
+                📋 View Assets List
+            </button>
         </div>
     );
 };
