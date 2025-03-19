@@ -31,19 +31,33 @@
   width: 350px;
 }
 
-/* Input Fields */
-.user-role, input {
+/* Dropdown for Role */
+.user-role {
   width: 100%;
-  padding: 12px;
-  margin: 10px 0;
+  padding: 10px;
   border-radius: 10px;
   border: none;
   background: rgba(255, 255, 255, 0.2);
-  color: white;
   font-size: 16px;
+  margin-bottom: 15px;
   outline: none;
   text-align: center;
 }
+
+/* Input Fields */
+input {
+  width: 95%;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  background: rgba(255, 255, 255, 0.2);
+  font-size: 16px;
+  margin-bottom: 15px;
+  outline: none;
+  color: white;
+  text-align: center;
+}
+
 
 /* Login Button */
 .login-button {
@@ -74,6 +88,6 @@
 /* Responsive Design */
 @media (max-width: 768px) {
   .login-box {
-      width: 90%;
+    width: 90%;
   }
 }
