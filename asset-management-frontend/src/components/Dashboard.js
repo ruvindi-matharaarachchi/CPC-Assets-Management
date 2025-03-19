@@ -1,8 +1,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { FaBell, FaCog } from "react-icons/fa"; // Import FontAwesome icons
-import "./Dashboard.css";
-import logo from "../assets/logo.png";
+import { FaBell, FaCog, FaPlusCircle } from "react-icons/fa"; // Import Icons
+import { motion } from "framer-motion"; // Animation Library
+import "./Dashboard.css"; // Import Styles
+import logo from "../assets/logo.png"; // Ensure the logo exists
 
 const Dashboard = () => {
     const navigate = useNavigate();
@@ -19,10 +20,18 @@ const Dashboard = () => {
 
     return (
         <div className="dashboard-container">
+            {/* Background Overlay */}
+            <div className="background-overlay"></div>
+
             {/* Header Navigation Bar */}
-            <header className="dashboard-header">
+            <motion.header 
+                initial={{ opacity: 0, y: -50 }} 
+                animate={{ opacity: 1, y: 0 }} 
+                transition={{ duration: 0.8 }}
+                className="dashboard-header"
+            >
                 <img src={logo} alt="Company Logo" className="logo" />
-                
+
                 <nav>
                     <ul>
                         <li><a href="/dashboard">Dashboard</a></li>
@@ -33,38 +42,49 @@ const Dashboard = () => {
                 </nav>
 
                 <div className="admin-icons">
-                    <FaBell className="admin-icon" />  {/* Notification Icon */}
-                    <FaCog className="admin-icon" />   {/* Settings Icon */}
+                    <FaBell className="admin-icon" />
+                    <FaCog className="admin-icon" />
                     <button onClick={handleLogout} className="logout-button">Logout</button>
                 </div>
-            </header>
+            </motion.header>
 
             {/* Main Content */}
             <main className="main-content">
-                <h1>Welcome, Admin</h1>
+                <motion.h1 
+                    initial={{ opacity: 0 }} 
+                    animate={{ opacity: 1 }} 
+                    transition={{ duration: 1 }}
+                >
+                    Welcome, Admin
+                </motion.h1>
 
                 {/* Add Asset Button */}
-                <button className="add-asset-button" onClick={handleAddAsset}>
-                    ➕ Add New Asset
-                </button>
+                <motion.button 
+                    whileHover={{ scale: 1.1 }} 
+                    whileTap={{ scale: 0.9 }} 
+                    className="add-asset-button"
+                    onClick={handleAddAsset}
+                >
+                    <FaPlusCircle className="icon" /> Add New Asset
+                </motion.button>
 
+                {/* Dashboard Cards */}
                 <section className="dashboard-content">
-                    <div className="dashboard-card">
-                        <h3>Total Assets</h3>
-                        <p>120</p>
-                    </div>
-                    <div className="dashboard-card">
-                        <h3>Pending Issues</h3>
-                        <p>15</p>
-                    </div>
-                    <div className="dashboard-card">
-                        <h3>Technicians Available</h3>
-                        <p>8</p>
-                    </div>
-                    <div className="dashboard-card">
-                        <h3>Reports Generated</h3>
-                        <p>25</p>
-                    </div>
+                    {[
+                        { title: "Total Assets", count: 120 },
+                        { title: "Pending Issues", count: 15 },
+                        { title: "Technicians Available", count: 8 },
+                        { title: "Reports Generated", count: 25 }
+                    ].map((item, index) => (
+                        <motion.div 
+                            key={index} 
+                            className="dashboard-card"
+                            whileHover={{ scale: 1.05 }}
+                        >
+                            <h3>{item.title}</h3>
+                            <p>{item.count}</p>
+                        </motion.div>
+                    ))}
                 </section>
             </main>
         </div>
