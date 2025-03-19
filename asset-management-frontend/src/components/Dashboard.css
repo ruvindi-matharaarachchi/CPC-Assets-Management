@@ -26,7 +26,7 @@
 
 /* Logo */
 .logo {
-    height: 50px;
+    height: 60px;
     object-fit: contain;
 }
 
@@ -40,7 +40,7 @@ nav ul {
 nav ul li a {
     text-decoration: none;
     color: white;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: bold;
     transition: color 0.3s ease-in-out;
 }
@@ -51,6 +51,7 @@ nav ul li a:hover {
 
 /* Admin Icons */
 .admin-icons {
+    margin-right: 60px;
     display: flex;
     gap: 20px;
 }
