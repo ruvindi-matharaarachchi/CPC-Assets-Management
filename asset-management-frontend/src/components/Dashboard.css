@@ -1,106 +1,134 @@
 /* Dashboard Container */
 .dashboard-container {
-    width: 100vw;
-    height: 100vh;
     display: flex;
     flex-direction: column;
-    background: #F4F4F4;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(to right, #2C5364, #203A43, #0F2027);
+    color: white;
 }
 
-/* Header Navigation Bar */
+/* Header */
 .dashboard-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: white;
-    padding: 15px 50px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 40px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     z-index: 1000;
 }
 
 /* Logo */
 .logo {
     height: 50px;
-    width: auto;
+    object-fit: contain;
 }
 
 /* Navigation */
 nav ul {
-    list-style: none;
     display: flex;
     gap: 30px;
-    margin: 0;
-    padding: 0;
-}
-
-nav ul li {
-    display: inline;
+    list-style: none;
 }
 
 nav ul li a {
     text-decoration: none;
+    color: white;
     font-size: 18px;
-    color: black;
     font-weight: bold;
-    transition: 0.3s;
+    transition: color 0.3s ease-in-out;
 }
 
 nav ul li a:hover {
-    color: red;
+    color: #e63946;
 }
 
 /* Admin Icons */
 .admin-icons {
     display: flex;
     gap: 20px;
-    align-items: center;
 }
 
 .admin-icon {
-    width: 30px;
+    font-size: 20px;
+    color: white;
     cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.admin-icon:hover {
+    transform: scale(1.2);
 }
 
 /* Logout Button */
 .logout-button {
-    background: red;
-    color: white;
-    padding: 8px 15px;
+    padding: 8px 16px;
+    background: #e63946;
     border: none;
     border-radius: 5px;
+    color: white;
     cursor: pointer;
-    font-weight: bold;
+    font-size: 16px;
+    transition: background 0.3s ease-in-out;
 }
 
 .logout-button:hover {
-    background: darkred;
+    background: #c62828;
 }
 
 /* Main Content */
 .main-content {
-    margin-top: 80px; /* Prevents overlap with fixed header */
-    padding: 20px;
+    margin-top: 100px;
+    text-align: center;
+}
+
+/* Add Asset Button */
+.add-asset-button {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #27ae60;
+    border: none;
+    padding: 12px 20px;
+    font-size: 18px;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background 0.3s ease-in-out;
+}
+
+.add-asset-button:hover {
+    background: #219150;
+}
+
+.add-asset-button .icon {
+    font-size: 20px;
 }
 
 /* Dashboard Content */
 .dashboard-content {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
+    justify-content: center;
     gap: 20px;
+    flex-wrap: wrap;
     margin-top: 20px;
 }
 
 /* Dashboard Cards */
 .dashboard-card {
-    background: white;
+    background: rgba(255, 255, 255, 0.15);
     padding: 20px;
     border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     text-align: center;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 200px;
     transition: transform 0.3s;
 }
 
@@ -109,45 +137,11 @@ nav ul li a:hover {
 }
 
 .dashboard-card h3 {
+    font-size: 18px;
     margin-bottom: 10px;
-    color: #2C3E50;
 }
 
 .dashboard-card p {
     font-size: 24px;
     font-weight: bold;
-    color: #E74C3C;
-}
-/* Admin Icons */
-.admin-icons {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-}
-
-.admin-icon {
-    font-size: 24px;
-    cursor: pointer;
-    color: black;
-}
-
-.admin-icon:hover {
-    color: red;
-}
-/* Add Asset Button */
-.add-asset-button {
-    background: #3498db;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    margin: 20px 0;
-    transition: 0.3s;
-}
-
-.add-asset-button:hover {
-    background: #2980b9;
 }
