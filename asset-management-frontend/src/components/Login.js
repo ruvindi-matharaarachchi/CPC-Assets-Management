@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../api";
+import { motion } from "framer-motion"; // Animation Library
 import "./Login.css"; // Import CSS file
-import logo from "../assets/logo.png";
-
+import logo from "../assets/logo.png"; // Ensure logo.png exists
 
 const Login = () => {
   const [selectedUser, setSelectedUser] = useState("admin"); // Default role
@@ -20,14 +20,19 @@ const Login = () => {
       localStorage.setItem("token", data.token);
       navigate("/dashboard");
     } catch (err) {
-      setError(err.message);
+      setError("Invalid credentials. Please try again.");
     }
   };
 
   return (
     <div className="login-container">
-      {/* Header Section */}
-      <header className="header">
+      {/* Animated Header Section */}
+      <motion.header 
+        initial={{ opacity: 0, y: -50 }} 
+        animate={{ opacity: 1, y: 0 }} 
+        transition={{ duration: 0.8 }}
+        className="header"
+      >
         <img src={logo} alt="Company Logo" className="logo" />
         <nav>
           <ul>
@@ -36,19 +41,31 @@ const Login = () => {
             <li><a href="/technicians">Technicians</a></li>
           </ul>
         </nav>
-      </header>
+      </motion.header>
 
-      <div className="login-box">
+      {/* Login Box with Animation */}
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.9 }} 
+        animate={{ opacity: 1, scale: 1 }} 
+        transition={{ duration: 0.5 }}
+        className="login-box"
+      >
         <h2>Welcome</h2>
 
         {/* User Selection Dropdown */}
-        <select className="user-role" value={selectedUser} onChange={(e) => setSelectedUser(e.target.value)}>
+        <motion.select 
+          whileHover={{ scale: 1.05 }}
+          className="user-role" 
+          value={selectedUser} 
+          onChange={(e) => setSelectedUser(e.target.value)}
+        >
           <option value="admin">Admin</option>
           <option value="technician">Technician</option>
-        </select>
+        </motion.select>
 
         {/* Password Field */}
-        <input
+        <motion.input
+          whileFocus={{ scale: 1.02 }}
           type="password"
           placeholder="Password"
           value={password}
@@ -56,9 +73,19 @@ const Login = () => {
           required
         />
 
-        {/* Login Button */}
-        <button onClick={handleSubmit} className="login-button">Login</button>
-      </div>
+        {/* Error Message */}
+        {error && <p className="error-message">{error}</p>}
+
+        {/* Animated Login Button */}
+        <motion.button 
+          whileHover={{ scale: 1.1 }} 
+          whileTap={{ scale: 0.9 }} 
+          onClick={handleSubmit} 
+          className="login-button"
+        >
+          Login
+        </motion.button>
+      </motion.div>
     </div>
   );
 };
