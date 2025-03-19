@@ -46,7 +46,7 @@ nav ul li a:hover {
 
 /* Ensure the login container is positioned correctly below the fixed header */
 .login-container {
-    background: url("../assets/Login.png") no-repeat center center/cover;
+    background: url("../assets/login.jpeg") no-repeat center center/cover;
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -55,3 +55,64 @@ nav ul li a:hover {
     flex-direction: column;
     padding-top: 80px; /* Adds space below the header */
 }
+/* Glassmorphic Login Box */
+.login-box {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 350px;
+  }
+  
+  h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: black;
+  }
+  
+  /* Dropdown for Role */
+  .user-role {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    background: rgba(255, 255, 255, 0.2);
+    font-size: 16px;
+    margin-bottom: 15px;
+    outline: none;
+    text-align: center;
+  }
+  
+  /* Input Fields */
+  input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    background: rgba(255, 255, 255, 0.2);
+    font-size: 16px;
+    margin-bottom: 15px;
+    outline: none;
+    text-align: center;
+  }
+  
+  /* Login Button */
+  .login-button {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    background: red;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .login-button:hover {
+    background: darkred;
+  }
+  
