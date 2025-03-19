@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../api";
 import { motion } from "framer-motion"; // Animation Library
-import "./Login.css"; // Import CSS file
+import "./Login.css"; // Import CSS
 
 const Login = () => {
   const [selectedUser, setSelectedUser] = useState("admin"); // Default role
@@ -25,6 +25,9 @@ const Login = () => {
 
   return (
     <div className="login-container">
+      {/* Background Image */}
+      <div className="background-overlay"></div>
+
       {/* Title Section */}
       <motion.div
         initial={{ opacity: 0, y: -30 }}
@@ -35,7 +38,7 @@ const Login = () => {
         <h1>CPC Head Office</h1>
       </motion.div>
 
-      {/* Login Box with Animation */}
+      {/* Glassmorphic Login Box */}
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
