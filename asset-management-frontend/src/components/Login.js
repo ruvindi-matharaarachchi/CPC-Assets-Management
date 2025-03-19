@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../api";
 import "./Login.css"; // Import CSS file
+import logo from "../assets/logo.png";
+
 
 const Login = () => {
   const [selectedUser, setSelectedUser] = useState("admin"); // Default role
@@ -26,7 +28,7 @@ const Login = () => {
     <div className="login-container">
       {/* Header Section */}
       <header className="header">
-        <img src="/logo.png" alt="Company Logo" className="logo" />
+        <img src={logo} alt="Company Logo" className="logo" />
         <nav>
           <ul>
             <li><a href="/">Home</a></li>
