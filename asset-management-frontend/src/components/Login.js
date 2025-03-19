@@ -4,7 +4,7 @@ import { loginUser } from "../api";
 import "./Login.css"; // Import CSS file
 
 const Login = () => {
-  const [username, setUsername] = useState("");
+  const [selectedUser, setSelectedUser] = useState("admin"); // Default role
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -14,7 +14,7 @@ const Login = () => {
     setError("");
 
     try {
-      const data = await loginUser(username, password);
+      const data = await loginUser(selectedUser, password);
       localStorage.setItem("token", data.token);
       navigate("/dashboard");
     } catch (err) {
@@ -24,14 +24,37 @@ const Login = () => {
 
   return (
     <div className="login-container">
+      {/* Header Section */}
+      <header className="header">
+        <img src="/logo.png" alt="Company Logo" className="logo" />
+        <nav>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/assets">Asset Issues</a></li>
+            <li><a href="/technicians">Technicians</a></li>
+          </ul>
+        </nav>
+      </header>
+
       <div className="login-box">
         <h2>Welcome</h2>
-        <select className="user-role">
-          <option>Admin</option>
-          <option>Technician</option>
+
+        {/* User Selection Dropdown */}
+        <select className="user-role" value={selectedUser} onChange={(e) => setSelectedUser(e.target.value)}>
+          <option value="admin">Admin</option>
+          <option value="technician">Technician</option>
         </select>
-        <input type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} required />
-        <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+
+        {/* Password Field */}
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+
+        {/* Login Button */}
         <button onClick={handleSubmit} className="login-button">Login</button>
       </div>
     </div>
