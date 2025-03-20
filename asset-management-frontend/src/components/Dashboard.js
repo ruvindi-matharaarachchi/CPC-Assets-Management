@@ -4,6 +4,7 @@ import { FaBell, FaCog, FaPlusCircle } from "react-icons/fa"; // Import Icons
 import { motion } from "framer-motion"; // Animation Library
 import "./Dashboard.css"; // Import Styles
 import logo from "../assets/logo.png"; // Ensure the logo exists
+import Footer from "../components/Footer"; // Import Footer
 
 const Dashboard = () => {
     const navigate = useNavigate();
@@ -24,9 +25,9 @@ const Dashboard = () => {
             <div className="background-overlay"></div>
 
             {/* Header Navigation Bar */}
-            <motion.header 
-                initial={{ opacity: 0, y: -50 }} 
-                animate={{ opacity: 1, y: 0 }} 
+            <motion.header
+                initial={{ opacity: 0, y: -50 }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
                 className="dashboard-header"
             >
@@ -50,18 +51,18 @@ const Dashboard = () => {
 
             {/* Main Content */}
             <main className="main-content">
-                <motion.h1 
-                    initial={{ opacity: 0 }} 
-                    animate={{ opacity: 1 }} 
+                <motion.h1
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
                     transition={{ duration: 1 }}
                 >
                     Welcome, Admin
                 </motion.h1>
 
                 {/* Add Asset Button */}
-                <motion.button 
-                    whileHover={{ scale: 1.1 }} 
-                    whileTap={{ scale: 0.9 }} 
+                <motion.button
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
                     className="add-asset-button"
                     onClick={handleAddAsset}
                 >
@@ -76,8 +77,8 @@ const Dashboard = () => {
                         { title: "Technicians Available", count: 8 },
                         { title: "Reports Generated", count: 25 }
                     ].map((item, index) => (
-                        <motion.div 
-                            key={index} 
+                        <motion.div
+                            key={index}
                             className="dashboard-card"
                             whileHover={{ scale: 1.05 }}
                         >
@@ -87,7 +88,10 @@ const Dashboard = () => {
                     ))}
                 </section>
             </main>
+            <Footer />
+
         </div>
+
     );
 };
 
