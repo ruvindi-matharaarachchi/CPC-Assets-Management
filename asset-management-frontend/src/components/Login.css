@@ -81,10 +81,26 @@
   font-size: 16px;
   text-align: center;
 }
+/* Password Input Field */
+input[type="password"] {
+  width: 90%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 10px;
+  border: none;
+  background: rgba(255, 255, 255, 0.2); /* Glassmorphic effect */
+  color: rgb(10, 10, 10);
+  font-size: 16px;
+  outline: none;
+  text-align: center;
+}
+
+
+
 
 /* Login Button */
 .login-button {
-  width: 100%;
+  width: 97%;
   padding: 12px;
   border-radius: 10px;
   border: none;
