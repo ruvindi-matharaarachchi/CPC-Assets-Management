@@ -6,10 +6,10 @@
   align-items: center;
   justify-content: center;
   background: url("../assets/login1.jpg") no-repeat center center/cover;
-  z-index: 1;
+  position: relative;
 }
 
-/* Background Overlay for Blurred Effect */
+/* Background Overlay */
 .background-overlay {
   position: absolute;
   top: 0;
@@ -17,90 +17,69 @@
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(8px);
   z-index: -1;
 }
 
-/* Title Section */
-.title {
-  margin-bottom: 20px;
-  text-align: center;
+/* Header */
+.header {
+  width: 100%;
+  height: 70px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background: white; /* White header */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
 }
 
-.title h1 {
-  font-size: 32px;
-  color: white;
+/* Logo */
+.logo {
+  height: 60px;
+  margin-left: 40px;
+  object-fit: contain;
+}
+
+/* Header Title */
+.header-title {
+  flex-grow: 1;
+  margin-left: 50px;
+  text-align: left;
+  font-size: 34px;
   font-weight: bold;
+  color: #d62d3e;
 }
 
 /* Glassmorphic Login Box */
-
 .login-box {
   background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(15px);
-  padding: 40px;
+  padding: 70px;
   border-radius: 20px;
   box-shadow: 0px 4px 20px rgba(255, 255, 255, 0.2);
   text-align: center;
   width: 350px;
+  margin-top: 80px; /* Prevents overlap with header */
 }
-
-/* Title Section */
-.title {
-  margin-bottom: 20px;
-  text-align: center;
-}
-
-.title h1 {
-  font-size: 39px;
-  color: black; /* Set text color to black */
-  font-weight: bold; /* Make text bold */
-}
-
-/* Dropdown for Role */
-.user-role {
-  width: 100%;
-  padding: 10px;
-  border-radius: 10px;
-  border: none;
-  background: rgba(255, 255, 255, 0.2);
-  font-size: 16px;
-  margin-bottom: 15px;
-  outline: none;
-  text-align: center;
+.login-box h2 {
+  margin-top: 20px;
+  color: rgb(0, 0, 0);
 }
 /* Input Fields */
-input {
+.user-role, input {
   width: 95%;
-  padding: 10px;
+  padding: 12px;
+  margin: 10px 0;
   border-radius: 10px;
   border: none;
   background: rgba(255, 255, 255, 0.2);
+  color: rgb(2, 2, 2);
   font-size: 16px;
-  margin-bottom: 15px;
-  outline: none;
-  color: white;
   text-align: center;
-}
-/* Input Focus Effect */
-input:focus, .user-role:focus {
-  background: rgba(255, 255, 255, 0.3);
-  transform: scale(1.02);
-}
-
-/* Placeholder Styling */
-input::placeholder {
-  color: rgba(255, 255, 255, 0.7);
-  transition: color 0.3s ease-in-out;
-}
-
-/* Change Placeholder Color on Focus */
-input:focus::placeholder {
-  color: rgb(7, 7, 7);
-}
-
-/* Input Hover Effect */
-input:hover {
-  background: rgba(255, 255, 255, 0.25);
 }
 
 /* Login Button */

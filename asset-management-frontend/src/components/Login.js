@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { loginUser } from "../api";
 import { motion } from "framer-motion"; // Animation Library
 import "./Login.css"; // Import CSS
+import logo from "../assets/logo.png"; // Import your logo
 
 const Login = () => {
   const [selectedUser, setSelectedUser] = useState("admin"); // Default role
@@ -25,18 +26,14 @@ const Login = () => {
 
   return (
     <div className="login-container">
+      {/* Header Section */}
+      <header className="header">
+        <img src={logo} alt="Company Logo" className="logo" />
+        <h1 className="header-title">CPC Head Office</h1>
+      </header>
+
       {/* Background Image */}
       <div className="background-overlay"></div>
-
-      {/* Title Section */}
-      <motion.div
-        initial={{ opacity: 0, y: -30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="title"
-      >
-        <h1>CPC Head Office</h1>
-      </motion.div>
 
       {/* Glassmorphic Login Box */}
       <motion.div
