@@ -5,9 +5,11 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: url("../assets/bg2.webp") no-repeat center center/cover;
+    background: linear-gradient(to right, #1a1a1a, #400000); /* Black to Dark Red Gradient */
+    background-attachment: fixed;
     z-index: 1;
 }
+
 
 /* Header */
 .dashboard-header {
@@ -19,9 +21,9 @@
     align-items: center;
     justify-content: space-between;
     padding: 15px 40px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.8); /* Darker header for better contrast */
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 10px rgba(255, 0, 0, 0.2); /* Subtle red glow */
     z-index: 1000;
 }
 
@@ -47,7 +49,7 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    color: #e63946;
+    color: #ff4747; /* Slightly brighter red hover effect */
 }
 
 /* Admin Icons */
@@ -71,7 +73,7 @@ nav ul li a:hover {
 /* Logout Button */
 .logout-button {
     padding: 8px 16px;
-    background: #e63946;
+    background: #ff4747;
     border: none;
     border-radius: 5px;
     color: white;
@@ -86,8 +88,9 @@ nav ul li a:hover {
 
 /* Main Content */
 .main-content {
-    margin-top: 100px;
+    margin-top: 120px;
     text-align: center;
+    color: white; /* Ensure text is visible on dark background */
 }
 
 /* Add Asset Button */
@@ -95,7 +98,7 @@ nav ul li a:hover {
     display: flex;
     align-items: center;
     gap: 10px;
-    background: #27ae60;
+    background: linear-gradient(to right, #ff4747, #c62828); /* Gradient red button */
     border: none;
     padding: 12px 20px;
     font-size: 18px;
@@ -107,7 +110,7 @@ nav ul li a:hover {
 }
 
 .add-asset-button:hover {
-    background: #219150;
+    background: linear-gradient(to right, #ff0000, #b71c1c);
 }
 
 .add-asset-button .icon {
@@ -125,25 +128,47 @@ nav ul li a:hover {
 
 /* Dashboard Cards */
 .dashboard-card {
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.1);
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 20px rgba(255, 0, 0, 0.3);
     text-align: center;
-    width: 200px;
-    transition: transform 0.3s;
+    width: 220px;
+    transition: transform 0.3s, background 0.3s;
 }
 
 .dashboard-card:hover {
     transform: scale(1.05);
+    background: rgba(255, 0, 0, 0.2);
 }
 
 .dashboard-card h3 {
     font-size: 18px;
     margin-bottom: 10px;
+    color: white;
 }
 
 .dashboard-card p {
     font-size: 24px;
     font-weight: bold;
+    color: #ff4747; /* Red highlight for numbers */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .dashboard-header {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .dashboard-content {
+        flex-direction: column;
+        align-items: center;
+    }
 }
