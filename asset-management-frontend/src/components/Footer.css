@@ -1,10 +1,11 @@
 .footer {
     background: black;
     color: white;
-    padding: 50px 80px;
+    padding: 50px 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 50px;
     flex-direction: column;
 }
 
@@ -21,17 +22,23 @@
 .footer-brand {
     display: flex;
     align-items: center;
+    margin-top: -100px;
     gap: 15px;
 }
 
 .footer-logo {
-    height: 80px;
+    margin-left: -400px;
+    height: 90px;
 }
 
-/* Footer Info */
+
+/* Footer Info - Now placed under the logo */
 .footer-info {
     display: flex;
+    flex-direction: row; /* Arrange columns in a row */
+    justify-content: center;
     gap: 50px;
+    margin-top: 20px;
 }
 
 .footer-column {

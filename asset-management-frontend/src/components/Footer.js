@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer-container">
-        {/* Left Side: Logo & Company Name */}
+        {/* Logo & Company Name */}
         <div className="footer-brand">
           <img src={logo} alt="Company Logo" className="footer-logo" />
           <div>
@@ -15,35 +15,19 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Right Side: Information Sections */}
+        {/* Information Section - Now below the logo */}
         <div className="footer-info">
-          <div className="footer-column">
-            <h3>Information</h3>
-            <ul>
-              <li>Annual Reports</li>
-              <li>Specification of Fuel Products</li>
-              <li>Regional Offices</li>
-              <li>Projects</li>
-            </ul>
-          </div>
-          <div className="footer-column">
-            <h3>Information</h3>
-            <ul>
-              <li>Annual Reports</li>
-              <li>Specification of Fuel Products</li>
-              <li>Regional Offices</li>
-              <li>Projects</li>
-            </ul>
-          </div>
-          <div className="footer-column">
-            <h3>Information</h3>
-            <ul>
-              <li>Annual Reports</li>
-              <li>Specification of Fuel Products</li>
-              <li>Regional Offices</li>
-              <li>Projects</li>
-            </ul>
-          </div>
+          {[...Array(3)].map((_, i) => (
+            <div key={i} className="footer-column">
+              <h3>Information</h3>
+              <ul>
+                <li>Annual Reports</li>
+                <li>Specification of Fuel Products</li>
+                <li>Regional Offices</li>
+                <li>Projects</li>
+              </ul>
+            </div>
+          ))}
         </div>
       </div>
     </footer>

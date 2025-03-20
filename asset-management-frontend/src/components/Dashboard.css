@@ -29,7 +29,7 @@
 
 /* Logo */
 .logo {
-    height: 60px;
+    height: 70px;
     object-fit: contain;
 }
 
@@ -88,9 +88,11 @@ nav ul li a:hover {
 
 /* Main Content */
 .main-content {
-    margin-top: 120px;
+    margin-top: 450px;
     text-align: center;
-    color: white; /* Ensure text is visible on dark background */
+    color: white; 
+    margin-bottom: 80px;
+
 }
 
 /* Add Asset Button */
@@ -123,7 +125,7 @@ nav ul li a:hover {
     justify-content: center;
     gap: 20px;
     flex-wrap: wrap;
-    margin-top: 20px;
+    margin-top: 50px;
 }
 
 /* Dashboard Cards */
