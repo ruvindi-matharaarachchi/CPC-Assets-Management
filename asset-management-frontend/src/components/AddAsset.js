@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { FaBell, FaCog } from "react-icons/fa"; // Import Icons
 import { motion } from "framer-motion"; // Animation Library
-import Header from "../components/Header"; // Import Header
 import "./AddAsset.css"; // Import CSS
+import logo from "../assets/logo.png"; // Ensure the logo exists
 
 const AddAsset = () => {
     const navigate = useNavigate();
@@ -26,6 +27,11 @@ const AddAsset = () => {
         setAsset({ ...asset, [e.target.name]: e.target.value });
     };
 
+    const handleLogout = () => {
+        localStorage.removeItem("token");
+        navigate("/");
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setMessage("");
@@ -41,8 +47,24 @@ const AddAsset = () => {
 
     return (
         <div className="add-asset-container">
-            {/* Include Header */}
-            <Header />
+            {/* Header Section */}
+            <header className="dashboard-header">
+                <img src={logo} alt="Company Logo" className="logo" />
+                <nav>
+                    <ul>
+                        <li><a href="/dashboard">Dashboard</a></li>
+                        <li><a href="/assets">Asset List</a></li> {/* Fixed Navigation */}
+                        <li><a href="/technicians">Technicians</a></li>
+                        <li><a href="/reports">Reports</a></li>
+                    </ul>
+                </nav>
+
+                <div className="admin-icons">
+                    <FaBell className="admin-icon" />
+                    <FaCog className="admin-icon" />
+                    <button onClick={handleLogout} className="logout-button">Logout</button>
+                </div>
+            </header>
 
             {/* Background Overlay */}
             <div className="background-overlay"></div>
@@ -58,11 +80,11 @@ const AddAsset = () => {
 
             {message && <p className="message">{message}</p>}
 
-            <motion.form 
-                initial={{ opacity: 0, scale: 0.9 }} 
-                animate={{ opacity: 1, scale: 1 }} 
+            <motion.form
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5 }}
-                onSubmit={handleSubmit} 
+                onSubmit={handleSubmit}
                 className="add-asset-form"
             >
                 <div className="form-row">
@@ -106,9 +128,9 @@ const AddAsset = () => {
             </motion.form>
 
             {/* View Assets Button */}
-            <motion.button 
-                whileHover={{ scale: 1.1 }} 
-                className="view-assets-button" 
+            <motion.button
+                whileHover={{ scale: 1.1 }}
+                className="view-assets-button"
                 onClick={() => navigate("/assets")}
             >
                 📋 View Assets List
