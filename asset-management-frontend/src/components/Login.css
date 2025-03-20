@@ -44,6 +44,17 @@
   width: 350px;
 }
 
+/* Title Section */
+.title {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.title h1 {
+  font-size: 39px;
+  color: black; /* Set text color to black */
+  font-weight: bold; /* Make text bold */
+}
 
 /* Dropdown for Role */
 .user-role {
