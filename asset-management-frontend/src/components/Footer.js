@@ -19,7 +19,7 @@ const Footer = () => {
         <div className="footer-info">
           {[...Array(3)].map((_, i) => (
             <div key={i} className="footer-column">
-              <h3>Information</h3>
+              <h3>Informations</h3>
               <ul>
                 <li>Annual Reports</li>
                 <li>Specification of Fuel Products</li>
