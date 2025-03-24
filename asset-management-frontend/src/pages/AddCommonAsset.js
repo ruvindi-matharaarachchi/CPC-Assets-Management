@@ -2,14 +2,30 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./AddCommonAsset.css";
 
+const assetOptions = {
+  Laptop: {
+    brands: ["Dell", "HP", "Lenovo"],
+    models: ["Inspiron", "Pavilion", "ThinkPad"],
+  },
+  Printer: {
+    brands: ["Canon", "Epson", "Brother"],
+    models: ["LBP2900", "EcoTank", "HL-L2321D"],
+  },
+  Monitor: {
+    brands: ["Samsung", "LG", "Acer"],
+    models: ["Odyssey", "UltraWide", "Nitro"],
+  },
+};
+
 const AddCommonAsset = () => {
   const [form, setForm] = useState({
     itemName: "",
     brand: "",
-    category: "",
+    model: "",
     location: "",
     numberOfItems: "",
   });
+
   const [message, setMessage] = useState("");
 
   const handleChange = (e) => {
@@ -25,7 +41,7 @@ const AddCommonAsset = () => {
       setForm({
         itemName: "",
         brand: "",
-        category: "",
+        model: "",
         location: "",
         numberOfItems: "",
       });
@@ -34,35 +50,56 @@ const AddCommonAsset = () => {
     }
   };
 
+  const availableBrands = assetOptions[form.itemName]?.brands || [];
+  const availableModels = assetOptions[form.itemName]?.models || [];
+
   return (
     <div className="common-asset-container">
       <h2>Add Common Asset</h2>
       {message && <p className="message">{message}</p>}
+
       <form onSubmit={handleSubmit} className="common-asset-form">
         <input
           type="text"
           name="itemName"
-          placeholder="Item Name"
+          placeholder="Item Name (e.g., Laptop)"
           value={form.itemName}
           onChange={handleChange}
           required
         />
-        <input
-          type="text"
-          name="brand"
-          placeholder="Brand"
-          value={form.brand}
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="text"
-          name="category"
-          placeholder="Category"
-          value={form.category}
-          onChange={handleChange}
-          required
-        />
+
+        {availableBrands.length > 0 && (
+          <select
+            name="brand"
+            value={form.brand}
+            onChange={handleChange}
+            required
+          >
+            <option value="">Select Brand</option>
+            {availableBrands.map((b) => (
+              <option key={b} value={b}>
+                {b}
+              </option>
+            ))}
+          </select>
+        )}
+
+        {availableModels.length > 0 && (
+          <select
+            name="model"
+            value={form.model}
+            onChange={handleChange}
+            required
+          >
+            <option value="">Select Model</option>
+            {availableModels.map((m) => (
+              <option key={m} value={m}>
+                {m}
+              </option>
+            ))}
+          </select>
+        )}
+
         <input
           type="text"
           name="location"
@@ -71,6 +108,7 @@ const AddCommonAsset = () => {
           onChange={handleChange}
           required
         />
+
         <input
           type="number"
           name="numberOfItems"
@@ -79,7 +117,8 @@ const AddCommonAsset = () => {
           onChange={handleChange}
           required
         />
-        <button type="submit">Add Asset</button>
+
+        <button type="submit">➕ Add Asset</button>
       </form>
     </div>
   );
