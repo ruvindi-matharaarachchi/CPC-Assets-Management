@@ -1,0 +1,35 @@
+.asset-form {
+    max-width: 500px;
+    margin: 40px auto;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 30px;
+    border-radius: 12px;
+    color: white;
+    font-family: sans-serif;
+  }
+  
+  .asset-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .asset-form input,
+  .asset-form select {
+    width: 100%;
+    padding: 10px 12px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: none;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 16px;
+  }
+  
+  .asset-form input::placeholder {
+    color: #ccc;
+  }
+  
+  .asset-form select option {
+    color: black;
+  }
+  
