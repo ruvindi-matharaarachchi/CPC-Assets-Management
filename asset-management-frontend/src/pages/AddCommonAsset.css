@@ -1,0 +1,61 @@
+.common-asset-container {
+    min-height: 100vh;
+    background: linear-gradient(to right, #121212, #400000);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+  }
+  
+  .common-asset-container h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+  
+  .message {
+    margin-bottom: 15px;
+    color: lightgreen;
+  }
+  
+  .common-asset-form {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .common-asset-form input {
+    margin-bottom: 15px;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    font-size: 16px;
+  }
+  
+  .common-asset-form input:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.3);
+  }
+  
+  .common-asset-form button {
+    padding: 12px;
+    background: #27ae60;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s ease;
+  }
+  
+  .common-asset-form button:hover {
+    background: #1e8449;
+  }
+  

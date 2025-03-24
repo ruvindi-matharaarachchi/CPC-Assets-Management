@@ -17,6 +17,7 @@ app.use(cors());
 // Routes
 app.use("/api/auth", require("./routes/authRoutes"));  // User Authentication Routes
 app.use("/api/assets", require("./routes/assetRoutes")); // Asset Management Routes
+app.use("/api/common-assets", require("./routes/commonAssetRoutes"));
 
 // Error Handling Middleware
 app.use((err, req, res, next) => {
