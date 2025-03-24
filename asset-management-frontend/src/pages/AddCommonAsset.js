@@ -29,7 +29,19 @@ const AddCommonAsset = () => {
   const [message, setMessage] = useState("");
 
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+
+    // Reset brand and model if itemName changes
+    if (name === "itemName") {
+      setForm({
+        ...form,
+        itemName: value,
+        brand: "",
+        model: "",
+      });
+    } else {
+      setForm({ ...form, [name]: value });
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -50,6 +62,7 @@ const AddCommonAsset = () => {
     }
   };
 
+  // Dynamically load brand/model options based on typed item name
   const availableBrands = assetOptions[form.itemName]?.brands || [];
   const availableModels = assetOptions[form.itemName]?.models || [];
 
@@ -68,37 +81,37 @@ const AddCommonAsset = () => {
           required
         />
 
-        {availableBrands.length > 0 && (
-          <select
-            name="brand"
-            value={form.brand}
-            onChange={handleChange}
-            required
-          >
-            <option value="">Select Brand</option>
-            {availableBrands.map((b) => (
-              <option key={b} value={b}>
-                {b}
-              </option>
-            ))}
-          </select>
-        )}
+        <select
+          name="brand"
+          value={form.brand}
+          onChange={handleChange}
+          required
+        >
+          <option value="">Select Brand</option>
+          {availableBrands.length > 0
+            ? availableBrands.map((b) => (
+                <option key={b} value={b}>
+                  {b}
+                </option>
+              ))
+            : <option disabled>Enter Item Name First</option>}
+        </select>
 
-        {availableModels.length > 0 && (
-          <select
-            name="model"
-            value={form.model}
-            onChange={handleChange}
-            required
-          >
-            <option value="">Select Model</option>
-            {availableModels.map((m) => (
-              <option key={m} value={m}>
-                {m}
-              </option>
-            ))}
-          </select>
-        )}
+        <select
+          name="model"
+          value={form.model}
+          onChange={handleChange}
+          required
+        >
+          <option value="">Select Model</option>
+          {availableModels.length > 0
+            ? availableModels.map((m) => (
+                <option key={m} value={m}>
+                  {m}
+                </option>
+              ))
+            : <option disabled>Enter Item Name First</option>}
+        </select>
 
         <input
           type="text"
