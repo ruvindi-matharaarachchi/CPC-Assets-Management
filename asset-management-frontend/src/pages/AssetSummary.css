@@ -1,0 +1,16 @@
+.summary-container {
+    background: #1a1a1a;
+    color: white;
+    padding: 30px;
+    text-align: center;
+  }
+  
+  .summary-card {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    display: inline-block;
+    box-shadow: 0 4px 10px rgba(255, 0, 0, 0.3);
+    margin-top: 20px;
+  }
+  
