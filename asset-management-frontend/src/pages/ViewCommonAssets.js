@@ -43,9 +43,13 @@ const ViewCommonAssets = () => {
               <td>{asset.numberOfItems}</td>
               <td>{new Date(asset.createdAt).toLocaleDateString()}</td>
               <td>
-                <button onClick={() => handleEdit(asset._id, asset.numberOfItems)}>
+                <button
+                  className="add-unique-button"
+                  onClick={() => handleEdit(asset._id, asset.numberOfItems)}
+                >
                   Add Unique Details
                 </button>
+
 
               </td>
             </tr>
