@@ -74,34 +74,4 @@
   .common-asset-form button:hover {
     background: #c62828;
   }
-  /* Add this to your AddCommonAsset.css */
-.top-up-box {
-  position: fixed;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 10px 20px;
-  font-size: 16px;
-  border-radius: 8px;
-  z-index: 9999; /* Ensure it appears above everything else */
-  width: 80%;
-  max-width: 400px;
-  text-align: center;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: opacity 0.3s ease;
-}
-
-.top-up-box.success {
-  background-color: #28a745;
-  color: white;
-}
-
-.top-up-box.error {
-  background-color: #dc3545;
-  color: white;
-}
-
-/* Add some padding to ensure the header does not overlap content */
-.dashboard-header {
-  padding-top: 60px; /* Increase this value if necessary */
-}
+  
