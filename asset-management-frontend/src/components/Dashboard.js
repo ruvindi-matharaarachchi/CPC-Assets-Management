@@ -16,6 +16,9 @@ const Dashboard = () => {
         techniciansAvailable: 0,
         reportsGenerated: 0,
     });
+    const handleViewAssetSummary = () => {
+        navigate("/asset-summary");
+    };
 
     const handleLogout = () => {
         localStorage.removeItem("token");
@@ -90,7 +93,7 @@ const Dashboard = () => {
                     className="add-asset-button"
                     onClick={handleAddAsset}
                 >
-                    Add New Asset 
+                    Add New Asset
                 </motion.button>
 
                 {/* Dashboard Cards */}
