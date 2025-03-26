@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./ViewCommonAssets.css";
+import { useNavigate } from "react-router-dom";
 
 const ViewCommonAssets = () => {
   const [assets, setAssets] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -11,6 +13,10 @@ const ViewCommonAssets = () => {
       .then((res) => setAssets(res.data))
       .catch((err) => console.error("Failed to fetch assets", err));
   }, []);
+
+  const handleEdit = (id, quantity) => {
+    navigate(`/add-asset-details/${id}/${quantity}`);
+  };
 
   return (
     <div className="view-assets-container">
@@ -24,6 +30,7 @@ const ViewCommonAssets = () => {
             <th>Location</th>
             <th>Quantity</th>
             <th>Added Date</th>
+            <th>Actions</th> {/* New Column */}
           </tr>
         </thead>
         <tbody>
@@ -35,6 +42,11 @@ const ViewCommonAssets = () => {
               <td>{asset.location}</td>
               <td>{asset.numberOfItems}</td>
               <td>{new Date(asset.createdAt).toLocaleDateString()}</td>
+              <td>
+                <button onClick={() => handleEdit(asset._id, asset.numberOfItems)}>
+                  Add Unique Details
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>

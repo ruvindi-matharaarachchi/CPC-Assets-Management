@@ -1,0 +1,75 @@
+.unique-details-form {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .unique-details-form h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #2c3e50;
+  }
+  
+  .asset-detail-block {
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin-bottom: 25px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+  
+  .asset-detail-block h4 {
+    margin-bottom: 15px;
+    color: #16a085;
+  }
+  
+  .asset-detail-block input {
+    display: block;
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    transition: border-color 0.3s;
+  }
+  
+  .asset-detail-block input:focus {
+    border-color: #16a085;
+    outline: none;
+  }
+  
+  button[type="submit"] {
+    background-color: #16a085;
+    color: white;
+    padding: 12px 24px;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 100%;
+    transition: background-color 0.3s ease;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #138d75;
+  }
+  
+  @media (max-width: 768px) {
+    .unique-details-form {
+      padding: 20px;
+    }
+  
+    .asset-detail-block input {
+      font-size: 13px;
+    }
+  
+    button[type="submit"] {
+      font-size: 15px;
+    }
+  }
+  
