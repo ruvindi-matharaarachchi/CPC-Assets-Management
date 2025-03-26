@@ -1,0 +1,41 @@
+.details-container {
+    padding: 40px;
+    color: white;
+    background: linear-gradient(to right, #111, #400000);
+    min-height: 100vh;
+    text-align: center;
+  }
+  
+  .details-form {
+    max-width: 900px;
+    margin: auto;
+  }
+  
+  .device-box {
+    background: rgba(255, 255, 255, 0.08);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .device-box input, .device-box textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 6px 0;
+    border-radius: 6px;
+    border: none;
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+  }
+  
+  .submit-button {
+    padding: 12px 20px;
+    background: #27ae60;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  

@@ -5,6 +5,7 @@ import Dashboard from "./components/Dashboard";
 import AddCommonAsset from "./pages/AddCommonAsset";
 import ViewCommonAssets from "./pages/ViewCommonAssets";
 import AssetSummary from "./pages/AssetSummary";
+import AddAssetDetails from "./pages/AddAssetDetails";
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
         <Route path="/add-common-asset" element={<AddCommonAsset />} />
         <Route path="/view-common-assets" element={<ViewCommonAssets />} />
         <Route path="/asset-summary" element={<AssetSummary />} />
+        <Route path="/add-asset-details" element={<AddAssetDetails />} />
 
       </Routes>
     </Router>
