@@ -15,7 +15,7 @@ const ViewCommonAssets = () => {
   }, []);
 
   const handleEdit = (id, quantity) => {
-    navigate(`/add-asset-details/${id}/${quantity}`);
+    navigate(`/add-one-asset/${id}`);
   };
 
   return (
@@ -46,6 +46,7 @@ const ViewCommonAssets = () => {
                 <button onClick={() => handleEdit(asset._id, asset.numberOfItems)}>
                   Add Unique Details
                 </button>
+
               </td>
             </tr>
           ))}

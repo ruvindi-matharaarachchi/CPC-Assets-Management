@@ -1,62 +1,67 @@
 .unique-details-form {
-    max-width: 900px;
-    margin: 40px auto;
-    padding: 30px;
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+    min-height: 100vh;
+    background: linear-gradient(to right, #121212, #400000);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
   }
   
   .unique-details-form h2 {
-    text-align: center;
-    margin-bottom: 30px;
-    color: #2c3e50;
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: white;
   }
   
   .asset-detail-block {
-    border: 1px solid #ddd;
-    padding: 20px;
-    margin-bottom: 25px;
-    border-radius: 8px;
-    background-color: #f9f9f9;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    width: 100%;
+    max-width: 600px;
+    color: white;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.4);
   }
   
   .asset-detail-block h4 {
     margin-bottom: 15px;
-    color: #16a085;
+    color: #f4a261;
+    font-weight: bold;
   }
   
   .asset-detail-block input {
-    display: block;
     width: 100%;
-    padding: 10px 12px;
+    padding: 12px;
     margin-bottom: 15px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    font-size: 14px;
-    transition: border-color 0.3s;
+    border-radius: 8px;
+    border: none;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    font-size: 16px;
   }
   
   .asset-detail-block input:focus {
-    border-color: #16a085;
+    background: rgba(255, 255, 255, 0.3);
     outline: none;
   }
   
   button[type="submit"] {
-    background-color: #16a085;
-    color: white;
-    padding: 12px 24px;
-    font-size: 16px;
+    background: #e63946;
     border: none;
-    border-radius: 6px;
+    border-radius: 8px;
+    color: white;
+    font-size: 16px;
+    padding: 12px 24px;
     cursor: pointer;
-    margin-top: 10px;
     width: 100%;
-    transition: background-color 0.3s ease;
+    transition: background 0.3s ease;
   }
   
   button[type="submit"]:hover {
-    background-color: #138d75;
+    background: #c62828;
   }
   
   @media (max-width: 768px) {
@@ -64,8 +69,12 @@
       padding: 20px;
     }
   
+    .asset-detail-block {
+      padding: 20px;
+    }
+  
     .asset-detail-block input {
-      font-size: 13px;
+      font-size: 14px;
     }
   
     button[type="submit"] {

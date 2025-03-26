@@ -45,6 +45,19 @@ router.get("/summary", async (req, res) => {
 });
 
 
+router.get("/count/:commonAssetId", async (req, res) => {
+  try {
+    const count = await AssetDetail.countDocuments({ commonAssetId: req.params.commonAssetId });
+    res.json({ count });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+router.get("/:id", async (req, res) => {
+  const asset = await CommonAsset.findById(req.params.id);
+  res.json(asset);
+});
 
 
 module.exports = router;

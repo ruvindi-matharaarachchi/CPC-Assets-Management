@@ -6,6 +6,7 @@ import AddCommonAsset from "./pages/AddCommonAsset";
 import ViewCommonAssets from "./pages/ViewCommonAssets";
 import AssetSummary from "./pages/AssetSummary";
 import AddAssetDetailsForm from "./pages/AddAssetDetailsForm";
+import AddSingleAssetDetail from "./pages/AddSingleAssetDetail"; // ✅ Update path as needed
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
         <Route path="/view-common-assets" element={<ViewCommonAssets />} />
         <Route path="/asset-summary" element={<AssetSummary />} />
         <Route path="/add-asset-details/:commonAssetId/:quantity" element={<AddAssetDetailsForm />} />
+        <Route path="/add-one-asset/:commonAssetId" element={<AddSingleAssetDetail />} />
 
       </Routes>
     </Router>
