@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const CommonAsset = require("../models/CommonAsset");
 
-// ✅ Add new asset
+// ✅ POST: Add new asset
 router.post("/", async (req, res) => {
   try {
     const newAsset = new CommonAsset(req.body);
@@ -13,6 +13,17 @@ router.post("/", async (req, res) => {
   }
 });
 
+// ✅ GET: View all common assets
+router.get("/", async (req, res) => {
+  try {
+    const assets = await CommonAsset.find().sort({ createdAt: -1 });
+    console.log("Assets fetched:", assets);  // Add this
+    res.status(200).json(assets);
+  } catch (err) {
+    console.error("Fetch error:", err);      // Add this
+    res.status(500).json({ error: err.message });
+  }
+});
 
 
 

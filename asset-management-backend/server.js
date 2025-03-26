@@ -16,8 +16,7 @@ app.use(cors());
 
 // ✅ API Routes
 app.use("/api/auth", require("./routes/authRoutes")); // User login
-app.use("/api/assets", require("./routes/assetRoutes")); // Individual asset management
-app.use("/api/common-assets", require("./routes/commonAssetRoutes")); // IT department common assets
+app.use("/api/common-assets", require("./routes/commonAssetRoutes"));
 
 // ✅ Global Error Handler
 app.use((err, req, res, next) => {
