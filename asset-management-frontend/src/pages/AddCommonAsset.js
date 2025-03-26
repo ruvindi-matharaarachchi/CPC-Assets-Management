@@ -51,7 +51,7 @@ const AddCommonAsset = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setMessage("");
+    setMessage(""); // Clear the previous message
     try {
       await axios.post("http://localhost:5000/api/common-assets", form); // Ensure your URL is correct
       setMessage("✅ Asset added successfully.");
@@ -82,6 +82,13 @@ const AddCommonAsset = () => {
 
   return (
     <div className="common-asset-container">
+      {/* Top-up Box for success/failure messages */}
+      {message && (
+        <div className={`top-up-box ${message.includes("successfully") ? "success" : "error"}`}>
+          {message}
+        </div>
+      )}
+
       {/* Header Navigation Bar */}
       <motion.header
         initial={{ opacity: 0, y: -50 }}
@@ -109,7 +116,6 @@ const AddCommonAsset = () => {
       </motion.header>
 
       <h2>Add Common Asset</h2>
-      {message && <p className="message">{message}</p>}
 
       <form onSubmit={handleSubmit} className="common-asset-form">
         <input
