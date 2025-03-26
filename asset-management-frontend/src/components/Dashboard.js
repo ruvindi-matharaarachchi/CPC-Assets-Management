@@ -67,7 +67,7 @@ const Dashboard = () => {
                     className="add-asset-button"
                     onClick={handleAddAsset}
                 >
-                    <FaPlusCircle className="icon" /> Add New Asset
+                     Add New Asset
                 </motion.button>
 
                 {/* Dashboard Cards */}
