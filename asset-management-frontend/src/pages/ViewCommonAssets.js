@@ -54,6 +54,8 @@ const ViewCommonAssets = () => {
                 >
                   Add Unique Details
                 </button>
+              </td>
+              <td>
                 <button
                   className="view-details-button"
                   onClick={() => navigate(`/view-asset/${asset._id}`)}
