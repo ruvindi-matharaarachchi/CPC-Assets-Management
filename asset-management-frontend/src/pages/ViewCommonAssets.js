@@ -6,16 +6,11 @@ const ViewCommonAssets = () => {
   const [assets, setAssets] = useState([]);
 
   useEffect(() => {
-    const fetchAssets = async () => {
-      try {
-        const response = await axios.get("http://localhost:5000/api/common-assets");
-        setAssets(response.data);
-      } catch (err) {
-        console.error("Failed to fetch assets", err);
-      }
-    };
-    fetchAssets();
+    axios.get("http://localhost:5000/api/common-assets")
+      .then(res => setAssets(res.data))
+      .catch(err => console.error("Failed to fetch assets", err));
   }, []);
+  
 
   return (
     <div className="view-assets-container">
