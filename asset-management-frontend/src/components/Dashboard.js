@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaBell, FaCog, FaPlusCircle } from "react-icons/fa"; // Import Icons
+import { FaBell, FaCog } from "react-icons/fa"; // Import Icons
 import { motion } from "framer-motion"; // Animation Library
+import axios from "axios"; // Import Axios for API calls
 import "./Dashboard.css"; // Import Styles
 import logo from "../assets/logo.png"; // Ensure the logo exists
 import Footer from "../components/Footer"; // Import Footer
@@ -9,15 +10,35 @@ import Footer from "../components/Footer"; // Import Footer
 const Dashboard = () => {
     const navigate = useNavigate();
 
+    const [dashboardData, setDashboardData] = useState({
+        totalAssets: 0,
+        pendingIssues: 0,
+        techniciansAvailable: 0,
+        reportsGenerated: 0,
+    });
+
     const handleLogout = () => {
         localStorage.removeItem("token");
         navigate("/");
     };
 
-    // Navigate to Add Asset Page
     const handleAddAsset = () => {
-        navigate("/add-asset");
+        navigate("/add-common-asset");
     };
+
+    useEffect(() => {
+        // Function to fetch the dashboard data from the API
+        const fetchDashboardData = async () => {
+            try {
+                const response = await axios.get("http://localhost:5000/api/dashboard");
+                setDashboardData(response.data);
+            } catch (error) {
+                console.error("Error fetching dashboard data:", error);
+            }
+        };
+
+        fetchDashboardData(); // Call the function on component mount
+    }, []);
 
     return (
         <div className="dashboard-container">
@@ -67,32 +88,47 @@ const Dashboard = () => {
                     className="add-asset-button"
                     onClick={handleAddAsset}
                 >
-                     Add New Asset
+                    Add New Asset 
                 </motion.button>
 
                 {/* Dashboard Cards */}
                 <section className="dashboard-content">
-                    {[
-                        { title: "Total Assets", count: 120 },
-                        { title: "Pending Issues", count: 15 },
-                        { title: "Technicians Available", count: 8 },
-                        { title: "Reports Generated", count: 25 }
-                    ].map((item, index) => (
-                        <motion.div
-                            key={index}
-                            className="dashboard-card"
-                            whileHover={{ scale: 1.05 }}
-                        >
-                            <h3>{item.title}</h3>
-                            <p>{item.count}</p>
-                        </motion.div>
-                    ))}
+                    <motion.div
+                        className="dashboard-card"
+                        whileHover={{ scale: 1.05 }}
+                    >
+                        <h3>Total Assets</h3>
+                        <p>{dashboardData.totalAssets}</p>
+                    </motion.div>
+
+                    <motion.div
+                        className="dashboard-card"
+                        whileHover={{ scale: 1.05 }}
+                    >
+                        <h3>Pending Issues</h3>
+                        <p>{dashboardData.pendingIssues}</p>
+                    </motion.div>
+
+                    <motion.div
+                        className="dashboard-card"
+                        whileHover={{ scale: 1.05 }}
+                    >
+                        <h3>Technicians Available</h3>
+                        <p>{dashboardData.techniciansAvailable}</p>
+                    </motion.div>
+
+                    <motion.div
+                        className="dashboard-card"
+                        whileHover={{ scale: 1.05 }}
+                    >
+                        <h3>Reports Generated</h3>
+                        <p>{dashboardData.reportsGenerated}</p>
+                    </motion.div>
                 </section>
             </main>
+
             <Footer />
-
         </div>
-
     );
 };
 
