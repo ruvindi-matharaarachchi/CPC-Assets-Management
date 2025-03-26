@@ -24,6 +24,25 @@ router.get("/", async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
+// ✅ GET: Asset Summary (Total Quantity)
+router.get("/summary", async (req, res) => {
+  try {
+    const result = await CommonAsset.aggregate([
+      {
+        $group: {
+          _id: null,
+          totalQuantity: { $sum: "$numberOfItems" },
+          totalTypes: { $sum: 1 }
+        }
+      }
+    ]);
+
+    const summary = result[0] || { totalQuantity: 0, totalTypes: 0 };
+    res.status(200).json(summary);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
 
 
 
