@@ -1,6 +1,10 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // Import navigate from react-router-dom
 import axios from "axios";
+import { motion } from "framer-motion"; // Animation Library
+import { FaBell, FaCog, FaPlusCircle } from "react-icons/fa"; // Import Icons
 import "./AddCommonAsset.css";
+import logo from "../assets/logo.png"; // Ensure the logo exists
 
 const assetOptions = {
   Laptop: {
@@ -27,6 +31,7 @@ const AddCommonAsset = () => {
   });
 
   const [message, setMessage] = useState("");
+  const navigate = useNavigate(); // Define navigate here
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -48,7 +53,7 @@ const AddCommonAsset = () => {
     e.preventDefault();
     setMessage("");
     try {
-      await axios.post("http://localhost:5000/api/common-assets", form);
+      await axios.post("http://localhost:5000/api/common-assets", form); // Ensure your URL is correct
       setMessage("✅ Asset added successfully.");
       setForm({
         itemName: "",
@@ -66,8 +71,43 @@ const AddCommonAsset = () => {
   const availableBrands = assetOptions[form.itemName]?.brands || [];
   const availableModels = assetOptions[form.itemName]?.models || [];
 
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/"); // This should work now with navigate defined
+  };
+
+  const handleAddAsset = () => {
+    navigate("/add-asset"); // This should work now with navigate defined
+  };
+
   return (
     <div className="common-asset-container">
+      {/* Header Navigation Bar */}
+      <motion.header
+        initial={{ opacity: 0, y: -50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        className="dashboard-header"
+      >
+        <img src={logo} alt="Company Logo" className="logo" />
+
+        <nav>
+          <ul>
+            <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="/add-common-asset">Asset List</a></li>
+            <li><a href="/add-asset-form">Asset ListNew</a></li>
+            <li><a href="/technicians">Technicians</a></li>
+            <li><a href="/reports">Reports</a></li>
+          </ul>
+        </nav>
+
+        <div className="admin-icons">
+          <FaBell className="admin-icon" />
+          <FaCog className="admin-icon" />
+          <button onClick={handleLogout} className="logout-button">Logout</button>
+        </div>
+      </motion.header>
+
       <h2>Add Common Asset</h2>
       {message && <p className="message">{message}</p>}
 
@@ -90,10 +130,10 @@ const AddCommonAsset = () => {
           <option value="">Select Brand</option>
           {availableBrands.length > 0
             ? availableBrands.map((b) => (
-                <option key={b} value={b}>
-                  {b}
-                </option>
-              ))
+              <option key={b} value={b}>
+                {b}
+              </option>
+            ))
             : <option disabled>Enter Item Name First</option>}
         </select>
 
@@ -106,10 +146,10 @@ const AddCommonAsset = () => {
           <option value="">Select Model</option>
           {availableModels.length > 0
             ? availableModels.map((m) => (
-                <option key={m} value={m}>
-                  {m}
-                </option>
-              ))
+              <option key={m} value={m}>
+                {m}
+              </option>
+            ))
             : <option disabled>Enter Item Name First</option>}
         </select>
 
