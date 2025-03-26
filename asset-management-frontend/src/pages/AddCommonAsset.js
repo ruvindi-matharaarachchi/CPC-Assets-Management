@@ -131,7 +131,7 @@ const AddCommonAsset = () => {
           required
         />
 
-        <button type="submit">➕ Add Asset</button>
+        <button type="submit">Add Asset</button>
       </form>
     </div>
   );
