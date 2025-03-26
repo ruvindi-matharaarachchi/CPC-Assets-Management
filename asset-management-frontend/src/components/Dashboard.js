@@ -30,7 +30,7 @@ const Dashboard = () => {
         // Function to fetch the dashboard data from the API
         const fetchDashboardData = async () => {
             try {
-                const response = await axios.get("http://localhost:5000/api/dashboard");
+                const response = await axios.get("http://localhost:5000/api/common-assets");
                 setDashboardData(response.data);
             } catch (error) {
                 console.error("Error fetching dashboard data:", error);
