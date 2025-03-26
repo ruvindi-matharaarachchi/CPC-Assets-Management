@@ -14,14 +14,6 @@ router.post("/", async (req, res) => {
 });
 
 
-// ✅ GET: View all common assets
-router.get("/", async (req, res) => {
-  try {
-    const assets = await CommonAsset.find().sort({ createdAt: -1 });
-    res.status(200).json(assets);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
+
 
 module.exports = router;
