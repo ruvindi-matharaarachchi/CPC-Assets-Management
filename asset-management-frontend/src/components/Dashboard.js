@@ -98,15 +98,13 @@ const Dashboard = () => {
 
                 {/* Dashboard Cards */}
                 <section className="dashboard-content">
-                    <motion.button
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.9 }}
-                        className="add-asset-button"
-                        onClick={handleViewAssetSummary}
+                    <motion.div
+                        className="dashboard-card"
+                        whileHover={{ scale: 1.05 }}
                     >
-                        📊 View Asset Summary
-                    </motion.button>
-
+                        <h3>Total Assets</h3>
+                        <p>{dashboardData.totalAssets}</p>
+                    </motion.div>
 
                     <motion.div
                         className="dashboard-card"
