@@ -46,6 +46,7 @@ const ViewAssetDetails = () => {
             <th>MAC</th>
             <th>IP</th>
             <th>Remarks</th>
+            <th>Added Date</th> 
           </tr>
         </thead>
         <tbody>
@@ -56,6 +57,7 @@ const ViewAssetDetails = () => {
               <td>{a.macAddress || "-"}</td>
               <td>{a.ipAddress || "-"}</td>
               <td>{a.remarks || "-"}</td>
+              <td>{new Date(a.createdAt).toLocaleDateString()}</td> 
             </tr>
           ))}
         </tbody>
