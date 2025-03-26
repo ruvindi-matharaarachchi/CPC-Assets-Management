@@ -23,7 +23,7 @@ const Dashboard = () => {
     };
 
     const handleAddAsset = () => {
-        navigate("/add-asset");
+        navigate("/add-common-asset");
     };
 
     useEffect(() => {
@@ -88,7 +88,7 @@ const Dashboard = () => {
                     className="add-asset-button"
                     onClick={handleAddAsset}
                 >
-                    Add New Asset
+                    Add New Asset 
                 </motion.button>
 
                 {/* Dashboard Cards */}
