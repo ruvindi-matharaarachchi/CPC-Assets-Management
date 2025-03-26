@@ -26,6 +26,7 @@
   width: 100%;
   max-width: 500px;
   display: flex;
+  color: #121212;
   flex-direction: column;
 }
 
