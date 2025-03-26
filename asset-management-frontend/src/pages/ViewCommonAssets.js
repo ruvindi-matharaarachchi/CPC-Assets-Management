@@ -21,6 +21,9 @@ const ViewCommonAssets = () => {
   return (
     <div className="view-assets-container">
       <h2>All Common Assets</h2>
+      <button className="back-button" onClick={() => navigate(-1)}>
+        Back
+      </button>
       <table>
         <thead>
           <tr>

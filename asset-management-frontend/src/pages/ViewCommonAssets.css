@@ -28,7 +28,7 @@
   }
   .add-unique-button {
     padding: 10px 20px;
-    background: #e63946;
+    background: #7c1426;
     color: white;
     border: none;
     border-radius: 8px;
@@ -41,5 +41,21 @@
   .add-unique-button:hover {
     background: #c62828;
     transform: translateY(-2px);
+  }
+  .back-button {
+    background: transparent;
+    color: #e63946;
+    border: 2px solid #e63946;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+  }
+  
+  .back-button:hover {
+    background: #e63946;
+    color: white;
   }
   
