@@ -1,0 +1,29 @@
+.view-assets-container {
+    padding: 40px;
+    background: linear-gradient(to right, #121212, #400000);
+    color: white;
+    min-height: 100vh;
+  }
+  
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  th, td {
+    padding: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    text-align: center;
+  }
+  
+  th {
+    background: rgba(255, 255, 255, 0.2);
+    font-weight: bold;
+  }
+  

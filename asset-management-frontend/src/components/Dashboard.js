@@ -61,6 +61,8 @@ const Dashboard = () => {
                         <li><a href="/add-asset-form">Asset ListNew</a></li>
                         <li><a href="/technicians">Technicians</a></li>
                         <li><a href="/reports">Reports</a></li>
+                        <li><a href="/view-common-assets">View Common Assets</a></li>
+
                     </ul>
                 </nav>
 

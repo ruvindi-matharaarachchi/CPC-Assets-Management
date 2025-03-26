@@ -42,17 +42,15 @@ router.get('/api/dashboard', async (req, res) => {
     }
 });
 
-// GET route to view all assets
-router.get('/api/common-assets', async (req, res) => {
+// GET: Get all common assets
+router.get("/", async (req, res) => {
   try {
-    // Fetch all assets from the database
-    const assets = await CommonAsset.find();
-
-    // Return assets as response
+    const assets = await CommonAsset.find().sort({ createdAt: -1 });
     res.status(200).json(assets);
   } catch (err) {
-    res.status(500).json({ error: "Error fetching assets." });
+    res.status(500).json({ error: err.message });
   }
 });
+
 
 module.exports = router;
