@@ -1,0 +1,48 @@
+.asset-details-container {
+    padding: 40px;
+    background: linear-gradient(to right, #121212, #400000);
+    color: white;
+    min-height: 100vh;
+  }
+  
+  .asset-details-container h2, h3 {
+    margin-bottom: 15px;
+    color: #f4a261;
+  }
+  
+  .asset-details-container p {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+  
+  .asset-details-container table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .asset-details-container th,
+  .asset-details-container td {
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    text-align: center;
+    color: white;
+  }
+  
+  .back-button {
+    margin-top: 30px;
+    padding: 10px 20px;
+    background: transparent;
+    border: 2px solid #e63946;
+    color: #e63946;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s ease;
+  }
+  
+  .back-button:hover {
+    background: #e63946;
+    color: white;
+  }
+  

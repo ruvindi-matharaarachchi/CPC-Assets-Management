@@ -34,6 +34,8 @@ const ViewCommonAssets = () => {
             <th>Quantity</th>
             <th>Added Date</th>
             <th>Actions</th> {/* New Column */}
+            <th>View</th> {/* New Column */}
+
           </tr>
         </thead>
         <tbody>
@@ -51,6 +53,12 @@ const ViewCommonAssets = () => {
                   onClick={() => handleEdit(asset._id, asset.numberOfItems)}
                 >
                   Add Unique Details
+                </button>
+                <button
+                  className="view-details-button"
+                  onClick={() => navigate(`/view-asset/${asset._id}`)}
+                >
+                  View Details
                 </button>
 
 

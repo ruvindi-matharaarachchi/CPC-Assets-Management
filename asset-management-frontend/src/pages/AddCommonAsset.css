@@ -41,15 +41,22 @@
   font-size: 16px;
 }
 
+/* ✅ White placeholder text */
+.common-asset-form input::placeholder {
+  color: white;
+  opacity: 0.7; /* optional: make it slightly dimmer */
+}
+
 .common-asset-form select {
   margin-bottom: 15px;
-  align-content: center;
   padding: 12px;
   border-radius: 8px;
   border: none;
   background: rgba(255, 255, 255, 0.2);
   color: white;
   font-size: 16px;
+  text-align: center;
+  text-align-last: center; /* Most modern browsers */
 }
 
 .common-asset-form select option {
@@ -75,4 +82,20 @@
 
 .common-asset-form button:hover {
   background: #c62828;
+}
+
+.view-details-button {
+  padding: 8px 16px;
+  background: transparent;
+  border: 2px solid #3498db;
+  color: #3498db;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  margin-left: 10px;
+}
+
+.view-details-button:hover {
+  background: #3498db;
+  color: white;
 }

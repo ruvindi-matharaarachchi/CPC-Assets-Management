@@ -26,5 +26,13 @@ router.get("/count/:commonAssetId", async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
+router.get("/by-common/:commonAssetId", async (req, res) => {
+  try {
+    const assets = await AssetDetail.find({ commonAssetId: req.params.commonAssetId });
+    res.json(assets);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
 
 module.exports = router;
