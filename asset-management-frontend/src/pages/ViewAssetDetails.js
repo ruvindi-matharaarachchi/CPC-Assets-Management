@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from "react";
+import jsPDF from "jspdf";
+import autoTable from "jspdf-autotable";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./AssetDetailView.css"; // You can create this later
+import "./AssetDetailView.css"; // Create and style this file as needed
 
 const ViewAssetDetails = () => {
   const { id } = useParams(); // commonAssetId
   const navigate = useNavigate();
   const [commonAsset, setCommonAsset] = useState(null);
   const [uniqueAssets, setUniqueAssets] = useState([]);
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
 
   useEffect(() => {
     const fetchDetails = async () => {
@@ -27,6 +31,32 @@ const ViewAssetDetails = () => {
     fetchDetails();
   }, [id]);
 
+  // Function to generate PDF based on date filter
+  const generatePDF = () => {
+    const filtered = uniqueAssets.filter((a) => {
+      const assetDate = new Date(a.createdAt);
+      return (!startDate || assetDate >= new Date(startDate)) &&
+             (!endDate || assetDate <= new Date(endDate));
+    });
+
+    const doc = new jsPDF();
+    doc.text(`Asset Report: ${commonAsset.itemName}`, 14, 15);
+
+    autoTable(doc, {
+      head: [["Serial", "Assigned To", "MAC", "IP", "Remarks", "Date"]],
+      body: filtered.map((a) => [
+        a.serialNumber,
+        a.assignedTo || "-",
+        a.macAddress || "-",
+        a.ipAddress || "-",
+        a.remarks || "-",
+        new Date(a.createdAt).toLocaleDateString()
+      ])
+    });
+
+    doc.save("asset-report.pdf");
+  };
+
   if (!commonAsset) return <p>Loading...</p>;
 
   return (
@@ -37,6 +67,23 @@ const ViewAssetDetails = () => {
       <p><strong>Location:</strong> {commonAsset.location}</p>
       <p><strong>Total Quantity:</strong> {commonAsset.numberOfItems}</p>
 
+      {/* Date Range Filters and PDF Generation */}
+      <div className="date-filter">
+        <input
+          type="date"
+          value={startDate}
+          onChange={(e) => setStartDate(e.target.value)}
+        />
+        <input
+          type="date"
+          value={endDate}
+          onChange={(e) => setEndDate(e.target.value)}
+        />
+        <button className="pdf-button" onClick={generatePDF}>
+           PDF
+        </button>
+      </div>
+
       <h3>Unique Devices:</h3>
       <table>
         <thead>
@@ -46,7 +93,7 @@ const ViewAssetDetails = () => {
             <th>MAC</th>
             <th>IP</th>
             <th>Remarks</th>
-            <th>Added Date</th> 
+            <th>Added Date</th>
           </tr>
         </thead>
         <tbody>
@@ -57,13 +104,15 @@ const ViewAssetDetails = () => {
               <td>{a.macAddress || "-"}</td>
               <td>{a.ipAddress || "-"}</td>
               <td>{a.remarks || "-"}</td>
-              <td>{new Date(a.createdAt).toLocaleDateString()}</td> 
+              <td>{new Date(a.createdAt).toLocaleDateString()}</td>
             </tr>
           ))}
         </tbody>
       </table>
 
-      <button className="back-button" onClick={() => navigate(-1)}>← Back</button>
+      <button className="back-button" onClick={() => navigate(-1)}>
+        ← Back
+      </button>
     </div>
   );
 };
