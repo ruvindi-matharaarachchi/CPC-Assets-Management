@@ -26,7 +26,6 @@ const AddCommonAsset = () => {
     itemName: "",
     brand: "",
     model: "",
-    location: "",
     numberOfItems: "",
   });
 
@@ -58,7 +57,6 @@ const AddCommonAsset = () => {
         itemName: "",
         brand: "",
         model: "",
-        location: "",
         numberOfItems: "",
       });
     } catch (error) {
@@ -143,15 +141,7 @@ const AddCommonAsset = () => {
             : <option disabled>Enter Item Name First</option>}
         </select>
 
-        <input
-          type="text"
-          name="location"
-          placeholder="Location"
-          value={form.location}
-          onChange={handleChange}
-          required
-        />
-
+        
         <input
           type="number"
           name="numberOfItems"
