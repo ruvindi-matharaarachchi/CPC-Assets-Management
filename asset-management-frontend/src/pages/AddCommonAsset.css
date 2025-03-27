@@ -1,6 +1,6 @@
 .common-asset-container {
   min-height: 100vh;
-  background: linear-gradient(to right, #121212, #400000);
+  background: linear-gradient(to right, #ffffff, #ffffff); 
   color: white;
   display: flex;
   flex-direction: column;
