@@ -1,94 +1,88 @@
 .common-asset-container {
   min-height: 100vh;
-  background: linear-gradient(to right, #ffffff, #ffffff); 
-  color: white;
+  background: linear-gradient(to right, #ffecec, #fff5f5); /* soft red background */
+  color: #333;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 40px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .common-asset-container h2 {
-  font-size: 28px;
+  font-size: 30px;
+  color: #a83240;
   margin-bottom: 20px;
 }
 
 .message {
   margin-bottom: 15px;
-  color: lightgreen;
+  color: #28a745;
 }
 
 .common-asset-form {
-  background: rgba(255, 255, 255, 0.1);
+  background: #ffffff;
   padding: 30px;
-  border-radius: 12px;
+  border-radius: 16px;
   width: 100%;
-  max-width: 500px;
+  max-width: 520px;
   display: flex;
-  color: #121212;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
   flex-direction: column;
+  gap: 15px;
 }
 
-.common-asset-form input {
-  margin-bottom: 15px;
-  width: auto;
-  padding: 12px;
-  border-radius: 8px;
-  border: none;
-  background: rgba(255, 255, 255, 0.2);
-  color: white;
-  font-size: 16px;
-}
-
-/* ✅ White placeholder text */
-.common-asset-form input::placeholder {
-  color: white;
-  opacity: 0.7; /* optional: make it slightly dimmer */
-}
-
+.common-asset-form input,
 .common-asset-form select {
-  margin-bottom: 15px;
-  padding: 12px;
-  border-radius: 8px;
-  border: none;
-  background: rgba(255, 255, 255, 0.2);
-  color: white;
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
   font-size: 16px;
-  text-align: center;
-  text-align-last: center; /* Most modern browsers */
+  background-color: #fdf2f2;
+  color: #333;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.common-asset-form input::placeholder {
+  color: #999;
+  opacity: 1;
 }
 
 .common-asset-form select option {
-  color: black;
+  color: #333;
 }
 
 .common-asset-form input:focus,
 .common-asset-form select:focus {
   outline: none;
-  background: rgba(255, 255, 255, 0.3);
+  border-color: #e57373;
+  box-shadow: 0 0 0 3px rgba(229, 115, 115, 0.2);
 }
 
 .common-asset-form button {
-  padding: 12px;
+  padding: 14px;
   background: #e63946;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   color: white;
   font-size: 16px;
+  font-weight: 600;
   cursor: pointer;
-  transition: 0.3s ease;
+  transition: background 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 14px rgba(230, 57, 70, 0.4);
 }
 
 .common-asset-form button:hover {
-  background: #c62828;
+  background: #d62839;
+  transform: translateY(-1px);
 }
 
 .view-details-button {
-  padding: 8px 16px;
+  padding: 10px 18px;
   background: transparent;
-  border: 2px solid #3498db;
-  color: #3498db;
+  border: 2px solid #e63946;
+  color: #e63946;
   border-radius: 8px;
   cursor: pointer;
   transition: 0.3s ease;
@@ -96,19 +90,20 @@
 }
 
 .view-details-button:hover {
-  background: #3498db;
+  background: #e63946;
   color: white;
 }
+
 .toast-message {
   position: fixed;
   top: 80px;
   right: 30px;
-  padding: 12px 20px;
-  border-radius: 8px;
-  font-size: 14px;
+  padding: 14px 22px;
+  border-radius: 10px;
+  font-size: 15px;
   color: white;
   z-index: 9999;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
   transition: opacity 0.3s ease;
 }
 
