@@ -1,0 +1,77 @@
+.issue-asset-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #fff5f5;
+    border-radius: 16px;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  .issue-asset-container h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #b91c1c;
+  }
+  
+  .search-bar-section {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .search-bar {
+    flex: 1;
+    padding: 12px;
+    font-size: 14px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    background-color: #fff0f0;
+  }
+  
+  .search-btn {
+    padding: 12px 20px;
+    background-color: #e63946;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .search-btn:hover {
+    background-color: #c5303e;
+  }
+  
+  .search-results {
+    margin-top: 30px;
+    overflow-x: auto;
+  }
+  
+  .search-results h4 {
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  .search-results table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    font-size: 14px;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .search-results th,
+  .search-results td {
+    padding: 12px 14px;
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+  
+  .search-results th {
+    background-color: #f9dcdc;
+    color: #333;
+  }
+  
