@@ -60,11 +60,10 @@ const Dashboard = () => {
                 <nav>
                     <ul>
                         <li><a href="/dashboard">Dashboard</a></li>
-                        <li><a href="/add-common-asset">Asset List</a></li>
+                        <li><a href="/view-common-assets">View Assets List</a></li>
                         <li><a href="/add-asset-form">Asset ListNew</a></li>
                         <li><a href="/technicians">Technicians</a></li>
                         <li><a href="/asset-summary">Reports</a></li>
-                        <li><a href="/view-common-assets">View Common Assets</a></li>
 
                     </ul>
                 </nav>
