@@ -8,6 +8,7 @@ import AssetSummary from "./pages/AssetSummary";
 import AddAssetDetailsForm from "./pages/AddAssetDetailsForm";
 import AddSingleAssetDetail from "./pages/AddSingleAssetDetail"; 
 import ViewAssetDetails from "./pages/ViewAssetDetails"; 
+import IssueAssetForm from "./pages/IssueAssetForm"; // adjust path as needed
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
         <Route path="/add-asset-details/:commonAssetId/:quantity" element={<AddAssetDetailsForm />} />
         <Route path="/add-one-asset/:commonAssetId" element={<AddSingleAssetDetail />} />
         <Route path="/view-asset/:id" element={<ViewAssetDetails />} />
+        <Route path="/issue-asset" element={<IssueAssetForm />} />
 
       </Routes>
     </Router>
