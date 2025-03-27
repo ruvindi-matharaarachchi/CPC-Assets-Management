@@ -7,10 +7,10 @@ const AddSingleAssetDetail = () => {
   const { commonAssetId } = useParams();
   const [quantityLeft, setQuantityLeft] = useState(0);
   const [form, setForm] = useState({
-    serialNumber: "",
     assignedTo: "",
-    macAddress: "",
-    ipAddress: "",
+    location: "",
+    serialNumber: "",
+    assetNumber: "",
     remarks: "",
   });
 
@@ -40,7 +40,7 @@ const AddSingleAssetDetail = () => {
         assets: [{ ...form, commonAssetId }],
       });
       alert("Asset saved!");
-      setForm({ serialNumber: "", assignedTo: "", macAddress: "", ipAddress: "", remarks: "" });
+      setForm({ assignedTo: "", location: "", serialNumber: "", assetNumber: "", remarks: "" });
       setQuantityLeft((prev) => prev - 1);
     } catch (err) {
       alert("Error: " + err.message);
