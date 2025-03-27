@@ -49,7 +49,7 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    color: #ff4747; /* Slightly brighter red hover effect */
+    color: #c62828; /* Slightly brighter red hover effect */
 }
 
 /* Admin Icons */
@@ -100,7 +100,7 @@ nav ul li a:hover {
     display: flex;
     align-items: center;
     gap: 10px;
-    background: linear-gradient(to right, #ff4747, #c62828); /* Gradient red button */
+    background: linear-gradient(to right, #d4737b, #c62828); /* Gradient red button */
     border: none;
     padding: 12px 20px;
     font-size: 18px;
@@ -112,7 +112,7 @@ nav ul li a:hover {
 }
 
 .add-asset-button:hover {
-    background: linear-gradient(to right, #ff0000, #b71c1c);
+    background: linear-gradient(to right, #b40505, #b71c1c);
 }
 
 .add-asset-button .icon {
