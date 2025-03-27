@@ -18,6 +18,7 @@ app.use(cors());
 app.use("/api/auth", require("./routes/authRoutes")); // User login
 app.use("/api/common-assets", require("./routes/commonAssetRoutes"));
 app.use("/api/asset-details", require("./routes/assetDetailRoutes"));
+app.use('/api/asset-details', assetDetailsRoutes);
 
 // ✅ Global Error Handler
 app.use((err, req, res, next) => {
