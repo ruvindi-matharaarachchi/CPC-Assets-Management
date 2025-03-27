@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "./ViewCommonAssets.css";
+import { motion } from "framer-motion";
+import { FaBell, FaCog } from "react-icons/fa"; import "./ViewCommonAssets.css";
 import { useNavigate } from "react-router-dom";
+import logo from "../assets/logo.png";
 
 const ViewCommonAssets = () => {
   const [assets, setAssets] = useState([]);
@@ -13,6 +15,10 @@ const ViewCommonAssets = () => {
       .then((res) => setAssets(res.data))
       .catch((err) => console.error("Failed to fetch assets", err));
   }, []);
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/");
+  };
 
   const handleEdit = (id, quantity) => {
     navigate(`/add-one-asset/${id}`);
@@ -20,6 +26,30 @@ const ViewCommonAssets = () => {
 
   return (
     <div className="view-assets-container">
+      <motion.header
+        initial={{ opacity: 0, y: -50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        className="dashboard-header"
+      >
+        <img src={logo} alt="Company Logo" className="logo" />
+
+        <nav>
+          <ul>
+            <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="/view-common-assets">View Assets List</a></li>
+            <li><a href="/add-asset-form">Asset ListNew</a></li>
+            <li><a href="/technicians">Technicians</a></li>
+            <li><a href="/asset-summary">Reports</a></li>
+          </ul>
+        </nav>
+
+        <div className="admin-icons">
+          <FaBell className="admin-icon" />
+          <FaCog className="admin-icon" />
+          <button onClick={handleLogout} className="logout-button">Logout</button>
+        </div>
+      </motion.header>
       <h2>All Common Assets</h2>
       <button className="back-button" onClick={() => navigate(-1)}>
         Back
