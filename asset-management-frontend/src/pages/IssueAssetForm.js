@@ -10,15 +10,12 @@ const IssueAssetForm = () => {
   const handleSearch = async () => {
     if (!searchQuery.trim()) return;
     setIsLoading(true);
-
     try {
-      const response = await axios.get(`http://localhost:5000/api/asset-details/search?q=${searchQuery}`);
-      setSearchResults(response.data);
+      const res = await axios.get(`http://localhost:5000/api/asset-details/search?q=${searchQuery}`);
+      setSearchResults(res.data);
     } catch (error) {
-      console.error("Search failed", error);
-      setSearchResults([]);
+      console.error("Search failed:", error);
     }
-
     setIsLoading(false);
   };
 
@@ -29,14 +26,12 @@ const IssueAssetForm = () => {
       <div className="search-bar-section">
         <input
           type="text"
-          placeholder="Search by Assigned User, Serial or Asset No."
+          placeholder="Search by Assigned User, Serial or Asset Number"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           className="search-bar"
         />
-        <button onClick={handleSearch} className="search-btn">
-          Search
-        </button>
+        <button onClick={handleSearch} className="search-btn">Search</button>
       </div>
 
       {isLoading ? (
