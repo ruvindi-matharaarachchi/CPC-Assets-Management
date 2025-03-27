@@ -19,6 +19,14 @@ const assetOptions = {
     brands: ["Samsung", "LG", "Acer"],
     models: ["Odyssey", "UltraWide", "Nitro"],
   },
+  CPU: {
+    brands: ["Intel", "AMD", "Ryzen"],
+    models: ["Core i5", "Core i7", "Ryzen 5", "Ryzen 7"],
+  },
+  UPS: {
+    brands: ["APC", "Microtek", "Luminous"],
+    models: ["Back-UPS 600VA", "SEBz 1100VA", "EcoVolt"],
+  },
 };
 
 const AddCommonAsset = () => {
@@ -98,7 +106,7 @@ const AddCommonAsset = () => {
             <li><a href="/add-asset-form">Asset ListNew</a></li>
             <li><a href="/technicians">Technicians</a></li>
             <li><a href="/asset-summary">Reports</a></li>
-            </ul>
+          </ul>
         </nav>
 
         <div className="admin-icons">
@@ -118,14 +126,20 @@ const AddCommonAsset = () => {
       )}
 
       <form onSubmit={handleSubmit} className="common-asset-form">
-        <input
-          type="text"
+        <select
           name="itemName"
-          placeholder="Item Name (e.g., Laptop)"
           value={form.itemName}
           onChange={handleChange}
           required
-        />
+        >
+          <option value="">Select Item</option>
+          <option value="Monitor">Monitor</option>
+          <option value="CPU">CPU</option>
+          <option value="UPS">UPS</option>
+          <option value="Laptop">Laptop</option>
+          <option value="Printer">Printer</option>
+        </select>
+
 
         <select name="brand" value={form.brand} onChange={handleChange} required>
           <option value="">Select Brand</option>
@@ -141,7 +155,7 @@ const AddCommonAsset = () => {
             : <option disabled>Enter Item Name First</option>}
         </select>
 
-        
+
         <input
           type="number"
           name="numberOfItems"
