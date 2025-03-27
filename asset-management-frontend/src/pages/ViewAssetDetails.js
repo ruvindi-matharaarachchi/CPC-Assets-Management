@@ -43,7 +43,7 @@ const ViewAssetDetails = () => {
     doc.text(`Asset Report: ${commonAsset.itemName}`, 14, 15);
 
     autoTable(doc, {
-      head: [["Serial", "Assigned To", "MAC", "IP", "Remarks", "Date"]],
+      head: [["Assigned To", "Location", "Serial", "Asset", "Remarks", "Date"]],
       body: filtered.map((a) => [
         a.assignedTo,
         a.location || "-",
@@ -64,7 +64,6 @@ const ViewAssetDetails = () => {
       <h2>Asset: {commonAsset.itemName}</h2>
       <p><strong>Brand:</strong> {commonAsset.brand}</p>
       <p><strong>Model:</strong> {commonAsset.model}</p>
-      <p><strong>Location:</strong> {commonAsset.location}</p>
       <p><strong>Total Quantity:</strong> {commonAsset.numberOfItems}</p>
 
       {/* Date Range Filters and PDF Generation */}
