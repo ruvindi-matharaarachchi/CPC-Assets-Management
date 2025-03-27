@@ -54,7 +54,7 @@ const AddCommonAsset = () => {
     setMessage("");
     try {
       await axios.post("http://localhost:5000/api/common-assets", form); // Ensure your URL is correct
-      setMessage("✅ Asset added successfully.");
+      setMessage("Asset added successfully.");
       setForm({
         itemName: "",
         brand: "",
