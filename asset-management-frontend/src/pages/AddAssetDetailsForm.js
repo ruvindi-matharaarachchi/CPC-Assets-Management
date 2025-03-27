@@ -9,10 +9,10 @@ const AddAssetDetailsForm = () => {
 
   const [assets, setAssets] = useState(
     Array.from({ length: Number(quantity) }, () => ({
-      serialNumber: "",
       assignedTo: "",
-      macAddress: "",
-      ipAddress: "",
+      location: "",
+      assetNumber: "",
+      serialNumber: "",
       remarks: "",
     }))
   );
@@ -48,26 +48,28 @@ const AddAssetDetailsForm = () => {
         {assets.map((asset, index) => (
           <div key={index} className="asset-detail-block">
             <h4>Asset #{index + 1}</h4>
-            <input
-              placeholder="Serial Number"
-              value={asset.serialNumber}
-              onChange={(e) => handleChange(index, "serialNumber", e.target.value)}
-              required
-            />
+            
             <input
               placeholder="Assigned To"
               value={asset.assignedTo}
               onChange={(e) => handleChange(index, "assignedTo", e.target.value)}
             />
             <input
-              placeholder="MAC Address"
-              value={asset.macAddress}
-              onChange={(e) => handleChange(index, "macAddress", e.target.value)}
+              placeholder="Function"
+              value={asset.location}
+              onChange={(e) => handleChange(index, "location", e.target.value)}
             />
+           
             <input
-              placeholder="IP Address"
-              value={asset.ipAddress}
-              onChange={(e) => handleChange(index, "ipAddress", e.target.value)}
+              placeholder="Asset Number"
+              value={asset.assetNumber}
+              onChange={(e) => handleChange(index, "assetNumber", e.target.value)}
+            />
+             <input
+              placeholder="Serial Number"
+              value={asset.serialNumber}
+              onChange={(e) => handleChange(index, "serialNumber", e.target.value)}
+              required
             />
             <input
               placeholder="Remarks"
