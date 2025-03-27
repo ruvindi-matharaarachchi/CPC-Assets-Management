@@ -2,7 +2,6 @@ const express = require("express");
 const connectDB = require("./config/db");
 const dotenv = require("dotenv");
 const cors = require("cors");
-const assetDetailsRoutes = require('./routes/asset-details');
 
 dotenv.config();
 
@@ -19,8 +18,9 @@ app.use(cors());
 app.use("/api/auth", require("./routes/authRoutes")); // User login
 app.use("/api/common-assets", require("./routes/commonAssetRoutes"));
 app.use("/api/asset-details", require("./routes/assetDetailRoutes"));
-app.use('/api/asset-details', assetDetailsRoutes);
 
+const assetDetailsRoute = require("./routes/asset-details");
+app.use("/api/asset-details", assetDetailsRoute);
 // ✅ Global Error Handler
 app.use((err, req, res, next) => {
   console.error(err.stack);
