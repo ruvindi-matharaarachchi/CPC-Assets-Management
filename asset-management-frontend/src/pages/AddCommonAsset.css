@@ -1,88 +1,94 @@
 .common-asset-container {
   min-height: 100vh;
-  background: linear-gradient(to right, #ffecec, #fff5f5); /* soft red background */
-  color: #333;
+  background: linear-gradient(to right, #121212, #400000);
+  color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 40px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .common-asset-container h2 {
-  font-size: 30px;
-  color: #a83240;
+  font-size: 28px;
   margin-bottom: 20px;
 }
 
 .message {
   margin-bottom: 15px;
-  color: #28a745;
+  color: lightgreen;
 }
 
 .common-asset-form {
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
   padding: 30px;
-  border-radius: 16px;
+  border-radius: 12px;
   width: 100%;
-  max-width: 520px;
+  max-width: 500px;
   display: flex;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  color: #121212;
   flex-direction: column;
-  gap: 15px;
 }
 
-.common-asset-form input,
-.common-asset-form select {
-  padding: 14px;
-  border-radius: 10px;
-  border: 1px solid #ccc;
+.common-asset-form input {
+  margin-bottom: 15px;
+  width: auto;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
   font-size: 16px;
-  background-color: #fdf2f2;
-  color: #333;
-  transition: border 0.2s ease, box-shadow 0.2s ease;
 }
 
+/* ✅ White placeholder text */
 .common-asset-form input::placeholder {
-  color: #999;
-  opacity: 1;
+  color: white;
+  opacity: 0.7; /* optional: make it slightly dimmer */
+}
+
+.common-asset-form select {
+  margin-bottom: 15px;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  font-size: 16px;
+  text-align: center;
+  text-align-last: center; /* Most modern browsers */
 }
 
 .common-asset-form select option {
-  color: #333;
+  color: black;
 }
 
 .common-asset-form input:focus,
 .common-asset-form select:focus {
   outline: none;
-  border-color: #e57373;
-  box-shadow: 0 0 0 3px rgba(229, 115, 115, 0.2);
+  background: rgba(255, 255, 255, 0.3);
 }
 
 .common-asset-form button {
-  padding: 14px;
+  padding: 12px;
   background: #e63946;
   border: none;
-  border-radius: 10px;
+  border-radius: 8px;
   color: white;
   font-size: 16px;
-  font-weight: 600;
   cursor: pointer;
-  transition: background 0.3s ease, transform 0.2s ease;
-  box-shadow: 0 4px 14px rgba(230, 57, 70, 0.4);
+  transition: 0.3s ease;
 }
 
 .common-asset-form button:hover {
-  background: #d62839;
-  transform: translateY(-1px);
+  background: #c62828;
 }
 
 .view-details-button {
-  padding: 10px 18px;
+  padding: 8px 16px;
   background: transparent;
-  border: 2px solid #e63946;
-  color: #e63946;
+  border: 2px solid #3498db;
+  color: #3498db;
   border-radius: 8px;
   cursor: pointer;
   transition: 0.3s ease;
@@ -90,27 +96,6 @@
 }
 
 .view-details-button:hover {
-  background: #e63946;
+  background: #3498db;
   color: white;
-}
-
-.toast-message {
-  position: fixed;
-  top: 80px;
-  right: 30px;
-  padding: 14px 22px;
-  border-radius: 10px;
-  font-size: 15px;
-  color: white;
-  z-index: 9999;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
-  transition: opacity 0.3s ease;
-}
-
-.toast-success {
-  background-color: #2ecc71;
-}
-
-.toast-error {
-  background-color: #e74c3c;
 }
