@@ -30,7 +30,7 @@ const AddCommonAsset = () => {
     numberOfItems: "",
   });
 
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState({ text: "", type: "" });
   const navigate = useNavigate(); // Define navigate here
 
   const handleChange = (e) => {
@@ -51,10 +51,10 @@ const AddCommonAsset = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setMessage("");
+    setMessage({ text: "", type: "" });
     try {
       await axios.post("http://localhost:5000/api/common-assets", form); // Ensure your URL is correct
-      setMessage("Asset added successfully.");
+      setMessage({ text: "✅ Asset added successfully.", type: "success" });
       setForm({
         itemName: "",
         brand: "",
@@ -62,8 +62,12 @@ const AddCommonAsset = () => {
         location: "",
         numberOfItems: "",
       });
+      // Hide message after 3 seconds
+      setTimeout(() => setMessage({ text: "", type: "" }), 3000);
     } catch (error) {
-      setMessage("❌ Failed to add asset.");
+      setMessage({ text: "❌ Failed to add asset.", type: "error" });
+
+      setTimeout(() => setMessage({ text: "", type: "" }), 3000);
     }
   };
 
