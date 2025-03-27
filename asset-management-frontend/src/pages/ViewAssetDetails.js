@@ -45,10 +45,10 @@ const ViewAssetDetails = () => {
     autoTable(doc, {
       head: [["Serial", "Assigned To", "MAC", "IP", "Remarks", "Date"]],
       body: filtered.map((a) => [
-        a.serialNumber,
-        a.assignedTo || "-",
-        a.macAddress || "-",
-        a.ipAddress || "-",
+        a.assignedTo,
+        a.location || "-",
+        a.serialNumber || "-",
+        a.assetnumber || "-",
         a.remarks || "-",
         new Date(a.createdAt).toLocaleDateString()
       ])
@@ -88,10 +88,10 @@ const ViewAssetDetails = () => {
       <table>
         <thead>
           <tr>
-            <th>Serial No.</th>
             <th>Assigned To</th>
-            <th>MAC</th>
-            <th>IP</th>
+            <th>Location</th>
+            <th>Serial No</th>
+            <th>Asset No.</th>
             <th>Remarks</th>
             <th>Added Date</th>
           </tr>
@@ -99,10 +99,10 @@ const ViewAssetDetails = () => {
         <tbody>
           {uniqueAssets.map((a) => (
             <tr key={a._id}>
-              <td>{a.serialNumber}</td>
-              <td>{a.assignedTo || "-"}</td>
-              <td>{a.macAddress || "-"}</td>
-              <td>{a.ipAddress || "-"}</td>
+              <td>{a.assignedTo}</td>
+              <td>{a.location || "-"}</td>
+              <td>{a.serialNumber || "-"}</td>
+              <td>{a.assetNumber || "-"}</td>
               <td>{a.remarks || "-"}</td>
               <td>{new Date(a.createdAt).toLocaleDateString()}</td>
             </tr>
