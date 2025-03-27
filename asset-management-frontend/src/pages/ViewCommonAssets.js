@@ -59,7 +59,6 @@ const ViewCommonAssets = () => {
             <th>Item Name</th>
             <th>Brand</th>
             <th>Model</th>
-            <th>Location</th>
             <th>Quantity</th>
             <th>Added Date</th>
             <th>Actions</th> {/* New Column */}
@@ -73,7 +72,6 @@ const ViewCommonAssets = () => {
               <td>{asset.itemName}</td>
               <td>{asset.brand || "-"}</td>
               <td>{asset.model || "-"}</td>
-              <td>{asset.location}</td>
               <td>{asset.numberOfItems}</td>
               <td>{new Date(asset.createdAt).toLocaleDateString()}</td>
               <td>
