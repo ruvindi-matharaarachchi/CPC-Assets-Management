@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Import navigate from react-router-dom
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { motion } from "framer-motion"; // Animation Library
-import { FaBell, FaCog, FaPlusCircle } from "react-icons/fa"; // Import Icons
+import { motion } from "framer-motion";
+import { FaBell, FaCog } from "react-icons/fa";
 import "./AddCommonAsset.css";
-import logo from "../assets/logo.png"; // Ensure the logo exists
+import logo from "../assets/logo.png";
 
 const assetOptions = {
   Laptop: {
@@ -31,12 +31,10 @@ const AddCommonAsset = () => {
   });
 
   const [message, setMessage] = useState({ text: "", type: "" });
-  const navigate = useNavigate(); // Define navigate here
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-
-    // Reset brand and model if itemName changes
     if (name === "itemName") {
       setForm({
         ...form,
@@ -52,8 +50,9 @@ const AddCommonAsset = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setMessage({ text: "", type: "" });
+
     try {
-      await axios.post("http://localhost:5000/api/common-assets", form); // Ensure your URL is correct
+      await axios.post("http://localhost:5000/api/common-assets", form);
       setMessage({ text: "✅ Asset added successfully.", type: "success" });
       setForm({
         itemName: "",
@@ -62,31 +61,30 @@ const AddCommonAsset = () => {
         location: "",
         numberOfItems: "",
       });
-      // Hide message after 3 seconds
-      setTimeout(() => setMessage({ text: "", type: "" }), 3000);
     } catch (error) {
       setMessage({ text: "❌ Failed to add asset.", type: "error" });
-
-      setTimeout(() => setMessage({ text: "", type: "" }), 3000);
     }
+
+    // Clear message after 3 seconds
+    setTimeout(() => {
+      setMessage({ text: "", type: "" });
+    }, 3000);
   };
 
-  // Dynamically load brand/model options based on typed item name
   const availableBrands = assetOptions[form.itemName]?.brands || [];
   const availableModels = assetOptions[form.itemName]?.models || [];
 
   const handleLogout = () => {
     localStorage.removeItem("token");
-    navigate("/"); // This should work now with navigate defined
+    navigate("/");
   };
 
   const handleAddAsset = () => {
-    navigate("/add-asset"); // This should work now with navigate defined
+    navigate("/add-asset");
   };
 
   return (
     <div className="common-asset-container">
-      {/* Header Navigation Bar */}
       <motion.header
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
@@ -113,7 +111,13 @@ const AddCommonAsset = () => {
       </motion.header>
 
       <h2>Add Common Asset</h2>
-      {message && <p className="message">{message}</p>}
+
+      {/* ✅ Toast Message */}
+      {message.text && (
+        <div className={`toast-message ${message.type === "success" ? "toast-success" : "toast-error"}`}>
+          {message.text}
+        </div>
+      )}
 
       <form onSubmit={handleSubmit} className="common-asset-form">
         <input
@@ -125,35 +129,17 @@ const AddCommonAsset = () => {
           required
         />
 
-        <select
-          name="brand"
-          value={form.brand}
-          onChange={handleChange}
-          required
-        >
+        <select name="brand" value={form.brand} onChange={handleChange} required>
           <option value="">Select Brand</option>
           {availableBrands.length > 0
-            ? availableBrands.map((b) => (
-              <option key={b} value={b}>
-                {b}
-              </option>
-            ))
+            ? availableBrands.map((b) => <option key={b} value={b}>{b}</option>)
             : <option disabled>Enter Item Name First</option>}
         </select>
 
-        <select
-          name="model"
-          value={form.model}
-          onChange={handleChange}
-          required
-        >
+        <select name="model" value={form.model} onChange={handleChange} required>
           <option value="">Select Model</option>
           {availableModels.length > 0
-            ? availableModels.map((m) => (
-              <option key={m} value={m}>
-                {m}
-              </option>
-            ))
+            ? availableModels.map((m) => <option key={m} value={m}>{m}</option>)
             : <option disabled>Enter Item Name First</option>}
         </select>
 

@@ -99,3 +99,23 @@
   background: #3498db;
   color: white;
 }
+.toast-message {
+  position: fixed;
+  top: 80px;
+  right: 30px;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  color: white;
+  z-index: 9999;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  transition: opacity 0.3s ease;
+}
+
+.toast-success {
+  background-color: #2ecc71;
+}
+
+.toast-error {
+  background-color: #e74c3c;
+}
