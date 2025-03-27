@@ -96,7 +96,7 @@ const AddCommonAsset = () => {
         <nav>
           <ul>
             <li><a href="/dashboard">Dashboard</a></li>
-            <li><a href="/add-common-asset">Asset List</a></li>
+            <li><a href="/view-common-assets">View Assets List</a></li>
             <li><a href="/add-asset-form">Asset ListNew</a></li>
             <li><a href="/technicians">Technicians</a></li>
             <li><a href="/reports">Reports</a></li>
