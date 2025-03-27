@@ -57,6 +57,20 @@ const AddSingleAssetDetail = () => {
       <p>Remaining: {quantityLeft}</p>
       <form onSubmit={handleSubmit}>
         <div className="asset-detail-block">
+
+          <input
+            name="assignedTo"
+            placeholder="Assigned To"
+            value={form.assignedTo}
+            onChange={handleChange}
+          />
+          <input
+            name="location"
+            placeholder="Function"
+            value={form.location}
+            onChange={handleChange}
+            required
+          />
           <input
             name="serialNumber"
             placeholder="Serial Number"
@@ -65,23 +79,12 @@ const AddSingleAssetDetail = () => {
             required
           />
           <input
-            name="assignedTo"
-            placeholder="Assigned To"
-            value={form.assignedTo}
+            name="assetNumber"
+            placeholder="Asset Number"
+            value={form.assetNumber}
             onChange={handleChange}
           />
-          <input
-            name="macAddress"
-            placeholder="MAC Address"
-            value={form.macAddress}
-            onChange={handleChange}
-          />
-          <input
-            name="ipAddress"
-            placeholder="IP Address"
-            value={form.ipAddress}
-            onChange={handleChange}
-          />
+
           <input
             name="remarks"
             placeholder="Remarks"
