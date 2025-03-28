@@ -27,10 +27,10 @@
 /* Date Filter */
 .date-filter {
   margin: 30px ;
+  margin-left: 7px;
+  width: 800px;
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  gap: 10px;
   justify-content: center;
 }
 
@@ -52,7 +52,8 @@
 
 /* PDF Button */
 .pdf-button {
-  padding: 10px 20px;
+  padding: 12px 50px;
+  margin-left: 10px;
   background: linear-gradient(to right, #a51829, #7c1426);
   color: white;
   border: none;
