@@ -45,6 +45,7 @@
 .search-btn {
   width: 110px;
   height: 44px;
+  margin-top: 10px;
   background: linear-gradient(to right, #a51829, #7c1426);
   color: white;
   border: none;
