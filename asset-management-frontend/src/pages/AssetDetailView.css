@@ -12,6 +12,7 @@
   margin-bottom: 20px;
   color: #7c1426;
   font-weight: 600;
+  font-size: 32px; /* Increased from 20-28 to 32px */
   text-align: center;
 }
 
@@ -19,12 +20,13 @@
 .asset-details-container p {
   font-size: 16px;
   margin-bottom: 10px;
+  font-weight: 600;
   color: #444;
 }
 
 /* Date Filter */
 .date-filter {
-  margin: 30px 0 20px 0;
+  margin: 30px ;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
