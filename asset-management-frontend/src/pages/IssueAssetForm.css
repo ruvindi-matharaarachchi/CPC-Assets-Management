@@ -2,7 +2,7 @@
   max-width: 900px;
   margin: 40px auto;
   padding: 20px;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.05); /* subtle translucent background */
   border-radius: 16px;
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4);
   font-family: 'Segoe UI', sans-serif;
@@ -12,7 +12,8 @@
 .issue-asset-container h2 {
   font-size: 28px;
   margin-bottom: 20px;
-  color: #ff6b6b;
+  color: #ff6b6b; /* soft red highlight */
+  text-align: center;
 }
 
 .search-bar-section {
