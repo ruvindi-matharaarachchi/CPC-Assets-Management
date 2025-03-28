@@ -8,12 +8,15 @@
 .issue-asset-container h2 {
   font-size: 28px;
   margin-bottom: 20px;
-  color: #ff6b6b; /* soft red highlight */
+  color: #ff6b6b;
+  /* soft red highlight */
   text-align: center;
 }
 
 .search-bar-section {
   display: flex;
+  margin-left: 30%;
+  width: 500px;
   gap: 10px;
   margin-bottom: 20px;
 }
@@ -25,7 +28,7 @@
   border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, 0.2);
   background-color: rgba(255, 255, 255, 0.1);
-  color: white;
+  color: rgba(255, 255, 255, 0.568);
 }
 
 .search-bar::placeholder {
@@ -33,7 +36,9 @@
 }
 
 .search-btn {
-  padding: 12px 20px;
+  margin-top: 10px;
+  width: 100px;
+  height: 40px;
   background-color: #7c1426;
   color: white;
   border: none;
