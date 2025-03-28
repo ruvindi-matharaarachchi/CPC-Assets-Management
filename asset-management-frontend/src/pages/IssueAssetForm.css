@@ -1,12 +1,8 @@
 .issue-asset-container {
-  max-width: 900px;
-  margin: 40px auto;
-  padding: 20px;
-  background: rgba(255, 255, 255, 0.05); /* subtle translucent background */
-  border-radius: 16px;
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4);
-  font-family: 'Segoe UI', sans-serif;
+  padding: 40px;
+  background: linear-gradient(to right, #121212, #400000);
   color: white;
+  min-height: 100vh;
 }
 
 .issue-asset-container h2 {
