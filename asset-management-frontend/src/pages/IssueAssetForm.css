@@ -39,7 +39,8 @@
   margin-top: 10px;
   width: 100px;
   height: 40px;
-  background-color: #7c1426;
+  background: linear-gradient(to right, #d4737b, #c62828);
+  /* Gradient red button */
   color: white;
   border: none;
   border-radius: 8px;
@@ -49,7 +50,7 @@
 }
 
 .search-btn:hover {
-  background-color: #c62828;
+  background: linear-gradient(to right, #c62828, #d4737b);
 }
 
 .search-results {
