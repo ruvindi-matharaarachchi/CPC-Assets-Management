@@ -1,84 +1,95 @@
 .unique-details-form {
-    min-height: 100vh;
-    background: linear-gradient(to right, #121212, #400000);
-    color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 40px;
+  min-height: 100vh;
+  background: linear-gradient(to right, #ffffff, #f5f5f5); /* Light gradient */
+  color: #222;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.unique-details-form h2 {
+  font-size: 30px;
+  margin-bottom: 30px;
+  color: #7c1426; /* Deep red */
+  font-weight: 600;
+}
+
+/* Asset Detail Card */
+.asset-detail-block {
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  width: 100%;
+  max-width: 600px;
+  color: #333;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  border: 1px solid #eee;
+}
+
+.asset-detail-block h4 {
+  margin-bottom: 15px;
+  color: #a51829;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.asset-detail-block input {
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background: #fdfdfd;
+  color: #333;
+  font-size: 15px;
+  transition: border 0.3s ease;
+}
+
+.asset-detail-block input:focus {
+  border: 1px solid #a51829;
+  outline: none;
+  background-color: #fffefc;
+}
+
+/* Submit Button */
+button[type="submit"] {
+  background: linear-gradient(to right, #a51829, #7c1426);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 16px;
+  padding: 14px 24px;
+  cursor: pointer;
+  width: 100%;
+  font-weight: 600;
+  transition: background 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 12px rgba(124, 20, 38, 0.2);
+}
+
+button[type="submit"]:hover {
+  background: linear-gradient(to right, #7c1426, #a51829);
+  transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .unique-details-form {
+    padding: 20px;
   }
-  
-  .unique-details-form h2 {
-    font-size: 28px;
-    margin-bottom: 20px;
-    color: white;
-  }
-  
+
   .asset-detail-block {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 25px;
-    border-radius: 12px;
-    margin-bottom: 30px;
-    width: 100%;
-    max-width: 600px;
-    color: white;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.4);
+    padding: 20px;
   }
-  
-  .asset-detail-block h4 {
-    margin-bottom: 15px;
-    color: #f4a261;
-    font-weight: bold;
-  }
-  
+
   .asset-detail-block input {
-    width: 96%;
-    padding: 12px;
-    margin-bottom: 15px;
-    border-radius: 8px;
-    border: none;
-    background: rgba(255, 255, 255, 0.2);
-    color: white;
-    font-size: 16px;
+    font-size: 14px;
   }
-  
-  .asset-detail-block input:focus {
-    background: rgba(255, 255, 255, 0.3);
-    outline: none;
-  }
-  
+
   button[type="submit"] {
-    background: #e63946;
-    border: none;
-    border-radius: 8px;
-    color: white;
-    font-size: 16px;
-    padding: 12px 24px;
-    cursor: pointer;
-    width: 100%;
-    transition: background 0.3s ease;
+    font-size: 15px;
   }
-  
-  button[type="submit"]:hover {
-    background: #c62828;
-  }
-  
-  @media (max-width: 768px) {
-    .unique-details-form {
-      padding: 20px;
-    }
-  
-    .asset-detail-block {
-      padding: 20px;
-    }
-  
-    .asset-detail-block input {
-      font-size: 14px;
-    }
-  
-    button[type="submit"] {
-      font-size: 15px;
-    }
-  }
-  
+}
