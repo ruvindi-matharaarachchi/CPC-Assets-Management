@@ -1,15 +1,13 @@
 /* Dashboard Container */
 .dashboard-container {
-    height: 100vh;
+    min-height: 100vh;
+    background: linear-gradient(to right, #ffffff, #f5f5f5); /* Light gradient */
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    background: linear-gradient(to right, #121212, #400000); /* Black to Dark Red Gradient */
-    background-attachment: fixed;
-    z-index: 1;
+    justify-content: flex-start;
+    font-family: 'Segoe UI', sans-serif;
 }
-
 
 /* Header */
 .dashboard-header {
@@ -21,15 +19,15 @@
     align-items: center;
     justify-content: space-between;
     padding: 15px 40px;
-    background: rgba(0, 0, 0, 0.8); /* Darker header for better contrast */
-    backdrop-filter: blur(8px);
-    box-shadow: 0 4px 10px rgba(255, 0, 0, 0.2); /* Subtle red glow */
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+    box-shadow: 0 4px 12px rgba(124, 20, 38, 0.15); /* Soft red glow */
     z-index: 1000;
 }
 
 /* Logo */
 .logo {
-    height: 70px;
+    height: 60px;
     object-fit: contain;
 }
 
@@ -42,57 +40,58 @@ nav ul {
 
 nav ul li a {
     text-decoration: none;
-    color: white;
-    font-size: 20px;
-    font-weight: bold;
-    transition: color 0.3s ease-in-out;
+    color: #333;
+    font-size: 18px;
+    font-weight: 600;
+    transition: color 0.3s ease;
 }
 
 nav ul li a:hover {
-    color: #c62828; /* Slightly brighter red hover effect */
+    color: #a51829; /* Deep red hover */
 }
 
 /* Admin Icons */
 .admin-icons {
-    margin-right: 60px;
     display: flex;
-    gap: 20px;
+    align-items: center;
+    gap: 16px;
 }
 
 .admin-icon {
-    font-size: 20px;
-    color: white;
+    font-size: 18px;
+    color: #333;
     cursor: pointer;
-    transition: transform 0.2s;
+    transition: transform 0.2s, color 0.2s;
 }
 
 .admin-icon:hover {
     transform: scale(1.2);
+    color: #a51829;
 }
 
 /* Logout Button */
 .logout-button {
+    margin-right: 100px;
     padding: 8px 16px;
-    background: #ff4747;
+    background: #a51829;
     border: none;
-    border-radius: 5px;
+    border-radius: 6px;
     color: white;
+    font-size: 14px;
     cursor: pointer;
-    font-size: 16px;
-    transition: background 0.3s ease-in-out;
+    transition: background 0.3s ease;
 }
 
 .logout-button:hover {
-    background: #c62828;
+    background: #7c1426;
 }
 
 /* Main Content */
 .main-content {
-    margin-top: 450px;
+    margin-top: 120px;
     text-align: center;
-    color: white; 
+    color: #222;
     margin-bottom: 80px;
-
 }
 
 /* Add Asset Button */
@@ -100,60 +99,65 @@ nav ul li a:hover {
     display: flex;
     align-items: center;
     gap: 10px;
-    background: linear-gradient(to right, #d4737b, #c62828); /* Gradient red button */
+    background: linear-gradient(to right, #a51829, #7c1426);
     border: none;
-    padding: 12px 20px;
-    font-size: 18px;
+    padding: 12px 24px;
+    font-size: 16px;
     color: white;
     border-radius: 8px;
     cursor: pointer;
     margin-top: 20px;
-    transition: background 0.3s ease-in-out;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 14px rgba(124, 20, 38, 0.3);
 }
 
 .add-asset-button:hover {
-    background: linear-gradient(to right, #c62828, #d4737b);
+    background: linear-gradient(to right, #7c1426, #a51829);
+    transform: translateY(-2px);
 }
 
 .add-asset-button .icon {
-    font-size: 20px;
+    font-size: 18px;
 }
 
 /* Dashboard Content */
 .dashboard-content {
     display: flex;
     justify-content: center;
-    gap: 20px;
     flex-wrap: wrap;
-    margin-top: 50px;
+    gap: 24px;
+    margin-top: 40px;
+    padding: 20px;
 }
 
 /* Dashboard Cards */
 .dashboard-card {
-    background: rgba(255, 255, 255, 0.1);
+    background: #fff;
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(255, 0, 0, 0.3);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
     text-align: center;
-    width: 220px;
-    transition: transform 0.3s, background 0.3s;
+    width: 240px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #f0f0f0;
 }
 
 .dashboard-card:hover {
-    transform: scale(1.05);
-    background: rgba(255, 0, 0, 0.2);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(124, 20, 38, 0.15);
 }
 
 .dashboard-card h3 {
     font-size: 18px;
     margin-bottom: 10px;
-    color: white;
+    color: #7c1426;
+    font-weight: 600;
 }
 
 .dashboard-card p {
-    font-size: 24px;
+    font-size: 26px;
     font-weight: bold;
-    color: #ff4747; /* Red highlight for numbers */
+    color: #a51829;
 }
 
 /* Responsive Adjustments */
