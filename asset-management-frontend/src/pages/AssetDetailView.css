@@ -1,78 +1,135 @@
 .asset-details-container {
-    padding: 40px;
-    background: linear-gradient(to right, #121212, #400000);
-    color: white;
-    min-height: 100vh;
-    font-family: Arial, sans-serif;
+  padding: 40px;
+  background: linear-gradient(to right, #ffffff, #f5f5f5); /* Light gradient */
+  color: #222;
+  min-height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Headings */
+.asset-details-container h2,
+.asset-details-container h3 {
+  margin-bottom: 20px;
+  color: #7c1426;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Paragraph Text */
+.asset-details-container p {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #444;
+}
+
+/* Date Filter */
+.date-filter {
+  margin: 30px 0 20px 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+}
+
+.date-filter input {
+  padding: 10px 14px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: #fff;
+  color: #333;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: border 0.3s ease;
+}
+
+.date-filter input:focus {
+  border-color: #a51829;
+  outline: none;
+}
+
+/* PDF Button */
+.pdf-button {
+  padding: 10px 20px;
+  background: linear-gradient(to right, #a51829, #7c1426);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 14px rgba(124, 20, 38, 0.2);
+}
+
+.pdf-button:hover {
+  background: linear-gradient(to right, #7c1426, #a51829);
+  transform: translateY(-2px);
+}
+
+/* Table Styling */
+.asset-details-container table {
+  width: 100%;
+  margin-top: 30px;
+  border-collapse: collapse;
+  background-color: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+.asset-details-container th,
+.asset-details-container td {
+  padding: 14px 16px;
+  border: 1px solid #e0e0e0;
+  text-align: center;
+  font-size: 15px;
+  color: #333;
+}
+
+.asset-details-container th {
+  background-color: #f9dcdc;
+  color: #7c1426;
+  font-weight: 700;
+}
+
+/* Back Button */
+.back-button {
+  margin-top: 40px;
+  padding: 10px 24px;
+  background: transparent;
+  border: 2px solid #a51829;
+  color: #a51829;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.back-button:hover {
+  background: #a51829;
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* Responsive Enhancements */
+@media (max-width: 768px) {
+  .asset-details-container {
+    padding: 20px;
   }
-  
-  .asset-details-container h2,
-  .asset-details-container h3 {
-    margin-bottom: 15px;
-    color: #f4a261;
-  }
-  
-  .asset-details-container p {
-    font-size: 16px;
-    margin-bottom: 8px;
-  }
-  
-  .date-filter {
-    margin: 20px 0;
-    display: flex;
-    align-items: center;
-  }
-  
-  .date-filter input {
-    padding: 8px;
-    margin-right: 10px;
-    border-radius: 4px;
-    border: none;
+
+  .asset-details-container table {
     font-size: 14px;
   }
-  
-  .pdf-button {
-    padding: 10px 20px;
-    background: #e63946;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.3s ease;
+
+  .date-filter {
+    flex-direction: column;
   }
-  
-  .pdf-button:hover {
-    background: #c62828;
-  }
-  
-  .asset-details-container table {
-    width: 100%;
-    margin-top: 20px;
-    border-collapse: collapse;
-    background-color: rgba(255, 255, 255, 0.1);
-  }
-  
-  .asset-details-container th,
-  .asset-details-container td {
-    padding: 10px 12px;
-    border: 1px solid #ccc;
-    text-align: center;
-    color: white;
-  }
-  
+
+  .pdf-button,
   .back-button {
-    margin-top: 30px;
-    padding: 10px 20px;
-    background: transparent;
-    border: 2px solid #e63946;
-    color: #e63946;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: 0.3s ease;
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
   }
-  
-  .back-button:hover {
-    background: #e63946;
-    color: white;
-  }
-  
+}
