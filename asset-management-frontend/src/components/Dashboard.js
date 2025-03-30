@@ -125,7 +125,7 @@ const Dashboard = () => {
                         className="dashboard-card"
                         whileHover={{ scale: 1.05 }}
                     >
-                        <h3>Reports Generated.</h3>
+                        <h3>Reports Generated</h3>
                         <p>{dashboardData.reportsGenerated}</p>
                     </motion.div>
                 </section>
