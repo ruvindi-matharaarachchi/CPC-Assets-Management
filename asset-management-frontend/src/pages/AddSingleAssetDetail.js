@@ -59,27 +59,30 @@ const AddSingleAssetDetail = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
+    e.preventDefault(); // Prevent the page from refreshing
 
+    setIsSubmitting(true); // Indicate submission has started
+
+    // Validate serial number
     const newErrors = await validateSerialNumber();
     if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
-      setIsSubmitting(false);
-      return;
+      setErrors(newErrors); // Set errors if validation fails
+      setIsSubmitting(false); // Stop submission process
+      return; // Exit early if validation fails
     }
 
     try {
+      // Send data to the backend if validation is successful
       await axios.post("http://localhost:5000/api/asset-details", {
         assets: [{ ...form, commonAssetId }],
       });
       alert("Asset saved!");
-      setForm({ assignedTo: "", location: "", serialNumber: "", assetNumber: "", remarks: "" });
-      setQuantityLeft((prev) => prev - 1);
+      setForm({ assignedTo: "", location: "", serialNumber: "", assetNumber: "", remarks: "" }); // Reset form after successful submission
+      setQuantityLeft((prev) => prev - 1); // Decrease the quantity left
     } catch (err) {
-      alert("Error: " + err.message);
+      alert("Error: " + err.message); // Handle submission error
     }
-    setIsSubmitting(false);
+    setIsSubmitting(false); // End submission process
   };
 
   if (quantityLeft <= 0) {
@@ -113,7 +116,7 @@ const AddSingleAssetDetail = () => {
               onChange={handleChange}
               required
             />
-            {errors.serialNumber && <p className="error">{errors.serialNumber}</p>}
+            {errors.serialNumber && <p className="error">{errors.serialNumber}</p>} {/* Show validation errors */}
           </div>
           <input
             name="assetNumber"
