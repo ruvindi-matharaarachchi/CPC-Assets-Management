@@ -14,6 +14,9 @@ const AddSingleAssetDetail = () => {
     remarks: "",
   });
 
+  const [errors, setErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   // Fetch total and existing count
   useEffect(() => {
     const fetchCount = async () => {
@@ -32,24 +35,68 @@ const AddSingleAssetDetail = () => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
   };
+  // Validation logic
+  const validateForm = async () => {
+    const newErrors = {};
+    const regexSerialNumber = /^[a-zA-Z0-9-]{5,15}$/; // Simple regex for serial number (adjust as necessary)
+    const regexAssetNumber = /^[a-zA-Z0-9-]{5,15}$/; // Simple regex for asset number (adjust as necessary)
 
-  const handleSubmit = async (e) => {
+    // Required field checks
+    if (!form.assignedTo) newErrors.assignedTo = "Assigned To is required.";
+    if (!form.location) newErrors.location = "Location is required.";
+    if (!form.serialNumber) newErrors.serialNumber = "Serial Number is required.";
+    else if (!regexSerialNumber.test(form.serialNumber))
+      newErrors.serialNumber = "Serial Number must be alphanumeric and between 5 and 15 characters.";
+    else {
+      // Check if serial number already exists
+      const response = await axios.get(`http://localhost:5000/api/asset-details/serial-number/${form.serialNumber}`);
+      if (response.data.exists) {
+        newErrors.serialNumber = "Serial Number already exists. Please provide a unique one.";
+      }
+    }
+
+    if (!form.assetNumber) newErrors.assetNumber = "Asset Number is required.";
+    else if (!regexAssetNumber.test(form.assetNumber))
+      newErrors.assetNumber = "Asset Number must be alphanumeric and between 5 and 15 characters.";
+    else {
+      // Check if asset number already exists
+      const response = await axios.get(`http://localhost:5000/api/asset-details/asset-number/${form.assetNumber}`);
+      if (response.data.exists) {
+        newErrors.assetNumber = "Asset Number already exists. Please provide a unique one.";
+      }
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0; // Return true if no errors
+  };
+
+
+   // Handle form submission
+   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      await axios.post("http://localhost:5000/api/asset-details", {
-        assets: [{ ...form, commonAssetId }],
-      });
-      alert("Asset saved!");
-      setForm({ assignedTo: "", location: "", serialNumber: "", assetNumber: "", remarks: "" });
-      setQuantityLeft((prev) => prev - 1);
-    } catch (err) {
-      alert("Error: " + err.message);
+    setIsSubmitting(true);
+
+    // Validate form before submission
+    if (await validateForm()) {
+      try {
+        await axios.post("http://localhost:5000/api/asset-details", {
+          assets: [{ ...form, commonAssetId }],
+        });
+        alert("Asset saved!");
+        setForm({ assignedTo: "", location: "", serialNumber: "", assetNumber: "", remarks: "" });
+        setQuantityLeft((prev) => prev - 1);
+      } catch (err) {
+        alert("Error: " + err.message);
+      }
+    } else {
+      setIsSubmitting(false);
     }
   };
 
   if (quantityLeft <= 0) {
     return <h3 style={{ textAlign: "center" }}>✅ All assets have been added.</h3>;
   }
+
 
   return (
     <div className="unique-details-form">
