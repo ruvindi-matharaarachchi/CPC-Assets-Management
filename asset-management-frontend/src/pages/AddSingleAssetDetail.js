@@ -13,7 +13,6 @@ const AddSingleAssetDetail = () => {
     assetNumber: "",
     remarks: "",
   });
-
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -35,68 +34,57 @@ const AddSingleAssetDetail = () => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
   };
-  // Validation logic
-  const validateForm = async () => {
+
+  const validateSerialNumber = async () => {
     const newErrors = {};
-    const regexSerialNumber = /^[a-zA-Z0-9-]{5,15}$/; // Simple regex for serial number (adjust as necessary)
-    const regexAssetNumber = /^[a-zA-Z0-9-]{5,15}$/; // Simple regex for asset number (adjust as necessary)
-
-    // Required field checks
-    if (!form.assignedTo) newErrors.assignedTo = "Assigned To is required.";
-    if (!form.location) newErrors.location = "Location is required.";
-    if (!form.serialNumber) newErrors.serialNumber = "Serial Number is required.";
-    else if (!regexSerialNumber.test(form.serialNumber))
+    const regexSerialNumber = /^[a-zA-Z0-9-]{5,15}$/; // Alphanumeric and 5-15 characters
+    
+    // Check if serial number is valid format
+    if (!regexSerialNumber.test(form.serialNumber)) {
       newErrors.serialNumber = "Serial Number must be alphanumeric and between 5 and 15 characters.";
-    else {
-      // Check if serial number already exists
-      const response = await axios.get(`http://localhost:5000/api/asset-details/serial-number/${form.serialNumber}`);
-      if (response.data.exists) {
-        newErrors.serialNumber = "Serial Number already exists. Please provide a unique one.";
+    } else {
+      try {
+        // Check if serial number exists in the backend (uniqueness check)
+        const response = await axios.get(`http://localhost:5000/api/asset-details/search?q=${form.serialNumber}`);
+        if (response.data.length > 0) {
+          newErrors.serialNumber = "Serial Number already exists. Please provide a unique one.";
+        }
+      } catch (err) {
+        console.error("Error checking serial number uniqueness", err);
+        newErrors.serialNumber = "Error checking serial number uniqueness.";
       }
     }
 
-    if (!form.assetNumber) newErrors.assetNumber = "Asset Number is required.";
-    else if (!regexAssetNumber.test(form.assetNumber))
-      newErrors.assetNumber = "Asset Number must be alphanumeric and between 5 and 15 characters.";
-    else {
-      // Check if asset number already exists
-      const response = await axios.get(`http://localhost:5000/api/asset-details/asset-number/${form.assetNumber}`);
-      if (response.data.exists) {
-        newErrors.assetNumber = "Asset Number already exists. Please provide a unique one.";
-      }
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0; // Return true if no errors
+    return newErrors;
   };
 
-
-   // Handle form submission
-   const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Validate form before submission
-    if (await validateForm()) {
-      try {
-        await axios.post("http://localhost:5000/api/asset-details", {
-          assets: [{ ...form, commonAssetId }],
-        });
-        alert("Asset saved!");
-        setForm({ assignedTo: "", location: "", serialNumber: "", assetNumber: "", remarks: "" });
-        setQuantityLeft((prev) => prev - 1);
-      } catch (err) {
-        alert("Error: " + err.message);
-      }
-    } else {
+    const newErrors = await validateSerialNumber();
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
       setIsSubmitting(false);
+      return;
     }
+
+    try {
+      await axios.post("http://localhost:5000/api/asset-details", {
+        assets: [{ ...form, commonAssetId }],
+      });
+      alert("Asset saved!");
+      setForm({ assignedTo: "", location: "", serialNumber: "", assetNumber: "", remarks: "" });
+      setQuantityLeft((prev) => prev - 1);
+    } catch (err) {
+      alert("Error: " + err.message);
+    }
+    setIsSubmitting(false);
   };
 
   if (quantityLeft <= 0) {
     return <h3 style={{ textAlign: "center" }}>✅ All assets have been added.</h3>;
   }
-
 
   return (
     <div className="unique-details-form">
@@ -104,7 +92,6 @@ const AddSingleAssetDetail = () => {
       <p>Remaining: {quantityLeft}</p>
       <form onSubmit={handleSubmit}>
         <div className="asset-detail-block">
-
           <input
             name="assignedTo"
             placeholder="Assigned To"
@@ -113,25 +100,27 @@ const AddSingleAssetDetail = () => {
           />
           <input
             name="location"
-            placeholder="Function"
+            placeholder="Location"
             value={form.location}
             onChange={handleChange}
             required
           />
-          <input
-            name="serialNumber"
-            placeholder="Serial Number"
-            value={form.serialNumber}
-            onChange={handleChange}
-            required
-          />
+          <div className="form-group">
+            <input
+              name="serialNumber"
+              placeholder="Serial Number"
+              value={form.serialNumber}
+              onChange={handleChange}
+              required
+            />
+            {errors.serialNumber && <p className="error">{errors.serialNumber}</p>}
+          </div>
           <input
             name="assetNumber"
             placeholder="Asset Number"
             value={form.assetNumber}
             onChange={handleChange}
           />
-
           <input
             name="remarks"
             placeholder="Remarks"
@@ -139,7 +128,9 @@ const AddSingleAssetDetail = () => {
             onChange={handleChange}
           />
         </div>
-        <button type="submit">Add This Asset</button>
+        <button type="submit" disabled={isSubmitting || quantityLeft <= 0}>
+          {isSubmitting ? "Saving..." : "Add This Asset"}
+        </button>
       </form>
     </div>
   );
