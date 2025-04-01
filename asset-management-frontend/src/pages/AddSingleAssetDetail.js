@@ -58,13 +58,43 @@ const AddSingleAssetDetail = () => {
     return newErrors;
   };
 
+  const validateAssetNumber = async () => {
+    const newErrors = {};
+    const regexAssetNumber = /^[a-zA-Z0-9-]{5,15}$/; // Alphanumeric and 5-15 characters
+    
+    // Check if asset number is valid format
+    if (!regexAssetNumber.test(form.assetNumber)) {
+      newErrors.assetNumber = "Asset Number must be alphanumeric and between 5 and 15 characters.";
+    } else {
+      try {
+        // Check if asset number exists in the backend (uniqueness check)
+        const response = await axios.get(`http://localhost:5000/api/asset-details/search?q=${form.assetNumber}`);
+        if (response.data.length > 0) {
+          newErrors.assetNumber = "Asset Number already exists. Please provide a unique one.";
+        }
+      } catch (err) {
+        console.error("Error checking asset number uniqueness", err);
+        newErrors.assetNumber = "Error checking asset number uniqueness.";
+      }
+    }
+
+    return newErrors;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault(); // Prevent page refresh
 
     setIsSubmitting(true); // Indicate submission has started
 
     // Validate serial number
-    const newErrors = await validateSerialNumber();
+    let newErrors = await validateSerialNumber();
+    
+    // Validate asset number if no serial number errors
+    if (!newErrors.serialNumber) {
+      const assetErrors = await validateAssetNumber();
+      newErrors = { ...newErrors, ...assetErrors };
+    }
+
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors); // Set errors if validation fails
       setIsSubmitting(false); // Stop submission process
@@ -119,12 +149,16 @@ const AddSingleAssetDetail = () => {
             />
             {errors.serialNumber && <p className="error">{errors.serialNumber}</p>} {/* Show validation errors */}
           </div>
-          <input
-            name="assetNumber"
-            placeholder="Asset Number"
-            value={form.assetNumber}
-            onChange={handleChange}
-          />
+          <div className="form-group">
+            <input
+              name="assetNumber"
+              placeholder="Asset Number"
+              value={form.assetNumber}
+              onChange={handleChange}
+              required
+            />
+            {errors.assetNumber && <p className="error">{errors.assetNumber}</p>} {/* Show validation errors */}
+          </div>
           <input
             name="remarks"
             placeholder="Remarks"
