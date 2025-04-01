@@ -59,7 +59,7 @@ const AddSingleAssetDetail = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Prevent the page from refreshing
+    e.preventDefault(); // Prevent page refresh
 
     setIsSubmitting(true); // Indicate submission has started
 
@@ -79,6 +79,7 @@ const AddSingleAssetDetail = () => {
       alert("Asset saved!");
       setForm({ assignedTo: "", location: "", serialNumber: "", assetNumber: "", remarks: "" }); // Reset form after successful submission
       setQuantityLeft((prev) => prev - 1); // Decrease the quantity left
+      setErrors({}); // Reset error state after successful submission
     } catch (err) {
       alert("Error: " + err.message); // Handle submission error
     }
