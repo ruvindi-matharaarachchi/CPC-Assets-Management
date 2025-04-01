@@ -45,7 +45,7 @@ const ViewAssetDetails = () => {
     const doc = new jsPDF();
 
     // Add CPC logo (make sure to replace 'logo.png' with your actual image path)
-    doc.addImage(logo, 'PNG', 10, 10, 30, 30); // 10, 10 is the x, y position and 30, 30 is the width, height
+    doc.addImage(logo, 'PNG', 10, 10, 20, 20); // 10, 10 is the x, y position and 30, 30 is the width, height
 
     // Add the header "CPC Head Office"
     doc.setFontSize(16);
