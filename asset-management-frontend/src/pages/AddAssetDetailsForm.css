@@ -62,6 +62,8 @@ button[type="submit"] {
   border-radius: 8px;
   color: white;
   font-size: 16px;
+  margin-left: 30px;
+  align-items: center;
   padding: 14px 24px;
   cursor: pointer;
   width: 100%;
