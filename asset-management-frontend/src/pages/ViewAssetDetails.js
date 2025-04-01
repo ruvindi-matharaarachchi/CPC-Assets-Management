@@ -4,6 +4,7 @@ import autoTable from "jspdf-autotable";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./AssetDetailView.css"; // Create and style this file as needed
+import logo from "../assets/logo.png"; // Import the logo image
 
 const ViewAssetDetails = () => {
   const { id } = useParams(); // commonAssetId
@@ -35,25 +36,40 @@ const ViewAssetDetails = () => {
   const generatePDF = () => {
     const filtered = uniqueAssets.filter((a) => {
       const assetDate = new Date(a.createdAt);
-      return (!startDate || assetDate >= new Date(startDate)) &&
-             (!endDate || assetDate <= new Date(endDate));
+      return (
+        (!startDate || assetDate >= new Date(startDate)) &&
+        (!endDate || assetDate <= new Date(endDate))
+      );
     });
 
     const doc = new jsPDF();
-    doc.text(`Asset Report: ${commonAsset.itemName}`, 14, 15);
 
+    // Add CPC logo (make sure to replace 'logo.png' with your actual image path)
+    doc.addImage(logo, 'PNG', 10, 10, 30, 30); // 10, 10 is the x, y position and 30, 30 is the width, height
+
+    // Add the header "CPC Head Office"
+    doc.setFontSize(16);
+    doc.text("CPC Head Office", 50, 20); // Position the text
+
+    // Add the title of the report
+    doc.setFontSize(12);
+    doc.text(`Asset Report: ${commonAsset.itemName}`, 14, 40); // Positioning the title below header
+
+    // Add table of data
     autoTable(doc, {
       head: [["Assigned To", "Location", "Serial", "Asset", "Remarks", "Date"]],
       body: filtered.map((a) => [
         a.assignedTo,
         a.location || "-",
         a.serialNumber || "-",
-        a.assetnumber || "-",
+        a.assetNumber || "-", // Ensure asset number is included
         a.remarks || "-",
         new Date(a.createdAt).toLocaleDateString()
-      ])
+      ]),
+      margin: { top: 50 }, // Margin to avoid overlap with the header
     });
 
+    // Save the document
     doc.save("asset-report.pdf");
   };
 
@@ -79,7 +95,7 @@ const ViewAssetDetails = () => {
           onChange={(e) => setEndDate(e.target.value)}
         />
         <button className="pdf-button" onClick={generatePDF}>
-           PDF
+          PDF
         </button>
       </div>
 
@@ -110,7 +126,7 @@ const ViewAssetDetails = () => {
       </table>
 
       <button className="back-button" onClick={() => navigate(-1)}>
-         Back
+        Back
       </button>
     </div>
   );
