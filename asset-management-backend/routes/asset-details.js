@@ -24,7 +24,7 @@ router.get('/search', async (req, res) => {
 });
 
 
-// ✅ Assign user to a unique asset
+// ✅ Assign a user to asset
 router.post("/assign-user/:id", async (req, res) => {
   const { username, empId } = req.body;
 
@@ -45,7 +45,7 @@ router.post("/assign-user/:id", async (req, res) => {
 
     res.status(200).json({ message: "User assigned successfully", data: updated });
   } catch (err) {
-    console.error("Error assigning user:", err.message);
+    console.error("Assign error:", err);
     res.status(500).json({ message: "Server error", error: err.message });
   }
 });
