@@ -9,43 +9,49 @@ import logo from "../assets/logo.png";
 // ✅ Updated assetOptions with models under each brand
 const assetOptions = {
   Laptop: {
-    brands: ["Dell", "HP", "Lenovo"],
+    brands: ["Dell", "HP", "Lenovo", "Asus", "Acer"],
     models: {
-      Dell: ["Inspiron"],
-      HP: ["Pavilion"],
-      Lenovo: ["ThinkPad"],
+      Dell: ["Inspiron 15", "XPS 13", "XPS 15", "Latitude 5420", "Vostro 3510", "G15 Gaming", "Alienware m15"],
+      HP: ["Pavilion x360", "Envy 13", "Spectre x360", "EliteBook 840", "ProBook 450"],
+      Lenovo: ["ThinkPad X1 Carbon", "IdeaPad Flex 5", "Yoga Slim 7", "Legion 5"],
+      Asus: ["Vivobook 15", "ZenBook 14", "ROG Zephyrus G14", "TUF Gaming F15"],
+      Acer: ["Aspire 5", "Swift 3", "Predator Helios 300", "Nitro 5"],
     },
   },
   Printer: {
-    brands: ["Canon", "Epson", "Brother"],
+    brands: ["Canon", "Epson", "Brother", "HP"],
     models: {
-      Canon: ["LBP2900"],
-      Epson: ["EcoTank"],
-      Brother: ["HL-L2321D"],
+      Canon: ["PIXMA G3020", "imageCLASS LBP6030w", "PIXMA TR4520"],
+      Epson: ["EcoTank L3150", "L3210", "WorkForce WF-2830"],
+      Brother: ["HL-L2321D", "DCP-B7500D", "MFC-L2710DW"],
+      HP: ["DeskJet 2331", "LaserJet Pro MFP M126nw", "Smart Tank 515"],
     },
   },
   Monitor: {
-    brands: ["Samsung", "LG", "Acer"],
+    brands: ["Samsung", "LG", "Acer", "Dell", "BenQ"],
     models: {
-      Samsung: ["Odyssey"],
-      LG: ["UltraWide"],
-      Acer: ["Nitro"],
+      Samsung: ["Odyssey G5", "Smart Monitor M8", "Curve T55"],
+      LG: ["UltraGear 27GN750", "UltraFine 5K", "27MP400"],
+      Acer: ["Nitro VG270", "Predator XB273", "R240HY"],
+      Dell: ["P2422H", "U2723QE", "S2721HN"],
+      BenQ: ["GW2780", "PD2700U", "EX3501R"],
     },
   },
   CPU: {
-    brands: ["Intel", "AMD", "Ryzen"],
+    brands: ["Intel", "AMD"],
     models: {
-      Intel: ["Core i5", "Core i7"],
-      AMD: ["Ryzen 5"],
-      Ryzen: ["Ryzen 7"],
+      Intel: ["Core i3", "Core i5", "Core i7", "Core i9"],
+      AMD: ["Ryzen 3", "Ryzen 5", "Ryzen 7", "Ryzen 9"],
     },
   },
   UPS: {
-    brands: ["APC", "Microtek", "Luminous"],
+    brands: ["APC", "Microtek", "Luminous", "Eaton", "Vertiv"],
     models: {
-      APC: ["Back-UPS 600VA"],
-      Microtek: ["SEBz 1100VA"],
-      Luminous: ["EcoVolt"],
+      APC: ["Back-UPS BX600C-IN", "Smart-UPS 1500VA", "Easy UPS BVX"],
+      Microtek: ["SEBz 1100VA", "Smart Hybrid 1450", "Digital UPS EB 900"],
+      Luminous: ["EcoVolt 1050", "Zelio+ 1100", "iCruze 3000"],
+      Eaton: ["5E 1100i USB", "9E 3000VA", "DX RT 5kVA"],
+      Vertiv: ["Liebert ITON CX 600VA", "GXT MT+ 1kVA", "EDGE UPS 1500VA"],
     },
   },
 };
