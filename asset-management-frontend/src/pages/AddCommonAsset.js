@@ -6,26 +6,47 @@ import { FaBell, FaCog } from "react-icons/fa";
 import "./AddCommonAsset.css";
 import logo from "../assets/logo.png";
 
+// ✅ Updated assetOptions with models under each brand
 const assetOptions = {
   Laptop: {
     brands: ["Dell", "HP", "Lenovo"],
-    models: ["Inspiron", "Pavilion", "ThinkPad"],
+    models: {
+      Dell: ["Inspiron"],
+      HP: ["Pavilion"],
+      Lenovo: ["ThinkPad"],
+    },
   },
   Printer: {
     brands: ["Canon", "Epson", "Brother"],
-    models: ["LBP2900", "EcoTank", "HL-L2321D"],
+    models: {
+      Canon: ["LBP2900"],
+      Epson: ["EcoTank"],
+      Brother: ["HL-L2321D"],
+    },
   },
   Monitor: {
     brands: ["Samsung", "LG", "Acer"],
-    models: ["Odyssey", "UltraWide", "Nitro"],
+    models: {
+      Samsung: ["Odyssey"],
+      LG: ["UltraWide"],
+      Acer: ["Nitro"],
+    },
   },
   CPU: {
     brands: ["Intel", "AMD", "Ryzen"],
-    models: ["Core i5", "Core i7", "Ryzen 5", "Ryzen 7"],
+    models: {
+      Intel: ["Core i5", "Core i7"],
+      AMD: ["Ryzen 5"],
+      Ryzen: ["Ryzen 7"],
+    },
   },
   UPS: {
     brands: ["APC", "Microtek", "Luminous"],
-    models: ["Back-UPS 600VA", "SEBz 1100VA", "EcoVolt"],
+    models: {
+      APC: ["Back-UPS 600VA"],
+      Microtek: ["SEBz 1100VA"],
+      Luminous: ["EcoVolt"],
+    },
   },
 };
 
@@ -42,12 +63,19 @@ const AddCommonAsset = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+
     if (name === "itemName") {
       setForm({
-        ...form,
         itemName: value,
         brand: "",
         model: "",
+        numberOfItems: form.numberOfItems,
+      });
+    } else if (name === "brand") {
+      setForm({
+        ...form,
+        brand: value,
+        model: "", // Reset model when brand changes
       });
     } else {
       setForm({ ...form, [name]: value });
@@ -71,22 +99,17 @@ const AddCommonAsset = () => {
       setMessage({ text: "❌ Failed to add asset.", type: "error" });
     }
 
-    // Clear message after 3 seconds
     setTimeout(() => {
       setMessage({ text: "", type: "" });
     }, 3000);
   };
 
   const availableBrands = assetOptions[form.itemName]?.brands || [];
-  const availableModels = assetOptions[form.itemName]?.models || [];
+  const availableModels = assetOptions[form.itemName]?.models?.[form.brand] || [];
 
   const handleLogout = () => {
     localStorage.removeItem("token");
     navigate("/");
-  };
-
-  const handleAddAsset = () => {
-    navigate("/add-asset");
   };
 
   return (
@@ -133,28 +156,34 @@ const AddCommonAsset = () => {
           required
         >
           <option value="">Select Item</option>
-          <option value="Monitor">Monitor</option>
-          <option value="CPU">CPU</option>
-          <option value="UPS">UPS</option>
-          <option value="Laptop">Laptop</option>
-          <option value="Printer">Printer</option>
+          {Object.keys(assetOptions).map((key) => (
+            <option key={key} value={key}>{key}</option>
+          ))}
         </select>
 
-
-        <select name="brand" value={form.brand} onChange={handleChange} required>
+        <select
+          name="brand"
+          value={form.brand}
+          onChange={handleChange}
+          required
+        >
           <option value="">Select Brand</option>
           {availableBrands.length > 0
             ? availableBrands.map((b) => <option key={b} value={b}>{b}</option>)
-            : <option disabled>Enter Item Name First</option>}
+            : <option disabled>Select Item First</option>}
         </select>
 
-        <select name="model" value={form.model} onChange={handleChange} required>
+        <select
+          name="model"
+          value={form.model}
+          onChange={handleChange}
+          required
+        >
           <option value="">Select Model</option>
           {availableModels.length > 0
             ? availableModels.map((m) => <option key={m} value={m}>{m}</option>)
-            : <option disabled>Enter Item Name First</option>}
+            : <option disabled>Select Brand First</option>}
         </select>
-
 
         <input
           type="number"
