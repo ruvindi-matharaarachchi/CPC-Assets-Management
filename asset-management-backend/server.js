@@ -23,6 +23,10 @@ const assetDetailsRoutes = require("./routes/asset-details");
 app.use("/api/asset-details", assetDetailsRoutes);
 app.use("/api/asset-details", require("./routes/asset-details"));
 
+const technicianRoutes = require("./routes/technicians");
+app.use("/api/technicians", technicianRoutes);
+
+
 // ✅ Global Error Handler
 app.use((err, req, res, next) => {
   console.error(err.stack);
