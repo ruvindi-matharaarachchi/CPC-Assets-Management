@@ -41,7 +41,10 @@ const EditTechnician = () => {
 
     return (
         <div className="technician-container">
-            <h2>Edit Technician</h2>
+            <h2>
+                <span style={{ color: "#7c1426", fontWeight: "bold" }}>{form?.fullName || "Technician"} !</span><br />
+                
+            </h2>
 
             {message && <div className="form-message">{message}</div>}
 
@@ -68,7 +71,7 @@ const EditTechnician = () => {
 
                 <div>
                     <label>Email</label>
-                    <input type="text" name="email" placeholder="Email" value={form.email} onChange={handleChange} disabled/>
+                    <input type="text" name="email" placeholder="Email" value={form.email} onChange={handleChange} disabled />
                 </div>
 
                 <div>
