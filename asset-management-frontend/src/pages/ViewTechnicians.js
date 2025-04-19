@@ -16,6 +16,20 @@ const ViewTechnicians = () => {
     };
     fetchData();
   }, []);
+  const handleEdit = (tech) => {
+    // optional: navigate to edit form or show inline modal
+    console.log("Edit tech:", tech);
+  };
+
+  const handleDelete = async (id) => {
+    if (!window.confirm("Are you sure you want to delete this technician?")) return;
+    try {
+      await axios.delete(`http://localhost:5000/api/technicians/delete/${id}`);
+      setTechnicians(technicians.filter((t) => t._id !== id));
+    } catch (err) {
+      console.error("Delete failed", err);
+    }
+  };
 
   return (
     <div className="tech-view-container">
@@ -33,6 +47,8 @@ const ViewTechnicians = () => {
             <th>Address</th>
             <th>Experience</th>
             <th>Other</th>
+            <th>Actions</th>
+
           </tr>
         </thead>
         <tbody>
@@ -48,6 +64,11 @@ const ViewTechnicians = () => {
               <td>{tech.address}</td>
               <td>{tech.experience}</td>
               <td>{tech.other}</td>
+              <td>
+                <button onClick={() => handleEdit(tech)}>Edit</button>
+                <button onClick={() => handleDelete(tech._id)}>Delete</button>
+              </td>
+
             </tr>
           ))}
         </tbody>
