@@ -8,10 +8,10 @@ const assetDetailSchema = new mongoose.Schema({
   remarks: { type: String },
   createdAt: { type: Date, default: Date.now },
 
-  // ✅ New Fields
-  assignedUser: {
+   // ✅ New field for assigned user
+   assignedUser: {
     username: String,
-    empId: String
+    empId: String,
   }
 
 });
