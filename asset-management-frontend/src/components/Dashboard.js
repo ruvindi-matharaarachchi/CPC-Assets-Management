@@ -62,6 +62,7 @@ const Dashboard = () => {
                         <li><a href="/dashboard">Dashboard</a></li>
                         <li><a href="/view-common-assets">View Assets List</a></li>
                         <li><a href="/technicians">Technicians</a></li>
+                        <li><a href="/view-technicians">View Technicians</a></li>
                         <li><a href="/asset-summary">Reports</a></li>
                         <li><a href="/issue-asset">Issues</a></li>
 
