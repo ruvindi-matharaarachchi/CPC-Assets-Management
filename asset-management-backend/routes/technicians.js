@@ -19,9 +19,9 @@ router.get("/", async (req, res) => {
       const techs = await Technician.find().sort({ createdAt: -1 });
       res.json(techs);
     } catch (err) {
-      console.error("Error fetching technicians:", err);
       res.status(500).json({ message: "Server error" });
     }
   });
+  
   
 module.exports = router;
