@@ -1,130 +1,153 @@
 /* Container background */
 .technician-container {
-    max-width: 900px;
-    margin: 60px auto;
-    padding: 30px 40px;
-    border-radius: 20px;
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(10px);
-    color: white;
-    box-shadow: 0 0 30px rgba(255, 0, 0, 0.2);
-  }
-  
-  /* Header */
-  .technician-container h2 {
-    text-align: center;
-    font-size: 28px;
-    margin-bottom: 30px;
-    color: #ffffff;
-  }
-  
-  /* Message box */
-  .form-message {
-    text-align: center;
-    padding: 10px 15px;
-    background-color: #1f7a1f;
-    color: #ffffff;
-    font-weight: bold;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    animation: fadeIn 0.3s ease-in-out;
-  }
-  
-  /* Form layout */
+  max-width: 900px;
+  margin: 60px auto;
+  padding: 30px 40px;
+  border-radius: 20px;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  color: white;
+  box-shadow: 0 0 30px rgba(255, 0, 0, 0.2);
+}
+
+/* Header */
+.technician-container h2 {
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 30px;
+  color: #ffffff;
+}
+
+/* Message box */
+.form-message {
+  text-align: center;
+  padding: 10px 15px;
+  background-color: #1f7a1f;
+  color: #ffffff;
+  font-weight: bold;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Form layout */
+.technician-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.technician-form select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 11px;
+  border-radius: 8px;
+  border: none;
+  font-size: 14px;
+  text-align: center;
+  background-color: #f2f2f2;
+  color: #333;
+  appearance: none;
+  outline: none;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.technician-form select:focus {
+  border: 2px solid #cc0812;
+  background-color: #ffffff;
+}
+
+.technician-form input {
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  background: #f9f9f9;
+  color: #333;
+}
+
+.technician-form input:focus {
+  border: 2px solid #7c1426;
+  background-color: #ffffff;
+}
+
+.technician-form textarea {
+  width: 95%;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  margin-top: 10px;
+  font-size: 14px;
+  background-color: #f2f2f2;
+  color: #333;
+  resize: vertical;
+  outline: none;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.technician-form textarea:focus {
+  border: 2px solid #7c1426;
+  background-color: #ffffff;
+}
+
+/* General disabled style */
+.technician-form input:disabled,
+.technician-form select:disabled,
+.technician-form textarea:disabled {
+  background-color: #ddd;
+  /* light gray background */
+  color: #333;
+  /* text color */
+  font-weight: bold;
+  /* make text bold */
+  cursor: not-allowed;
+  /* show disabled cursor */
+  opacity: 1;
+  /* override default opacity */
+}
+
+.technician-form button[type="submit"] {
+  grid-column: span 2;
+  align-items: center;
+  margin-left: 100px;
+  width: 700px;
+  padding: 12px 0;
+  background-color: #7c1426;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.technician-form button[type="submit"]:hover {
+  background-color: #7c1426;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
   .technician-form {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
+    grid-template-columns: 1fr;
   }
-  
-  .technician-form select {
-    width: 100%;
-    padding: 10px;
-    margin-top: 11px;
-    border-radius: 8px;
-    border: none;
-    font-size: 14px;
-    text-align: center;
-    background-color: #f2f2f2;
-    color: #333;
-    appearance: none;
-    outline: none;
-    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+
+  .technician-form textarea,
+  .technician-form button {
+    grid-column: span 1;
   }
-  
-  .technician-form select:focus {
-    border: 2px solid #cc0812;
-    background-color: #ffffff;
+}
+
+/* Simple fade animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
   }
-  .technician-form input
-   {
-    padding: 10px 12px;
-    border-radius: 10px;
-    border: none;
-    outline: none;
-    font-size: 14px;
-    background: #f9f9f9;
-    color: #333;
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  .technician-form input:focus {
-    border: 2px solid #7c1426;
-    background-color: #ffffff;
-  }
-  
-  .technician-form textarea {
-    width: 95%;
-    padding: 10px;
-    border-radius: 8px;
-    border: none;
-    margin-top: 10px;
-    font-size: 14px;
-    background-color: #f2f2f2;
-    color: #333;
-    resize: vertical;
-    outline: none;
-    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
-  }
-  
-  .technician-form textarea:focus {
-    border: 2px solid #7c1426;
-    background-color: #ffffff;
-  }
-  
-  .technician-form button[type="submit"] {
-    grid-column: span 2;
-    align-items: center;
-    margin-left: 100px;
-    width: 700px;
-    padding: 12px 0;
-    background-color: #7c1426;
-    color: white;
-    border: none;
-    border-radius: 12px;
-    font-weight: bold;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-  }
-  
-  .technician-form button[type="submit"]:hover {
-    background-color: #7c1426;
-  }
-  
-  /* Responsive */
-  @media (max-width: 768px) {
-    .technician-form {
-      grid-template-columns: 1fr;
-    }
-  
-    .technician-form textarea,
-    .technician-form button {
-      grid-column: span 1;
-    }
-  }
-  
-  /* Simple fade animation */
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  
+}

@@ -48,27 +48,27 @@ const EditTechnician = () => {
             <form className="technician-form" onSubmit={handleUpdate}>
                 <div>
                     <label>EPF</label>
-                    <input type="text" name="epf" placeholder="EPF" value={form.epf} onChange={handleChange} required />
+                    <input type="text" name="epf" placeholder="EPF" value={form.epf} onChange={handleChange} disabled />
                 </div>
 
                 <div>
                     <label>Full Name</label>
-                    <input type="text" name="fullName" placeholder="Full Name" value={form.fullName} onChange={handleChange} required />
+                    <input type="text" name="fullName" placeholder="Full Name" value={form.fullName} onChange={handleChange} disabled />
                 </div>
 
                 <div>
                     <label>Username</label>
-                    <input type="text" name="username" placeholder="Username" value={form.username} onChange={handleChange} required />
+                    <input type="text" name="username" placeholder="Username" value={form.username} onChange={handleChange} disabled />
                 </div>
 
                 <div>
                     <label>NIC</label>
-                    <input type="text" name="nic" placeholder="NIC" value={form.nic} onChange={handleChange} required />
+                    <input type="text" name="nic" placeholder="NIC" value={form.nic} onChange={handleChange} disabled />
                 </div>
 
                 <div>
                     <label>Email</label>
-                    <input type="text" name="email" placeholder="Email" value={form.email} onChange={handleChange} />
+                    <input type="text" name="email" placeholder="Email" value={form.email} onChange={handleChange} disabled/>
                 </div>
 
                 <div>
