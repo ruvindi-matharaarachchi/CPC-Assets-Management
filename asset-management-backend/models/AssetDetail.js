@@ -7,6 +7,12 @@ const assetDetailSchema = new mongoose.Schema({
   assetNumber: { type: String },
   remarks: { type: String },
   createdAt: { type: Date, default: Date.now },
+  
+  // ✅ New Fields
+  assignedUser: {
+    username: String,
+    empId: String,
+  }
 });
 
 module.exports = mongoose.model("AssetDetail", assetDetailSchema);
