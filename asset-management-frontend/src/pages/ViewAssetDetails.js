@@ -57,9 +57,8 @@ const ViewAssetDetails = () => {
 
     // Add table of data
     autoTable(doc, {
-      head: [["Assigned To", "Location", "Serial", "Asset", "Remarks", "Date"]],
+      head: [[ "Location", "Serial", "Asset", "Remarks", "Date"]],
       body: filtered.map((a) => [
-        a.assignedTo,
         a.location || "-",
         a.serialNumber || "-",
         a.assetNumber || "-", // Ensure asset number is included
@@ -103,7 +102,6 @@ const ViewAssetDetails = () => {
       <table>
         <thead>
           <tr>
-            <th>Assigned To</th>
             <th>Location</th>
             <th>Serial No</th>
             <th>Asset No.</th>
@@ -114,7 +112,6 @@ const ViewAssetDetails = () => {
         <tbody>
           {uniqueAssets.map((a) => (
             <tr key={a._id}>
-              <td>{a.assignedTo}</td>
               <td>{a.location || "-"}</td>
               <td>{a.serialNumber || "-"}</td>
               <td>{a.assetNumber || "-"}</td>
