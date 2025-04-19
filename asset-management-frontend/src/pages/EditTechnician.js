@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./AddTechnician.css"; // Reuse the same styling
+import "./EditTechnician.css"; // Reuse the same styling
 
 const EditTechnician = () => {
     const { id } = useParams();
@@ -77,7 +77,7 @@ const EditTechnician = () => {
                 </div>
 
                 <div>
-                    <label>specialization</label><br></br><br></br>
+                    <label>specialization</label><br></br>
                     <select name="specialization" value={form.specialization} onChange={handleChange}>
                         <option value="">Select Specialization</option>
                         <option value="Printer">Printer</option>
@@ -91,7 +91,7 @@ const EditTechnician = () => {
                     <input type="text" name="address" placeholder="Address" value={form.address} onChange={handleChange} />
                 </div>
                 <div>
-                    <label>Experience</label><br></br><br></br>
+                    <label>Experience</label><br></br>
                     <select name="experience" value={form.experience} onChange={handleChange}>
                         <option value="">Experience (Years)</option>
                         <option value="1 Year">1 Year</option>
@@ -101,7 +101,7 @@ const EditTechnician = () => {
                 </div>
 
                 <div>
-                    <label>Other Information</label><br></br><br></br>
+                    <label>Other Information</label><br></br>
                     <textarea name="other" placeholder="Additional Information" value={form.other} onChange={handleChange}></textarea>
 
                 </div>

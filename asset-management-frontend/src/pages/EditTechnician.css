@@ -37,10 +37,27 @@
     gap: 20px;
   }
   
+  .technician-form select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 11px;
+    border-radius: 8px;
+    border: none;
+    font-size: 14px;
+    text-align: center;
+    background-color: #f2f2f2;
+    color: #333;
+    appearance: none;
+    outline: none;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
   
-  .technician-form input,
-  .technician-form select,
-  .technician-form textarea {
+  .technician-form select:focus {
+    border: 2px solid #cc0812;
+    background-color: #ffffff;
+  }
+  .technician-form input
+   {
     padding: 10px 12px;
     border-radius: 10px;
     border: none;
@@ -49,18 +66,37 @@
     background: #f9f9f9;
     color: #333;
   }
+  .technician-form input:focus {
+    border: 2px solid #7c1426;
+    background-color: #ffffff;
+  }
   
-  /* Full width for textarea and submit */
   .technician-form textarea {
-    grid-column: span 2;
-    min-height: 80px;
+    width: 95%;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    margin-top: 10px;
+    font-size: 14px;
+    background-color: #f2f2f2;
+    color: #333;
     resize: vertical;
+    outline: none;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+  
+  .technician-form textarea:focus {
+    border: 2px solid #7c1426;
+    background-color: #ffffff;
   }
   
   .technician-form button[type="submit"] {
     grid-column: span 2;
+    align-items: center;
+    margin-left: 100px;
+    width: 700px;
     padding: 12px 0;
-    background-color: #e50914;
+    background-color: #7c1426;
     color: white;
     border: none;
     border-radius: 12px;
@@ -71,7 +107,7 @@
   }
   
   .technician-form button[type="submit"]:hover {
-    background-color: #cc0812;
+    background-color: #7c1426;
   }
   
   /* Responsive */
