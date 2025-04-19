@@ -54,19 +54,23 @@ const ViewAssetDetails = () => {
     doc.text(`Asset Report: ${commonAsset.itemName}`, 14, 40);
 
     autoTable(doc, {
-      head: [["Location", "Serial", "Asset", "Remarks", "Date"]],
+      head: [["Location", "Serial", "Asset", "Remarks", "Date", "Assigned User"]],
       body: filtered.map((a) => [
         a.location || "-",
         a.serialNumber || "-",
         a.assetNumber || "-",
         a.remarks || "-",
-        new Date(a.createdAt).toLocaleDateString()
+        new Date(a.createdAt).toLocaleDateString(),
+        a.assignedUser?.username
+          ? `${a.assignedUser.username} (${a.assignedUser.empId})`
+          : "Not Assigned",
       ]),
       margin: { top: 50 },
     });
 
     doc.save("asset-report.pdf");
   };
+
 
   const handleAssignClick = (assetId) => {
     setAssigningAssetId(assetId);
