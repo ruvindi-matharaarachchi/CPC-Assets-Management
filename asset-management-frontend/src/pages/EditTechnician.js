@@ -43,9 +43,11 @@ const EditTechnician = () => {
         <div className="technician-container">
             <h2>
                 <span style={{ color: "#7c1426", fontWeight: "bold" }}>{form?.fullName || "Technician"} !</span><br />
-                
-            </h2>
 
+            </h2>
+            <button className="back-button" onClick={() => navigate(-1)}>
+                Back
+            </button>
             {message && <div className="form-message">{message}</div>}
 
             <form className="technician-form" onSubmit={handleUpdate}>

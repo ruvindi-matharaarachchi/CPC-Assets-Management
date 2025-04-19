@@ -32,6 +32,9 @@ const ViewTechnicians = () => {
   return (
     <div className="tech-view-container">
       <h2>Technician List</h2>
+      <button className="back-button" onClick={() => navigate(-1)}>
+        Back
+      </button>
       <table>
         <thead>
           <tr>
