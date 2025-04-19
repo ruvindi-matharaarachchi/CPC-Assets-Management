@@ -1,0 +1,38 @@
+.tech-view-container {
+    padding: 40px;
+    background: #f9f9f9;
+    border-radius: 16px;
+    max-width: 95%;
+    margin: 40px auto;
+    overflow-x: auto;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .tech-view-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #222;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  
+  table th,
+  table td {
+    padding: 12px 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+  
+  table th {
+    background: #e50914;
+    color: white;
+  }
+  
+  table tr:nth-child(even) {
+    background: #f5f5f5;
+  }
+  
