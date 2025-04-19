@@ -21,6 +21,8 @@ app.use("/api/asset-details", require("./routes/assetDetailRoutes"));
 
 const assetDetailsRoute = require("./routes/asset-details");
 app.use("/api/asset-details", assetDetailsRoute);
+app.use("/api/asset-details", require("./routes/asset-details"));
+
 // ✅ Global Error Handler
 app.use((err, req, res, next) => {
   console.error(err.stack);
