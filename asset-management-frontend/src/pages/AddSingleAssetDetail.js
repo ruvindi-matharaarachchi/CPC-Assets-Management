@@ -7,7 +7,6 @@ const AddSingleAssetDetail = () => {
   const { commonAssetId } = useParams();
   const [quantityLeft, setQuantityLeft] = useState(0);
   const [form, setForm] = useState({
-    assignedTo: "",
     location: "",
     serialNumber: "",
     assetNumber: "",
@@ -126,12 +125,7 @@ const AddSingleAssetDetail = () => {
       <p>Remaining: {quantityLeft}</p>
       <form onSubmit={handleSubmit}>
         <div className="asset-detail-block">
-          <input
-            name="assignedTo"
-            placeholder="Assigned To"
-            value={form.assignedTo}
-            onChange={handleChange}
-          />
+          
           <input
             name="location"
             placeholder="Location"
