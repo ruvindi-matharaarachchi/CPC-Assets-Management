@@ -19,8 +19,8 @@ app.use("/api/auth", require("./routes/authRoutes")); // User login
 app.use("/api/common-assets", require("./routes/commonAssetRoutes"));
 app.use("/api/asset-details", require("./routes/assetDetailRoutes"));
 
-const assetDetailsRoute = require("./routes/asset-details");
-app.use("/api/asset-details", assetDetailsRoute);
+const assetDetailsRoutes = require("./routes/asset-details");
+app.use("/api/asset-details", assetDetailsRoutes);
 app.use("/api/asset-details", require("./routes/asset-details"));
 
 // ✅ Global Error Handler
