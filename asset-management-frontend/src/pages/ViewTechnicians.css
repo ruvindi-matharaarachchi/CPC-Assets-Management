@@ -28,11 +28,13 @@
   }
   
   table th {
-    background: #7c1426;
+    background: linear-gradient(to right, #a51829, #7c1426);
+    text-align: center;
     color: white;
   }
   
   table tr:nth-child(even) {
     background: #f5f5f5;
+    color: black;
   }
   
