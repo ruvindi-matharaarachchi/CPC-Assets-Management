@@ -64,9 +64,9 @@ button[type="submit"] {
   border-radius: 8px;
   color: white;
   font-size: 16px;
-  margin-left: 30px;
+  margin-left: 0px;
   align-items: center;
-  padding: 14px 24px;
+  padding: 14px 12px;
   cursor: pointer;
   width: 100%;
   font-weight: 600;
