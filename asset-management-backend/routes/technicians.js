@@ -44,5 +44,15 @@ router.delete("/delete/:id", async (req, res) => {
   }
 });
 
+router.get("/:id", async (req, res) => {
+  try {
+    const tech = await Technician.findById(req.params.id);
+    if (!tech) return res.status(404).json({ message: "Technician not found" });
+    res.json(tech);
+  } catch (err) {
+    res.status(500).json({ message: "Server error" });
+  }
+});
+
 
 module.exports = router;

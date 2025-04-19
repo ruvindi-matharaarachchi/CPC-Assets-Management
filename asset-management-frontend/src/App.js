@@ -11,6 +11,7 @@ import ViewAssetDetails from "./pages/ViewAssetDetails";
 import IssueAssetForm from "./pages/IssueAssetForm"; 
 import AddTechnician from "./pages/AddTechnician"; 
 import ViewTechnicians from "./pages/ViewTechnicians"; 
+import EditTechnician from "./pages/EditTechnician";
 
 const App = () => {
   return (
@@ -27,6 +28,7 @@ const App = () => {
         <Route path="/issue-asset" element={<IssueAssetForm />} />
         <Route path="/technicians" element={<AddTechnician />} />
         <Route path="/view-technicians" element={<ViewTechnicians />} />
+        <Route path="/edit-technician/:id" element={<EditTechnician />} />
 
       </Routes>
     </Router>

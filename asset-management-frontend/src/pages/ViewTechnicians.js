@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./ViewTechnicians.css";
 
 const ViewTechnicians = () => {
   const [technicians, setTechnicians] = useState([]);
+  const navigate = useNavigate(); // ✅ fix
 
   useEffect(() => {
     const fetchData = async () => {
@@ -16,10 +18,6 @@ const ViewTechnicians = () => {
     };
     fetchData();
   }, []);
-  const handleEdit = (tech) => {
-    // optional: navigate to edit form or show inline modal
-    console.log("Edit tech:", tech);
-  };
 
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete this technician?")) return;
@@ -48,7 +46,6 @@ const ViewTechnicians = () => {
             <th>Experience</th>
             <th>Other</th>
             <th>Actions</th>
-
           </tr>
         </thead>
         <tbody>
@@ -65,10 +62,9 @@ const ViewTechnicians = () => {
               <td>{tech.experience}</td>
               <td>{tech.other}</td>
               <td>
-                <button onClick={() => handleEdit(tech)}>Edit</button>
+                <button onClick={() => navigate(`/edit-technician/${tech._id}`)}>Edit</button>
                 <button onClick={() => handleDelete(tech._id)}>Delete</button>
               </td>
-
             </tr>
           ))}
         </tbody>
