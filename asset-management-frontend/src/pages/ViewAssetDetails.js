@@ -14,7 +14,7 @@ const ViewAssetDetails = () => {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
 
-  // Assignment state
+  // Modal and form states
   const [assigningAssetId, setAssigningAssetId] = useState(null);
   const [userForm, setUserForm] = useState({ username: "", empId: "" });
   const [assignMessage, setAssignMessage] = useState("");
@@ -82,33 +82,24 @@ const ViewAssetDetails = () => {
       setTimeout(() => {
         setAssigningAssetId(null);
         setAssignMessage("");
-      }, 2000);
+        window.location.reload(); // optional: reload to reflect updates
+      }, 1500);
     } catch (err) {
       console.error("Error assigning user", err);
       setAssignMessage("❌ Failed to assign user.");
     }
   };
 
-  if (!commonAsset) return <p>Loading...</p>;
-
   return (
     <div className="asset-details-container">
-      <h2>Asset: {commonAsset.itemName}</h2>
-      <p><strong>Brand:</strong> {commonAsset.brand}</p>
-      <p><strong>Model:</strong> {commonAsset.model}</p>
-      <p><strong>Total Quantity:</strong> {commonAsset.numberOfItems}</p>
+      <h2>Asset: {commonAsset?.itemName}</h2>
+      <p><strong>Brand:</strong> {commonAsset?.brand}</p>
+      <p><strong>Model:</strong> {commonAsset?.model}</p>
+      <p><strong>Total Quantity:</strong> {commonAsset?.numberOfItems}</p>
 
       <div className="date-filter">
-        <input
-          type="date"
-          value={startDate}
-          onChange={(e) => setStartDate(e.target.value)}
-        />
-        <input
-          type="date"
-          value={endDate}
-          onChange={(e) => setEndDate(e.target.value)}
-        />
+        <input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
+        <input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
         <button className="pdf-button" onClick={generatePDF}>PDF</button>
       </div>
 
@@ -132,37 +123,37 @@ const ViewAssetDetails = () => {
               <td>{a.assetNumber || "-"}</td>
               <td>{a.remarks || "-"}</td>
               <td>{new Date(a.createdAt).toLocaleDateString()}</td>
-              <td>
-                <button onClick={() => handleAssignClick(a._id)}>Assign</button>
-              </td>
+              <td><button onClick={() => handleAssignClick(a._id)}>Assign</button></td>
             </tr>
           ))}
         </tbody>
       </table>
 
-      {/* Assignment Form */}
+      {/* ✅ Modal Form */}
       {assigningAssetId && (
-        <div className="assign-user-form">
-          <h4>Assign User to Asset</h4>
-          <form onSubmit={handleAssignSubmit}>
-            <input
-              type="text"
-              placeholder="Username"
-              value={userForm.username}
-              onChange={(e) => setUserForm({ ...userForm, username: e.target.value })}
-              required
-            />
-            <input
-              type="text"
-              placeholder="Employee ID"
-              value={userForm.empId}
-              onChange={(e) => setUserForm({ ...userForm, empId: e.target.value })}
-              required
-            />
-            <button type="submit">Assign</button>
-            <button type="button" onClick={() => setAssigningAssetId(null)}>Cancel</button>
-          </form>
-          {assignMessage && <p className="assign-message">{assignMessage}</p>}
+        <div className="modal-overlay">
+          <div className="modal">
+            <h4>Assign User</h4>
+            <form onSubmit={handleAssignSubmit}>
+              <input
+                type="text"
+                placeholder="Username"
+                value={userForm.username}
+                onChange={(e) => setUserForm({ ...userForm, username: e.target.value })}
+                required
+              />
+              <input
+                type="text"
+                placeholder="Employee ID"
+                value={userForm.empId}
+                onChange={(e) => setUserForm({ ...userForm, empId: e.target.value })}
+                required
+              />
+              <button type="submit">Assign</button>
+              <button type="button" onClick={() => setAssigningAssetId(null)}>Cancel</button>
+            </form>
+            {assignMessage && <p className="assign-message">{assignMessage}</p>}
+          </div>
         </div>
       )}
 
