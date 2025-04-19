@@ -3,16 +3,21 @@ import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./AssetDetailView.css"; // Create and style this file as needed
-import logo from "../assets/logo.png"; // Import the logo image
+import "./AssetDetailView.css";
+import logo from "../assets/logo.png";
 
 const ViewAssetDetails = () => {
-  const { id } = useParams(); // commonAssetId
+  const { id } = useParams();
   const navigate = useNavigate();
   const [commonAsset, setCommonAsset] = useState(null);
   const [uniqueAssets, setUniqueAssets] = useState([]);
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+
+  // Assignment state
+  const [assigningAssetId, setAssigningAssetId] = useState(null);
+  const [userForm, setUserForm] = useState({ username: "", empId: "" });
+  const [assignMessage, setAssignMessage] = useState("");
 
   useEffect(() => {
     const fetchDetails = async () => {
@@ -32,7 +37,6 @@ const ViewAssetDetails = () => {
     fetchDetails();
   }, [id]);
 
-  // Function to generate PDF based on date filter
   const generatePDF = () => {
     const filtered = uniqueAssets.filter((a) => {
       const assetDate = new Date(a.createdAt);
@@ -43,33 +47,46 @@ const ViewAssetDetails = () => {
     });
 
     const doc = new jsPDF();
-
-    // Add CPC logo (make sure to replace 'logo.png' with your actual image path)
-    doc.addImage(logo, 'PNG', 10, 10, 20, 20); // 10, 10 is the x, y position and 30, 30 is the width, height
-
-    // Add the header "CPC Head Office"
+    doc.addImage(logo, 'PNG', 10, 10, 20, 20);
     doc.setFontSize(16);
-    doc.text("CPC Head Office", 50, 20); // Position the text
-
-    // Add the title of the report
+    doc.text("CPC Head Office", 50, 20);
     doc.setFontSize(12);
-    doc.text(`Asset Report: ${commonAsset.itemName}`, 14, 40); // Positioning the title below header
+    doc.text(`Asset Report: ${commonAsset.itemName}`, 14, 40);
 
-    // Add table of data
     autoTable(doc, {
-      head: [[ "Location", "Serial", "Asset", "Remarks", "Date"]],
+      head: [["Location", "Serial", "Asset", "Remarks", "Date"]],
       body: filtered.map((a) => [
         a.location || "-",
         a.serialNumber || "-",
-        a.assetNumber || "-", // Ensure asset number is included
+        a.assetNumber || "-",
         a.remarks || "-",
         new Date(a.createdAt).toLocaleDateString()
       ]),
-      margin: { top: 50 }, // Margin to avoid overlap with the header
+      margin: { top: 50 },
     });
 
-    // Save the document
     doc.save("asset-report.pdf");
+  };
+
+  const handleAssignClick = (assetId) => {
+    setAssigningAssetId(assetId);
+    setUserForm({ username: "", empId: "" });
+    setAssignMessage("");
+  };
+
+  const handleAssignSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.post(`http://localhost:5000/api/asset-details/assign-user/${assigningAssetId}`, userForm);
+      setAssignMessage("✅ User assigned successfully.");
+      setTimeout(() => {
+        setAssigningAssetId(null);
+        setAssignMessage("");
+      }, 2000);
+    } catch (err) {
+      console.error("Error assigning user", err);
+      setAssignMessage("❌ Failed to assign user.");
+    }
   };
 
   if (!commonAsset) return <p>Loading...</p>;
@@ -81,7 +98,6 @@ const ViewAssetDetails = () => {
       <p><strong>Model:</strong> {commonAsset.model}</p>
       <p><strong>Total Quantity:</strong> {commonAsset.numberOfItems}</p>
 
-      {/* Date Range Filters and PDF Generation */}
       <div className="date-filter">
         <input
           type="date"
@@ -93,9 +109,7 @@ const ViewAssetDetails = () => {
           value={endDate}
           onChange={(e) => setEndDate(e.target.value)}
         />
-        <button className="pdf-button" onClick={generatePDF}>
-          PDF
-        </button>
+        <button className="pdf-button" onClick={generatePDF}>PDF</button>
       </div>
 
       <h3>Unique Devices:</h3>
@@ -107,6 +121,7 @@ const ViewAssetDetails = () => {
             <th>Asset No.</th>
             <th>Remarks</th>
             <th>Added Date</th>
+            <th>Assign User</th>
           </tr>
         </thead>
         <tbody>
@@ -117,14 +132,41 @@ const ViewAssetDetails = () => {
               <td>{a.assetNumber || "-"}</td>
               <td>{a.remarks || "-"}</td>
               <td>{new Date(a.createdAt).toLocaleDateString()}</td>
+              <td>
+                <button onClick={() => handleAssignClick(a._id)}>Assign</button>
+              </td>
             </tr>
           ))}
         </tbody>
       </table>
 
-      <button className="back-button" onClick={() => navigate(-1)}>
-        Back
-      </button>
+      {/* Assignment Form */}
+      {assigningAssetId && (
+        <div className="assign-user-form">
+          <h4>Assign User to Asset</h4>
+          <form onSubmit={handleAssignSubmit}>
+            <input
+              type="text"
+              placeholder="Username"
+              value={userForm.username}
+              onChange={(e) => setUserForm({ ...userForm, username: e.target.value })}
+              required
+            />
+            <input
+              type="text"
+              placeholder="Employee ID"
+              value={userForm.empId}
+              onChange={(e) => setUserForm({ ...userForm, empId: e.target.value })}
+              required
+            />
+            <button type="submit">Assign</button>
+            <button type="button" onClick={() => setAssigningAssetId(null)}>Cancel</button>
+          </form>
+          {assignMessage && <p className="assign-message">{assignMessage}</p>}
+        </div>
+      )}
+
+      <button className="back-button" onClick={() => navigate(-1)}>Back</button>
     </div>
   );
 };
