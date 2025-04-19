@@ -161,7 +161,11 @@ const ViewAssetDetails = () => {
               <button type="submit">Assign</button>
               <button type="button" onClick={() => setAssigningAssetId(null)}>Cancel</button>
             </form>
-            {assignMessage && <p className="assign-message">{assignMessage}</p>}
+            {assignMessage && (
+              <div className="popup-message">
+                <p>{assignMessage}</p>
+              </div>
+            )}
           </div>
         </div>
       )}
