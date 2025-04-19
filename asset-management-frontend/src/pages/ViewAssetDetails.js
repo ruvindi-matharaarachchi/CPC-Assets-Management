@@ -112,7 +112,8 @@ const ViewAssetDetails = () => {
             <th>Asset No.</th>
             <th>Remarks</th>
             <th>Added Date</th>
-            <th>Assign User</th>
+            <th>Assigned User</th>
+            <th>Assign</th>
           </tr>
         </thead>
         <tbody>
@@ -123,10 +124,18 @@ const ViewAssetDetails = () => {
               <td>{a.assetNumber || "-"}</td>
               <td>{a.remarks || "-"}</td>
               <td>{new Date(a.createdAt).toLocaleDateString()}</td>
-              <td><button onClick={() => handleAssignClick(a._id)}>Assign</button></td>
+              <td>
+                {a.assignedUser?.username
+                  ? `${a.assignedUser.username} (${a.assignedUser.empId})`
+                  : <span style={{ color: "gray" }}>Not Assigned</span>}
+              </td>
+              <td>
+                <button onClick={() => handleAssignClick(a._id)}>Assign</button>
+              </td>
             </tr>
           ))}
         </tbody>
+
       </table>
 
       {/* ✅ Modal Form */}
