@@ -9,6 +9,7 @@ import AddAssetDetailsForm from "./pages/AddAssetDetailsForm";
 import AddSingleAssetDetail from "./pages/AddSingleAssetDetail"; 
 import ViewAssetDetails from "./pages/ViewAssetDetails"; 
 import IssueAssetForm from "./pages/IssueAssetForm"; // adjust path as needed
+import AddTechnician from "./pages/AddTechnician"; // adjust path as needed
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
         <Route path="/add-one-asset/:commonAssetId" element={<AddSingleAssetDetail />} />
         <Route path="/view-asset/:id" element={<ViewAssetDetails />} />
         <Route path="/issue-asset" element={<IssueAssetForm />} />
+        <Route path="/technicians" element={<AddTechnician />} />
 
       </Routes>
     </Router>
