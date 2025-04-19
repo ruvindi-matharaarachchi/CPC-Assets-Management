@@ -48,36 +48,36 @@ const EditTechnician = () => {
             <form className="technician-form" onSubmit={handleUpdate}>
                 <div>
                     <label>EPF</label>
-                    <input type="text" name="epf" value={form.epf} onChange={handleChange} required />
+                    <input type="text" name="epf" placeholder="EPF" value={form.epf} onChange={handleChange} required />
                 </div>
 
                 <div>
                     <label>Full Name</label>
-                    <input type="text" name="fullName" value={form.fullName} onChange={handleChange} required />
+                    <input type="text" name="fullName" placeholder="Full Name" value={form.fullName} onChange={handleChange} required />
                 </div>
 
                 <div>
                     <label>Username</label>
-                    <input type="text" name="username" value={form.username} onChange={handleChange} required />
+                    <input type="text" name="username" placeholder="Username" value={form.username} onChange={handleChange} required />
                 </div>
 
                 <div>
                     <label>NIC</label>
-                    <input type="text" name="nic" value={form.nic} onChange={handleChange} required />
+                    <input type="text" name="nic" placeholder="NIC" value={form.nic} onChange={handleChange} required />
                 </div>
 
                 <div>
                     <label>Email</label>
-                    <input type="text" name="email" value={form.email} onChange={handleChange} />
+                    <input type="text" name="email" placeholder="Email" value={form.email} onChange={handleChange} />
                 </div>
 
                 <div>
                     <label>Phone Number</label>
-                    <input type="text" name="phone" value={form.phone} onChange={handleChange} />
+                    <input type="text" name="phone" placeholder="Phone number" value={form.phone} onChange={handleChange} />
                 </div>
 
                 <div>
-                    <label>Specialization</label>
+                    <label>specialization</label><br></br><br></br>
                     <select name="specialization" value={form.specialization} onChange={handleChange}>
                         <option value="">Select Specialization</option>
                         <option value="Printer">Printer</option>
@@ -88,11 +88,10 @@ const EditTechnician = () => {
 
                 <div>
                     <label>Address</label>
-                    <input type="text" name="address" value={form.address} onChange={handleChange} />
+                    <input type="text" name="address" placeholder="Address" value={form.address} onChange={handleChange} />
                 </div>
-
                 <div>
-                    <label>Experience</label>
+                    <label>Experience</label><br></br><br></br>
                     <select name="experience" value={form.experience} onChange={handleChange}>
                         <option value="">Experience (Years)</option>
                         <option value="1 Year">1 Year</option>
@@ -101,16 +100,14 @@ const EditTechnician = () => {
                     </select>
                 </div>
 
-                <div style={{ gridColumn: "span 2" }}>
-                    <label>Other Information</label>
-                    <textarea name="other" value={form.other} onChange={handleChange}></textarea>
+                <div>
+                    <label>Other Information</label><br></br><br></br>
+                    <textarea name="other" placeholder="Additional Information" value={form.other} onChange={handleChange}></textarea>
+
                 </div>
 
-                <div style={{ gridColumn: "span 2" }}>
-                    <button type="submit">Update</button>
-                </div>
+                <button type="submit">Update</button>
             </form>
-
         </div>
     );
 };

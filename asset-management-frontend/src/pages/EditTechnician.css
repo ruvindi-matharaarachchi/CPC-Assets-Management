@@ -1,0 +1,94 @@
+/* Container background */
+.technician-container {
+    max-width: 900px;
+    margin: 60px auto;
+    padding: 30px 40px;
+    border-radius: 20px;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    color: white;
+    box-shadow: 0 0 30px rgba(255, 0, 0, 0.2);
+  }
+  
+  /* Header */
+  .technician-container h2 {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 30px;
+    color: #ffffff;
+  }
+  
+  /* Message box */
+  .form-message {
+    text-align: center;
+    padding: 10px 15px;
+    background-color: #1f7a1f;
+    color: #ffffff;
+    font-weight: bold;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    animation: fadeIn 0.3s ease-in-out;
+  }
+  
+  /* Form layout */
+  .technician-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  
+  
+  .technician-form input,
+  .technician-form select,
+  .technician-form textarea {
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    background: #f9f9f9;
+    color: #333;
+  }
+  
+  /* Full width for textarea and submit */
+  .technician-form textarea {
+    grid-column: span 2;
+    min-height: 80px;
+    resize: vertical;
+  }
+  
+  .technician-form button[type="submit"] {
+    grid-column: span 2;
+    padding: 12px 0;
+    background-color: #e50914;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .technician-form button[type="submit"]:hover {
+    background-color: #cc0812;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .technician-form {
+      grid-template-columns: 1fr;
+    }
+  
+    .technician-form textarea,
+    .technician-form button {
+      grid-column: span 1;
+    }
+  }
+  
+  /* Simple fade animation */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
