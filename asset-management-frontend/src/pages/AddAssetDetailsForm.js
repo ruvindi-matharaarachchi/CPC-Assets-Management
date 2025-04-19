@@ -9,7 +9,6 @@ const AddAssetDetailsForm = () => {
 
   const [assets, setAssets] = useState(
     Array.from({ length: Number(quantity) }, () => ({
-      assignedTo: "",
       location: "",
       assetNumber: "",
       serialNumber: "",
@@ -48,24 +47,20 @@ const AddAssetDetailsForm = () => {
         {assets.map((asset, index) => (
           <div key={index} className="asset-detail-block">
             <h4>Asset #{index + 1}</h4>
-            
-            <input
-              placeholder="Assigned To"
-              value={asset.assignedTo}
-              onChange={(e) => handleChange(index, "assignedTo", e.target.value)}
-            />
+
+
             <input
               placeholder="Function"
               value={asset.location}
               onChange={(e) => handleChange(index, "location", e.target.value)}
             />
-           
+
             <input
               placeholder="Asset Number"
               value={asset.assetNumber}
               onChange={(e) => handleChange(index, "assetNumber", e.target.value)}
             />
-             <input
+            <input
               placeholder="Serial Number"
               value={asset.serialNumber}
               onChange={(e) => handleChange(index, "serialNumber", e.target.value)}
