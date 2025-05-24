@@ -1,12 +1,13 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./AddTechnician.css";
 import { motion } from "framer-motion";
 import { FaBell, FaCog } from "react-icons/fa";
 import logo from "../assets/logo.png";
 
-
 const AddTechnician = () => {
+  const navigate = useNavigate(); // ✅ Added for logout
   const [form, setForm] = useState({
     epf: "",
     fullName: "",
@@ -19,12 +20,7 @@ const AddTechnician = () => {
     experience: "",
     other: "",
   });
-  
-  const handleLogout = () => {
-    // ✅ Implement logout logic (e.g., clear tokens, redirect)
-    localStorage.clear();
-    navigate("/login");
-  };
+
   const [message, setMessage] = useState("");
 
   const handleChange = (e) => {
@@ -58,6 +54,11 @@ const AddTechnician = () => {
     setTimeout(() => setMessage(""), 3000);
   };
 
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate("/login");
+  };
+
   return (
     <div className="view-assets-container">
       <motion.header
@@ -75,7 +76,6 @@ const AddTechnician = () => {
             <li><a href="/view-technicians">View Technicians</a></li>
             <li><a href="/asset-summary">Reports</a></li>
             <li><a href="/issue-asset">Issues</a></li>
-
           </ul>
         </nav>
         <div className="admin-icons">
@@ -84,8 +84,9 @@ const AddTechnician = () => {
           <button onClick={handleLogout} className="logout-button">Logout</button>
         </div>
       </motion.header>
+
       <div className="technician-container">
-        <h2>Add Technician details</h2>
+        <h2>Add Technician Details</h2>
 
         {message && <div className="form-message">{message}</div>}
 
@@ -94,10 +95,10 @@ const AddTechnician = () => {
           <input type="text" name="fullName" placeholder="Full Name" value={form.fullName} onChange={handleChange} required />
           <input type="text" name="username" placeholder="Username" value={form.username} onChange={handleChange} required />
           <input type="text" name="nic" placeholder="NIC" value={form.nic} onChange={handleChange} required />
-          <input type="text" name="email" placeholder="Email" value={form.email} onChange={handleChange} />
-          <input type="text" name="phone" placeholder="Phone number" value={form.phone} onChange={handleChange} />
+          <input type="email" name="email" placeholder="Email" value={form.email} onChange={handleChange} />
+          <input type="tel" name="phone" placeholder="Phone Number" value={form.phone} onChange={handleChange} />
 
-          <select name="specialization" value={form.specialization} onChange={handleChange}>
+          <select name="specialization" value={form.specialization} onChange={handleChange} required>
             <option value="">Select Specialization</option>
             <option value="Printer">Printer</option>
             <option value="Laptop">Laptop</option>
@@ -106,7 +107,7 @@ const AddTechnician = () => {
 
           <input type="text" name="address" placeholder="Address" value={form.address} onChange={handleChange} />
 
-          <select name="experience" value={form.experience} onChange={handleChange}>
+          <select name="experience" value={form.experience} onChange={handleChange} required>
             <option value="">Experience (Years)</option>
             <option value="1 Year">1 Year</option>
             <option value="2 Years">2 Years</option>
@@ -119,7 +120,6 @@ const AddTechnician = () => {
         </form>
       </div>
     </div>
-
   );
 };
 
