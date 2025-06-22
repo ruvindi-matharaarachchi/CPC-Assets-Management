@@ -1,0 +1,93 @@
+.common-asset-container {
+  min-height: 100vh;
+  background: linear-gradient(to right, #ffffff, #f9f9f9);
+  color: #222;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.common-asset-container h2 {
+  font-size: 32px;
+  margin-bottom: 24px;
+  color: #7c1426;
+  font-weight: 700;
+}
+
+.toast-message {
+  margin-bottom: 20px;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 12px;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 520px;
+  text-align: center;
+}
+
+.toast-success {
+  background-color: #e0f2f1;
+  color: #00796b;
+}
+
+.toast-error {
+  background-color: #ffebee;
+  color: #c62828;
+}
+
+.common-asset-form {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 800px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid #eee;
+  color: #222;
+}
+
+.common-asset-form input,
+.common-asset-form select {
+  padding: 14px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  font-weight: 600;
+  background: #fff;
+}
+
+.common-asset-form input::placeholder {
+  color: #888;
+  opacity: 1;
+}
+
+.common-asset-form input:focus,
+.common-asset-form select:focus {
+  outline: none;
+  border-color: #a51829;
+  background-color: #fffefc;
+}
+
+.common-asset-form button {
+  grid-column: span 2;
+  padding: 14px;
+  background: linear-gradient(to right, #a51829, #7c1426);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(124, 20, 38, 0.2);
+}
+
+.common-asset-form button:hover {
+  background: linear-gradient(to right, #7c1426, #a51829);
+  transform: translateY(-2px);
+}

@@ -175,6 +175,23 @@ nav ul li a:hover {
     color: white;
 }
 
+.add-asset-button-group {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.add-asset-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.secondary-button {
+    background-color: #4caf50; /* Green */
+    color: white;
+}
+
 
 /* Responsive Adjustments */
 @media (max-width: 768px) {

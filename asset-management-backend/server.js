@@ -26,7 +26,12 @@ app.use("/api/asset-details", require("./routes/asset-details"));
 const technicianRoutes = require("./routes/technicians");
 app.use("/api/technicians", technicianRoutes);
 
+const usedAssetsRoute = require("./routes/usedAssets");
+app.use("/api/used-assets", usedAssetsRoute);
 
+app.get("/", (req, res) => {
+  res.send("Used Asset Management API Running...");
+});
 // ✅ Global Error Handler
 app.use((err, req, res, next) => {
   console.error(err.stack);

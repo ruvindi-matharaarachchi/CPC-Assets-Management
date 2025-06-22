@@ -25,10 +25,12 @@ const Dashboard = () => {
         navigate("/");
     };
 
-    const handleAddAsset = () => {
+    const handleAddNewAsset = () => {
         navigate("/add-common-asset");
     };
-
+    const handleAddAsset = () => {
+        navigate("/naasset-details");
+    };
     useEffect(() => {
         // Function to fetch the dashboard data from the API
         const fetchDashboardData = async () => {
@@ -87,14 +89,27 @@ const Dashboard = () => {
                 </motion.h1>
 
                 {/* Add Asset Button */}
-                <motion.button
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    className="add-asset-button"
-                    onClick={handleAddAsset}
-                >
-                    Add New Asset
-                </motion.button>
+                {/* Add Asset Buttons in One Line */}
+                <div className="add-asset-button-group">
+                    <motion.button
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                        className="add-asset-button"
+                        onClick={handleAddNewAsset}
+                    >
+                        Add New Asset
+                    </motion.button>
+
+                    <motion.button
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                        className="add-asset-button secondary-button"
+                        onClick={handleAddAsset}
+                    >
+                        Add Another Asset
+                    </motion.button>
+                </div>
+
 
                 {/* Dashboard Cards */}
                 <section className="dashboard-content">
