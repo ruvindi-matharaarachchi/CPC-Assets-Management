@@ -31,6 +31,9 @@ app.use("/api/used-assets", usedAssetsRoute);
 
 app.get("/", (req, res) => {
   res.send("Used Asset Management API Running...");
+
+  const assetOptionsRoute = require("./routes/assetOptions");
+  app.use("/api/asset-options", assetOptionsRoute);
 });
 // ✅ Global Error Handler
 app.use((err, req, res, next) => {

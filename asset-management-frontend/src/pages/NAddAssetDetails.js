@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { motion } from "framer-motion";
@@ -6,46 +6,100 @@ import { FaBell, FaCog } from "react-icons/fa";
 import "./NAddAssetDetails.css";
 import logo from "../assets/logo.png";
 
-const assetOptions = {
-    Laptop: {
-        brands: ["Dell", "HP", "Lenovo", "Asus", "Acer"], models: {
-            Dell: ["Inspiron 15", "XPS 13", "XPS 15"],
-            HP: ["Pavilion x360", "Envy 13"],
-            Lenovo: ["ThinkPad X1", "Yoga Slim 7"],
-            Asus: ["Vivobook 15", "ZenBook 14"],
-            Acer: ["Aspire 5", "Swift 3"]
-        }
-    },
-    Printer: {
-        brands: ["Canon", "Epson", "HP"], models: {
-            Canon: ["PIXMA G3020", "TR4520"],
-            Epson: ["L3210", "WF-2830"],
-            HP: ["LaserJet M126nw", "Smart Tank 515"]
-        }
-    },
-    "Multifunction Printer": {
-        brands: ["HP", "Brother", "Canon"], models: {
-            HP: ["Smart Tank Plus", "LaserJet MFP 178nw"],
-            Brother: ["MFC-T4500DW", "DCP-L2540DW"],
-            Canon: ["PIXMA G7070", "imageCLASS MF244dw"]
-        }
-    },
-    FAX: {
-        brands: ["Brother", "Panasonic"], models: {
-            Brother: ["FAX-2840", "FAX-878"],
-            Panasonic: ["KX-FT981", "KX-FP701"]
-        }
-    },
-    Monitor: {
-        brands: ["Samsung", "LG"], models: {
-            Samsung: ["Odyssey G5", "Smart Monitor M8"],
-            LG: ["UltraGear 27GN750", "27MP400"]
-        }
-    },
-};
-
 const AddAssetDetails = () => {
-    const [form, setForm] = useState({
+  const [form, setForm] = useState({
+    epf: "",
+    ownerName: "",
+    itemName: "",
+    brand: "",
+    model: "",
+    assetNumber: "",
+    serialNumber: "",
+    location: "",
+  });
+
+  const [message, setMessage] = useState({ text: "", type: "" });
+  const [customBrand, setCustomBrand] = useState("");
+  const [customModel, setCustomModel] = useState("");
+  const [assetOptions, setAssetOptions] = useState({});
+  const navigate = useNavigate();
+
+  // 🔁 Load brands and models from backend when item is selected
+  useEffect(() => {
+    if (form.itemName) {
+      axios
+        .get(`http://localhost:5000/api/asset-options/${form.itemName}`)
+        .then((res) => {
+          const brandMap = {};
+          res.data.forEach((opt) => {
+            if (!brandMap[opt.brand]) brandMap[opt.brand] = [];
+            brandMap[opt.brand].push(opt.model);
+          });
+
+          const brandList = Object.keys(brandMap);
+          setAssetOptions({
+            [form.itemName]: {
+              brands: brandList,
+              models: brandMap,
+            },
+          });
+        })
+        .catch((err) => console.error("Failed to load options:", err));
+    }
+  }, [form.itemName]);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    if (name === "itemName") {
+      setForm({ ...form, itemName: value, brand: "", model: "" });
+      setCustomBrand("");
+      setCustomModel("");
+    } else if (name === "brand") {
+      setForm({ ...form, brand: value, model: "" });
+      setCustomModel("");
+    } else if (name === "model") {
+      setForm({ ...form, model: value });
+    } else {
+      setForm({ ...form, [name]: value });
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setMessage({ text: "", type: "" });
+
+    let updatedForm = { ...form };
+
+    try {
+      // ➕ Add custom brand if needed
+      if (form.brand === "Other" && customBrand) {
+        updatedForm.brand = customBrand;
+
+        await axios.post("http://localhost:5000/api/asset-options", {
+          itemName: form.itemName,
+          brand: customBrand,
+          model: customModel || "Default",
+        });
+      }
+
+      // ➕ Add custom model if needed
+      if (form.model === "Other" && customModel) {
+        updatedForm.model = customModel;
+
+        await axios.post("http://localhost:5000/api/asset-options", {
+          itemName: form.itemName,
+          brand: updatedForm.brand,
+          model: customModel,
+        });
+      }
+
+      // ✅ Submit asset details
+      await axios.post("http://localhost:5000/api/used-assets", updatedForm);
+      setMessage({ text: "✅ Asset added successfully.", type: "success" });
+
+      // 🔁 Reset form
+      setForm({
         epf: "",
         ownerName: "",
         itemName: "",
@@ -53,118 +107,115 @@ const AddAssetDetails = () => {
         model: "",
         assetNumber: "",
         serialNumber: "",
-        location: ""
-    });
+        location: "",
+      });
+      setCustomBrand("");
+      setCustomModel("");
+    } catch (error) {
+      if (error.response?.status === 400) {
+        setMessage({ text: "⚠️ Duplicate brand or model exists.", type: "error" });
+      } else {
+        setMessage({ text: "❌ Failed to add asset.", type: "error" });
+      }
+    }
 
-    const [message, setMessage] = useState({ text: "", type: "" });
-    const navigate = useNavigate();
+    setTimeout(() => setMessage({ text: "", type: "" }), 3000);
+  };
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
+  const availableBrands = assetOptions[form.itemName]?.brands || [];
+  const availableModels = assetOptions[form.itemName]?.models?.[form.brand] || [];
 
-        if (name === "itemName") {
-            setForm({
-                ...form,
-                itemName: value,
-                brand: "",
-                model: ""
-            });
-        } else if (name === "brand") {
-            setForm({
-                ...form,
-                brand: value,
-                model: ""
-            });
-        } else {
-            setForm({ ...form, [name]: value });
-        }
-    };
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/");
+  };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        setMessage({ text: "", type: "" });
-
-        try {
-            await axios.post("http://localhost:5000/api/used-assets", form);
-            setMessage({ text: "✅ Asset added successfully.", type: "success" });
-            setForm({
-                epf: "",
-                ownerName: "",
-                itemName: "",
-                brand: "",
-                model: "",
-                assetNumber: "",
-                serialNumber: "",
-                location: ""
-            });
-        } catch (error) {
-            setMessage({ text: "❌ Failed to add asset.", type: "error" });
-        }
-
-        setTimeout(() => setMessage({ text: "", type: "" }), 3000);
-    };
-
-    const availableBrands = assetOptions[form.itemName]?.brands || [];
-    const availableModels = assetOptions[form.itemName]?.models?.[form.brand] || [];
-
-    const handleLogout = () => {
-        localStorage.removeItem("token");
-        navigate("/");
-    };
-
-    return (
-        <div className="common-asset-container">
-            <motion.header
-                initial={{ opacity: 0, y: -50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                className="dashboard-header"
-            >
-                <img src={logo} alt="Company Logo" className="logo" />
-                <nav>
-                    <ul>
-                        <li><a href="/dashboard">Dashboard</a></li>
-                        <li><a href="/view-common-assets">View Assets List</a></li>
-                        <li><a href="/asset-summary">Reports</a></li>
-                    </ul>
-                </nav>
-                <div className="admin-icons">
-                    <FaBell className="admin-icon" />
-                    <FaCog className="admin-icon" />
-                    <button onClick={handleLogout} className="logout-button">Logout</button>
-                </div>
-            </motion.header>
-
-            <h2>Add Asset Details</h2>
-
-            {message.text && (
-                <div className={`toast-message ${message.type === "success" ? "toast-success" : "toast-error"}`}>
-                    {message.text}
-                </div>
-            )}
-
-            <form onSubmit={handleSubmit} className="common-asset-form">
-                <input name="epf" value={form.epf} onChange={handleChange} type="text" placeholder="EPF Number" required />
-                <input name="ownerName" value={form.ownerName} onChange={handleChange} type="text" placeholder="Owner Name" required />
-                <select name="itemName" value={form.itemName} onChange={handleChange} required>
-                    <option value="">Select Item</option>
-                    {Object.keys(assetOptions).map(key => <option key={key} value={key}>{key}</option>)}
-                </select>
-                <select name="brand" value={form.brand} onChange={handleChange} required>
-                    <option value="">Select Brand</option>
-                    {availableBrands.map(brand => <option key={brand} value={brand}>{brand}</option>)}
-                </select>
-                <select name="model" value={form.model} onChange={handleChange} required>
-                    <option value="">Select Model</option>
-                    {availableModels.map(model => <option key={model} value={model}>{model}</option>)}
-                </select>
-                <input name="assetNumber" value={form.assetNumber} onChange={handleChange} type="text" placeholder="Asset Number" required />
-                <input name="serialNumber" value={form.serialNumber} onChange={handleChange} type="text" placeholder="Serial Number" required />
-                <input name="location" value={form.location} onChange={handleChange} type="text" placeholder="Location" required />
-                <button type="submit">Add Asset</button>
-            </form>
+  return (
+    <div className="common-asset-container">
+      <motion.header
+        initial={{ opacity: 0, y: -50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        className="dashboard-header"
+      >
+        <img src={logo} alt="Company Logo" className="logo" />
+        <nav>
+          <ul>
+            <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="/view-common-assets">View Assets List</a></li>
+            <li><a href="/asset-summary">Reports</a></li>
+          </ul>
+        </nav>
+        <div className="admin-icons">
+          <FaBell className="admin-icon" />
+          <FaCog className="admin-icon" />
+          <button onClick={handleLogout} className="logout-button">Logout</button>
         </div>
-    );
+      </motion.header>
+
+      <h2>Add Asset Details</h2>
+
+      {message.text && (
+        <div className={`toast-message ${message.type === "success" ? "toast-success" : "toast-error"}`}>
+          {message.text}
+        </div>
+      )}
+
+      <form onSubmit={handleSubmit} className="common-asset-form">
+        <input name="epf" value={form.epf} onChange={handleChange} type="text" placeholder="EPF Number" required />
+        <input name="ownerName" value={form.ownerName} onChange={handleChange} type="text" placeholder="Owner Name" required />
+
+        <select name="itemName" value={form.itemName} onChange={handleChange} required>
+          <option value="">Select Item</option>
+          {["Laptop", "Printer", "Multifunction Printer", "FAX", "Monitor"].map((item) => (
+            <option key={item} value={item}>{item}</option>
+          ))}
+        </select>
+
+        <select name="brand" value={form.brand} onChange={handleChange} required>
+          <option value="">Select Brand</option>
+          {availableBrands.map((brand) => (
+            <option key={brand} value={brand}>{brand}</option>
+          ))}
+          <option value="Other">Other</option>
+        </select>
+
+        {form.brand === "Other" && (
+          <input
+            type="text"
+            placeholder="Enter new brand"
+            value={customBrand}
+            onChange={(e) => setCustomBrand(e.target.value)}
+            required
+          />
+        )}
+
+        <select name="model" value={form.model} onChange={handleChange} required>
+          <option value="">Select Model</option>
+          {availableModels.map((model) => (
+            <option key={model} value={model}>{model}</option>
+          ))}
+          <option value="Other">Other</option>
+        </select>
+
+        {form.model === "Other" && (
+          <input
+            type="text"
+            placeholder="Enter new model"
+            value={customModel}
+            onChange={(e) => setCustomModel(e.target.value)}
+            required
+          />
+        )}
+
+        <input name="assetNumber" value={form.assetNumber} onChange={handleChange} type="text" placeholder="Asset Number" required />
+        <input name="serialNumber" value={form.serialNumber} onChange={handleChange} type="text" placeholder="Serial Number" required />
+        <input name="location" value={form.location} onChange={handleChange} type="text" placeholder="Location" required />
+
+        <button type="submit">Add Asset</button>
+      </form>
+    </div>
+  );
 };
 
 export default AddAssetDetails;
