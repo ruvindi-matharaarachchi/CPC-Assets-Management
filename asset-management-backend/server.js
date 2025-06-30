@@ -29,6 +29,9 @@ app.use("/api/technicians", technicianRoutes);
 const usedAssetsRoute = require("./routes/usedAssets");
 app.use("/api/used-assets", usedAssetsRoute);
 
+const assetOptionsRoute = require("./routes/assetOptions");
+app.use("/api/asset-options", assetOptionsRoute);
+
 app.get("/", (req, res) => {
   res.send("Used Asset Management API Running...");
 

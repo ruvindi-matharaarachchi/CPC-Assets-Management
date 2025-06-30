@@ -2,31 +2,37 @@ const express = require("express");
 const router = express.Router();
 const AssetOption = require("../models/AssetOption");
 
-// GET /api/asset-options/:itemName
+// GET options for a given itemName
 router.get("/:itemName", async (req, res) => {
-  const { itemName } = req.params;
   try {
+    const itemName = req.params.itemName;
     const options = await AssetOption.find({ itemName });
-    res.json(options);
+    res.status(200).json(options);
   } catch (err) {
     res.status(500).json({ message: "Failed to load asset options." });
   }
 });
 
-// POST /api/asset-options
+// POST new brand/model
 router.post("/", async (req, res) => {
   const { itemName, brand, model } = req.body;
+
+  if (!itemName || !brand || !model) {
+    return res.status(400).json({ message: "All fields are required." });
+  }
+
   try {
     const existing = await AssetOption.findOne({ itemName, brand, model });
     if (existing) {
-      return res.status(400).json({ message: "Duplicate brand or model for this item." });
+      return res.status(400).json({ message: "Already exists." });
     }
 
-    const option = new AssetOption({ itemName, brand, model });
-    await option.save();
-    res.status(201).json({ message: "Option added successfully." });
+    const newOption = new AssetOption({ itemName, brand, model });
+    await newOption.save();
+    res.status(201).json({ message: "Option saved successfully." });
   } catch (err) {
-    res.status(500).json({ message: "Server error while saving option." });
+    console.error("Error saving option:", err);
+    res.status(500).json({ message: "Server error." });
   }
 });
 

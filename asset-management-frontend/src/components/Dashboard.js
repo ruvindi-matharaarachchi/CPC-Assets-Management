@@ -108,7 +108,7 @@ const Dashboard = () => {
                         className="add-asset-button secondary-button"
                         onClick={handleAddAsset}
                     >
-                        Add Another Asset
+                        Add Used Asset
                     </motion.button>
                 </div>
 
