@@ -67,8 +67,6 @@ const Dashboard = () => {
                         <li><a href="/view-technicians">View Technicians</a></li>
                         <li><a href="/asset-summary">Reports</a></li>
                         <li><a href="/issue-asset">Issues</a></li>
-                        <li><a href="/view-used-assets">View Used Assets</a></li>
-
 
                     </ul>
                 </nav>
