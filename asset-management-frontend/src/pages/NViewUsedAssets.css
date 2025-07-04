@@ -1,7 +1,8 @@
 .used-assets-container {
   padding: 40px;
   background-color: #f9f9f9;
-  min-height: 100vh;
+  margin-top: 50px;
+  min-height: 10vh;
   font-family: 'Segoe UI', sans-serif;
 }
 

@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./NViewUsedAssets.css";
+import { FaBell, FaCog } from "react-icons/fa"; // Import Icons
+import { motion } from "framer-motion"; // Animation Library
 import { useNavigate } from "react-router-dom";
+import logo from "../assets/logo.png"; // Ensure the logo exists
 
 const NViewUsedAssets = () => {
   const [assets, setAssets] = useState([]);
@@ -20,6 +23,10 @@ const NViewUsedAssets = () => {
         setLoading(false);
       });
   }, []);
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/");
+  };
 
   const handleAddAsset = () => {
     navigate("/add-used-asset");
@@ -27,10 +34,39 @@ const NViewUsedAssets = () => {
 
   return (
     <div className="used-assets-container">
+      {/* Header Navigation Bar */}
+      <motion.header
+        initial={{ opacity: 0, y: -50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        className="dashboard-header"
+      >
+        <img src={logo} alt="Company Logo" className="logo" />
+
+        <nav>
+          <ul>
+            <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="/view-common-assets">View Assets List</a></li>
+            <li><a href="/technicians">Technicians</a></li>
+            <li><a href="/view-technicians">View Technicians</a></li>
+            <li><a href="/asset-summary">Reports</a></li>
+            <li><a href="/issue-asset">Issues</a></li>
+
+          </ul>
+        </nav>
+
+        <div className="admin-icons">
+          <FaBell className="admin-icon" />
+          <FaCog className="admin-icon" />
+          <button onClick={handleLogout} className="logout-button">Logout</button>
+        </div>
+      </motion.header>
       <div className="header-row">
         <h2>Used Assets List</h2>
-        <button className="add-asset-button" onClick={handleAddAsset}>➕ Add New Asset</button>
       </div>
+      <button className="back-button" onClick={() => navigate(-1)}>
+        Back
+      </button>
       {loading ? (
         <p>Loading...</p>
       ) : assets.length === 0 ? (
