@@ -6,7 +6,7 @@ const UsedAssetSchema = new mongoose.Schema({
   itemName: { type: String, required: true },
   brand: { type: String, required: true },
   model: { type: String, required: true },
-  assetNumber: { type: String, required: true, unique: true },
+  assetNumber: { type: String, required: true, unique: true },  // ⚠️ Possible Issue
   serialNumber: { type: String, required: true },
   location: { type: String, required: true }
 }, { timestamps: true });
