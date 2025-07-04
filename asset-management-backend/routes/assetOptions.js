@@ -2,18 +2,18 @@ const express = require("express");
 const router = express.Router();
 const AssetOption = require("../models/AssetOption");
 
-// GET all options for a given item
+// GET options for a given itemName
 router.get("/:itemName", async (req, res) => {
   try {
-    const { itemName } = req.params;
+    const itemName = req.params.itemName;
     const options = await AssetOption.find({ itemName });
-    res.json(options);
+    res.status(200).json(options);
   } catch (err) {
-    res.status(500).json({ message: "Failed to fetch asset options." });
+    res.status(500).json({ message: "Failed to load asset options." });
   }
 });
 
-// POST a new brand/model
+// POST new brand/model
 router.post("/", async (req, res) => {
   const { itemName, brand, model } = req.body;
 
@@ -22,16 +22,17 @@ router.post("/", async (req, res) => {
   }
 
   try {
-    const exists = await AssetOption.findOne({ itemName, brand, model });
-    if (exists) {
-      return res.status(400).json({ message: "Duplicate brand/model." });
+    const existing = await AssetOption.findOne({ itemName, brand, model });
+    if (existing) {
+      return res.status(400).json({ message: "Already exists." });
     }
 
-    const option = new AssetOption({ itemName, brand, model });
-    await option.save();
-    res.status(201).json({ message: "Saved successfully." });
+    const newOption = new AssetOption({ itemName, brand, model });
+    await newOption.save();
+    res.status(201).json({ message: "Option saved successfully." });
   } catch (err) {
-    res.status(500).json({ message: "Server error while saving option." });
+    console.error("Error saving option:", err);
+    res.status(500).json({ message: "Server error." });
   }
 });
 

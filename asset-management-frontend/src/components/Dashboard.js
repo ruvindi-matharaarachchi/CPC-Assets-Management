@@ -31,9 +31,6 @@ const Dashboard = () => {
     const handleAddAsset = () => {
         navigate("/naasset-details");
     };
-    const handleViewAsset = () => {
-        navigate("/naassetview-details");
-    };
     useEffect(() => {
         // Function to fetch the dashboard data from the API
         const fetchDashboardData = async () => {
@@ -110,14 +107,6 @@ const Dashboard = () => {
                         onClick={handleAddAsset}
                     >
                         Add Used Asset
-                    </motion.button>
-                    <motion.button
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.9 }}
-                        className="add-asset-button secondary-button"
-                        onClick={handleViewAsset}
-                    >
-                        View Used Asset
                     </motion.button>
                 </div>
 
