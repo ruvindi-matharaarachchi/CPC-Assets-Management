@@ -6,14 +6,15 @@ import AddCommonAsset from "./pages/AddCommonAsset";
 import ViewCommonAssets from "./pages/ViewCommonAssets";
 import AssetSummary from "./pages/AssetSummary";
 import AddAssetDetailsForm from "./pages/AddAssetDetailsForm";
-import AddSingleAssetDetail from "./pages/AddSingleAssetDetail"; 
-import ViewAssetDetails from "./pages/ViewAssetDetails"; 
-import IssueAssetForm from "./pages/IssueAssetForm"; 
-import AddTechnician from "./pages/AddTechnician"; 
-import ViewTechnicians from "./pages/ViewTechnicians"; 
+import AddSingleAssetDetail from "./pages/AddSingleAssetDetail";
+import ViewAssetDetails from "./pages/ViewAssetDetails";
+import IssueAssetForm from "./pages/IssueAssetForm";
+import AddTechnician from "./pages/AddTechnician";
+import ViewTechnicians from "./pages/ViewTechnicians";
 import EditTechnician from "./pages/EditTechnician";
 import NAddAssetDetails from "./pages/NAddAssetDetails";
 import NViewUsedAssets from "./pages/NViewUsedAssets";
+import NSearchUsedAsset from "./pages/NSearchUsedAsset";
 
 const App = () => {
   return (
@@ -33,6 +34,7 @@ const App = () => {
         <Route path="/edit-technician/:id" element={<EditTechnician />} />
         <Route path="/naasset-details" element={<NAddAssetDetails />} />
         <Route path="/naassetview-details" element={<NViewUsedAssets />} />
+        <Route path="/search-used-asset" element={<NSearchUsedAsset />} />
 
       </Routes>
     </Router>

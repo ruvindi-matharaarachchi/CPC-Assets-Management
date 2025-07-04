@@ -21,5 +21,27 @@ router.post("/", async (req, res) => {
     res.status(400).json({ message: "Failed to add asset", error: err.message });
   }
 });
+// GET /api/used-assets/search?query=...
+router.get("/search", async (req, res) => {
+  const { query } = req.query;
+  if (!query) {
+    return res.status(400).json({ message: "Search query is required." });
+  }
+
+  try {
+    const assets = await UsedAsset.find({
+      $or: [
+        { epf: { $regex: query, $options: "i" } },
+        { serialNumber: { $regex: query, $options: "i" } },
+        { assetNumber: { $regex: query, $options: "i" } }
+      ]
+    });
+
+    res.json(assets);
+  } catch (err) {
+    res.status(500).json({ message: "Search failed", error: err.message });
+  }
+});
+
 
 module.exports = router;

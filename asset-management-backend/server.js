@@ -27,7 +27,10 @@ const technicianRoutes = require("./routes/technicians");
 app.use("/api/technicians", technicianRoutes);
 
 const usedAssetsRoute = require("./routes/usedAssets"); 
-app.use("/api/used-assets", usedAssetsRoute);           
+app.use("/api/used-assets", usedAssetsRoute);    
+       
+const usedAssetsRoutes = require("./routes/usedAssets");
+app.use("/api/used-assets", usedAssetsRoutes);
 
 const assetOptionsRoute = require("./routes/assetOptions");
 app.use("/api/asset-options", assetOptionsRoute);
