@@ -13,6 +13,7 @@ import AddTechnician from "./pages/AddTechnician";
 import ViewTechnicians from "./pages/ViewTechnicians"; 
 import EditTechnician from "./pages/EditTechnician";
 import NAddAssetDetails from "./pages/NAddAssetDetails";
+import NViewUsedAssets from "./pages/NViewUsedAssets";
 
 const App = () => {
   return (
@@ -31,6 +32,7 @@ const App = () => {
         <Route path="/view-technicians" element={<ViewTechnicians />} />
         <Route path="/edit-technician/:id" element={<EditTechnician />} />
         <Route path="/naasset-details" element={<NAddAssetDetails />} />
+        <Route path="/naassetview-details" element={<NViewUsedAssets />} />
 
       </Routes>
     </Router>
