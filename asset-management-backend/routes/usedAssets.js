@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const UsedAsset = require("../models/UsedAsset");
 
-// GET all used assets
+// ✅ This GET route must exist
 router.get("/", async (req, res) => {
   try {
     const assets = await UsedAsset.find().sort({ createdAt: -1 });
