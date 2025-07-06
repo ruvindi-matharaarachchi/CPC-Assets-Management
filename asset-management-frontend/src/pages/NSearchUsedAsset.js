@@ -70,7 +70,7 @@ const NSearchUsedAsset = () => {
                   <td>{asset.assetNumber}</td>
                   <td>{asset.location}</td>
                   <td>
-                    <button onClick={() => handleAddIssue(asset._id)} className="search-btn">
+                    <button className="issue-btn" onClick={() => navigate(`/add-asset-issue/${asset._id}`)}>
                       Add Issue
                     </button>
                   </td>

@@ -1,0 +1,83 @@
+.issue-form-container {
+  max-width: 700px;
+  margin: 50px auto;
+  padding: 40px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.issue-form-container h2 {
+  font-size: 28px;
+  color: #7c1426;
+  font-weight: bold;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.toast {
+  text-align: center;
+  margin-bottom: 16px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  background-color: #fce4ec;
+  color: #7c1426;
+  font-weight: 600;
+}
+
+.asset-info {
+  background: #f9f9f9;
+  border-left: 4px solid #7c1426;
+  padding: 16px 20px;
+  border-radius: 8px;
+  margin-bottom: 24px;
+}
+
+.asset-info p {
+  margin: 6px 0;
+  font-size: 15px;
+  color: #444;
+  font-weight: 600;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 120px;
+  font-size: 15px;
+  padding: 14px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-family: 'Segoe UI', sans-serif;
+  color: #333;
+  font-weight: 500;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+textarea::placeholder {
+  color: #aaa;
+}
+
+button[type="submit"] {
+  background: linear-gradient(to right, #a51829, #7c1426);
+  color: white;
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: 700;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(124, 20, 38, 0.15);
+}
+
+button[type="submit"]:hover {
+  background: linear-gradient(to right, #7c1426, #a51829);
+  transform: translateY(-1px);
+}

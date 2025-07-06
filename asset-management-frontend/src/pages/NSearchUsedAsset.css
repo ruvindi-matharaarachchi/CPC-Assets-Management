@@ -88,7 +88,7 @@
   background-color: #fff;
 }
 
-.search-results th,
+
 .search-results td {
   padding: 14px 16px;
   border: 1px solid #e0e0e0;
@@ -98,8 +98,8 @@
 }
 
 .search-results th {
-  background-color: #f9dcdc;
-  color: #7c1426;
+  background-color: #7c1426;
+  color: #ffffff;
   font-size: 16px;
   font-weight: 700;
 }

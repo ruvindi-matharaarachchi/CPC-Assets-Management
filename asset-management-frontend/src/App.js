@@ -8,13 +8,13 @@ import AssetSummary from "./pages/AssetSummary";
 import AddAssetDetailsForm from "./pages/AddAssetDetailsForm";
 import AddSingleAssetDetail from "./pages/AddSingleAssetDetail";
 import ViewAssetDetails from "./pages/ViewAssetDetails";
-import IssueAssetForm from "./pages/IssueAssetForm";
 import AddTechnician from "./pages/AddTechnician";
 import ViewTechnicians from "./pages/ViewTechnicians";
 import EditTechnician from "./pages/EditTechnician";
 import NAddAssetDetails from "./pages/NAddAssetDetails";
 import NViewUsedAssets from "./pages/NViewUsedAssets";
 import NSearchUsedAsset from "./pages/NSearchUsedAsset";
+import NAddAssetIssue from "./pages/NAddAssetIssue";
 
 const App = () => {
   return (
@@ -28,13 +28,13 @@ const App = () => {
         <Route path="/add-asset-details/:commonAssetId/:quantity" element={<AddAssetDetailsForm />} />
         <Route path="/add-one-asset/:commonAssetId" element={<AddSingleAssetDetail />} />
         <Route path="/view-asset/:id" element={<ViewAssetDetails />} />
-        <Route path="/issue-asset" element={<IssueAssetForm />} />
         <Route path="/technicians" element={<AddTechnician />} />
         <Route path="/view-technicians" element={<ViewTechnicians />} />
         <Route path="/edit-technician/:id" element={<EditTechnician />} />
         <Route path="/naasset-details" element={<NAddAssetDetails />} />
         <Route path="/naassetview-details" element={<NViewUsedAssets />} />
         <Route path="/search-used-asset" element={<NSearchUsedAsset />} />
+        <Route path="/add-asset-issue/:assetId" element={<NAddAssetIssue />} />
 
       </Routes>
     </Router>

@@ -137,7 +137,7 @@ const AddAssetDetails = () => {
 
         <select name="itemName" value={form.itemName} onChange={handleChange} required>
           <option value="">Select Item</option>
-          {["Laptop", "Printer", "Multifunction Printer", "FAX", "Monitor"].map((item) => (
+          {["Laptop", "Printer", "Multifunction Printer", "CPU", "Monitor"].map((item) => (
             <option key={item} value={item}>{item}</option>
           ))}
         </select>

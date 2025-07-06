@@ -2,14 +2,14 @@ const express = require("express");
 const router = express.Router();
 const AssetOption = require("../models/AssetOption");
 
-// GET options for a given itemName
+// GET /api/asset-options/:itemName
 router.get("/:itemName", async (req, res) => {
+  const itemName = req.params.itemName;
   try {
-    const itemName = req.params.itemName;
     const options = await AssetOption.find({ itemName });
-    res.status(200).json(options);
+    res.json(options);
   } catch (err) {
-    res.status(500).json({ message: "Failed to load asset options." });
+    res.status(500).json({ message: "Failed to load options" });
   }
 });
 
