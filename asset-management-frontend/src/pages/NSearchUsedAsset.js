@@ -43,6 +43,13 @@ const NSearchUsedAsset = () => {
         <button className="search-btn" onClick={handleSearch}>
           Search
         </button>
+        <button
+          className="view-issues-btn"
+          onClick={() => navigate("/view-all-asset-issues")}
+        >
+          View All Issues
+        </button>
+
       </div>
 
       {error && <p className="error-message">{error}</p>}

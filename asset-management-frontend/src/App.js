@@ -15,6 +15,7 @@ import NAddAssetDetails from "./pages/NAddAssetDetails";
 import NViewUsedAssets from "./pages/NViewUsedAssets";
 import NSearchUsedAsset from "./pages/NSearchUsedAsset";
 import NAddAssetIssue from "./pages/NAddAssetIssue";
+import NAllAssetIssues from "./pages/NAllAssetIssues";
 
 const App = () => {
   return (
@@ -35,6 +36,7 @@ const App = () => {
         <Route path="/naassetview-details" element={<NViewUsedAssets />} />
         <Route path="/search-used-asset" element={<NSearchUsedAsset />} />
         <Route path="/add-asset-issue/:assetId" element={<NAddAssetIssue />} />
+        <Route path="/view-all-asset-issues" element={<NAllAssetIssues />} />
 
       </Routes>
     </Router>

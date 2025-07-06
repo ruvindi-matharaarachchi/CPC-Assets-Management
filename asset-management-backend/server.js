@@ -2,6 +2,7 @@ const express = require("express");
 const connectDB = require("./config/db");
 const dotenv = require("dotenv");
 const cors = require("cors");
+const path = require("path");
 
 dotenv.config();
 
@@ -37,6 +38,11 @@ app.use("/api/asset-options", assetOptionsRoute);
 
 const assetIssueRoutes = require("./routes/assetIssues");
 app.use("/api/asset-issues", assetIssueRoutes);
+
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+app.use("/uploads", express.static("uploads")); // for image access
+app.use("/api/asset-issues", require("./routes/assetIssues"));
+
 
 app.get("/", (req, res) => {
   res.send("Used Asset Management API Running...");

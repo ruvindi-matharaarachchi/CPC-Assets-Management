@@ -9,6 +9,7 @@ const NAddAssetIssue = () => {
   const [asset, setAsset] = useState(null);
   const [issueDescription, setIssueDescription] = useState("");
   const [message, setMessage] = useState("");
+  const [image, setImage] = useState(null);
 
   useEffect(() => {
     axios.get(`http://localhost:5000/api/used-assets`)
@@ -21,10 +22,14 @@ const NAddAssetIssue = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const formData = new FormData();
+    formData.append("assetId", assetId);
+    formData.append("issueDescription", issueDescription);
+    if (image) formData.append("image", image);
+
     try {
-      await axios.post("http://localhost:5000/api/asset-issues", {
-        assetId,
-        issueDescription
+      await axios.post("http://localhost:5000/api/asset-issues", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
       });
       setMessage("✅ Issue added successfully.");
       setTimeout(() => navigate(-1), 1500);
@@ -53,6 +58,12 @@ const NAddAssetIssue = () => {
           placeholder="Describe the issue..."
           required
         />
+        <input
+          type="file"
+          accept="image/*"
+          onChange={(e) => setImage(e.target.files[0])}
+        />
+
         <button type="submit">Submit Issue</button>
       </form>
     </div>
