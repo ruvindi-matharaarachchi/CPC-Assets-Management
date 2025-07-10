@@ -11,6 +11,19 @@
   margin-bottom: 30px;
   font-size: 28px;
 }
+.assign-btn {
+  background-color: #7c1426;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s ease;
+}
+.assign-btn:hover {
+  background-color: #a51829;
+}
 
 table {
   width: 100%;

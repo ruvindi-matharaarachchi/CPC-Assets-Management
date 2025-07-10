@@ -1,20 +1,29 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./NAllAssetIssues.css";
+import { useNavigate } from "react-router-dom";
+
 
 const NAllAssetIssues = () => {
   const [issues, setIssues] = useState([]);
+  const navigate = useNavigate(); // ✅ Correct place
 
+  // Load asset issues
   useEffect(() => {
-    axios.get("http://localhost:5000/api/asset-issues")
-      .then(res => setIssues(res.data))
-      .catch(err => console.error("Failed to load issues", err));
-  }, []);
+  // When coming back from assignment, re-fetch all issues
+  axios.get("http://localhost:5000/api/asset-issues")
+    .then(res => setIssues(res.data))
+    .catch(err => console.error("Failed to load issues", err));
+}, []); // Reloads always when page opens
 
+
+  // Format date
   const formatDate = (isoString) => {
     const date = new Date(isoString);
     return date.toLocaleDateString("en-GB") + " " + date.toLocaleTimeString("en-GB");
   };
+
+  // Update status dropdown
   const handleStatusChange = async (issueId, newStatus) => {
     try {
       await axios.patch(`http://localhost:5000/api/asset-issues/${issueId}/status`, {
@@ -43,9 +52,11 @@ const NAllAssetIssues = () => {
               <th>Serial No</th>
               <th>Location</th>
               <th>Issue Description</th>
-              <th>Status</th> {/* New column */}
-              <th>Date</th>   {/* New column */}
+              <th>Status</th>
+              <th>Date</th>
               <th>Image</th>
+              <th>Technician</th> {/* New header */}
+              <th>Assign</th> {/* New header */}
             </tr>
           </thead>
           <tbody>
@@ -57,19 +68,14 @@ const NAllAssetIssues = () => {
                 <td>{issue.assetId?.serialNumber}</td>
                 <td>{issue.assetId?.location}</td>
                 <td>{issue.issueDescription}</td>
-                <td>
-                  <select
-                    value={issue.status}
-                    onChange={(e) => handleStatusChange(issue._id, e.target.value)}
-                  >
-                    <option value="Open">Open</option>
-                    <option value="In Progress">In Progress</option>
-                    <option value="Resolved">Resolved</option>
-                    <option value="Closed">Closed</option>
-                  </select>
-                </td>
 
-                <td>{formatDate(issue.createdAt)}</td> {/* Format date */}
+                {/* Status dropdown */}
+                <td>{issue.status}</td>
+
+                {/* Date */}
+                <td>{formatDate(issue.createdAt)}</td>
+
+                {/* Image */}
                 <td>
                   {issue.image ? (
                     <img
@@ -80,6 +86,22 @@ const NAllAssetIssues = () => {
                     />
                   ) : "No Image"}
                 </td>
+
+                {/* Technician assigned */}
+                <td>
+                  {issue.technicianId
+                    ? `${issue.technicianId.fullName} (${issue.technicianId.specialization})`
+                    : "Not Assigned"}
+                </td>
+                <td>
+                  <button
+                    onClick={() => navigate(`/assign-technician/${issue._id}`)}
+                    className="assign-btn"
+                  >
+                    Assign
+                  </button>
+                </td>
+
 
               </tr>
             ))}

@@ -4,6 +4,7 @@ const multer = require("multer");
 const AssetIssue = require("../models/AssetIssue");
 const UsedAsset = require("../models/UsedAsset");
 const path = require("path");
+const Technician = require("../models/Technician");
 
 // Setup storage for images
 const storage = multer.diskStorage({
@@ -36,6 +37,7 @@ router.get("/", async (req, res) => {
   try {
     const issues = await AssetIssue.find()
       .populate("assetId")
+      .populate("technicianId")
       .sort({ createdAt: -1 });
     res.json(issues);
   } catch (err) {
@@ -54,5 +56,48 @@ router.patch("/:id/status", async (req, res) => {
     res.status(500).json({ message: "Failed to update status" });
   }
 });
+// routes/assetIssues.js
+router.patch('/:id/assign', async (req, res) => {
+  try {
+    const { technicianId } = req.body;
+    const updated = await AssetIssue.findByIdAndUpdate(
+      req.params.id,
+      { technicianId },
+      { new: true }
+    );
+    res.json(updated);
+  } catch (err) {
+    res.status(500).json({ error: "Failed to assign technician" });
+  }
+});
+// PATCH /api/asset-issues/:issueId/assign-technician
+router.patch("/:issueId/assign-technician", async (req, res) => {
+  const { issueId } = req.params;
+  const { technicianId } = req.body;
+
+  try {
+    const technician = await Technician.findById(technicianId);
+    if (!technician) {
+      return res.status(404).json({ error: "Technician not found" });
+    }
+
+    const updatedIssue = await AssetIssue.findByIdAndUpdate(
+      issueId,
+      {
+        technicianId,
+        assignmentTime: new Date()
+      },
+      { new: true }
+    ).populate("technicianId");
+
+    res.json(updatedIssue);
+  } catch (error) {
+    console.error("Error assigning technician:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+
+
 
 module.exports = router;

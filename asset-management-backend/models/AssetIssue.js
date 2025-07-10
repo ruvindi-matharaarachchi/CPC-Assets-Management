@@ -1,25 +1,18 @@
+// models/AssetIssue.js
 const mongoose = require("mongoose");
 
-const AssetIssueSchema = new mongoose.Schema({
+const assetIssueSchema = new mongoose.Schema({
   assetId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "UsedAsset",
     required: true,
   },
-  issueDescription: {
-    type: String,
-    required: true,
-  },
-  image: {
-    type: String,
-    default: "",
-  },
-  status: {
-    type: String,
-    default: "Open", // Default status
-  },
-}, {
-  timestamps: true,
-});
+  issueDescription: { type: String, required: true },
+  image: { type: String },
+  status: { type: String, default: "Open" },
+  technicianId: { type: mongoose.Schema.Types.ObjectId, ref: 'Technician' },
+  assignmentTime: { type: Date },
 
-module.exports = mongoose.model("AssetIssue", AssetIssueSchema);
+}, { timestamps: true });
+
+module.exports = mongoose.model("AssetIssue", assetIssueSchema);
