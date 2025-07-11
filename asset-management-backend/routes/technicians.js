@@ -1,18 +1,28 @@
 const express = require("express");
 const router = express.Router();
 const Technician = require("../models/Technician");
+const User = require("../models/User");
 
-// ✅ Create new technician
 router.post("/add", async (req, res) => {
+  const techData = req.body;
   try {
-    const newTech = new Technician(req.body);
-    const savedTech = await newTech.save();
-    res.status(201).json({ message: "Technician added", data: savedTech });
+    // 1. Save technician
+    const newTech = await Technician.create(techData);
+
+    // 2. Create user account with default password (e.g., 'tech123')
+    const newUser = new User({
+      username: techData.username,
+      password: "tech123", // Default password
+      role: "technician"
+    });
+    await newUser.save();
+
+    res.status(201).json({ message: "Technician and login created" });
   } catch (err) {
-    console.error("Error adding technician:", err);
-    res.status(500).json({ message: "Server error", error: err.message });
+    res.status(500).json({ error: "Failed to add technician" });
   }
 });
+
 // GET all technicians
 router.get("/", async (req, res) => {
   try {

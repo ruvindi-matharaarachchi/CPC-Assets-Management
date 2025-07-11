@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../api";
-import { motion } from "framer-motion"; // Animation Library
-import "./Login.css"; // Import CSS
-import logo from "../assets/logo.png"; // Import your logo
+import { motion } from "framer-motion";
+import "./Login.css";
+import logo from "../assets/logo.png";
 
 const Login = () => {
-  const [selectedUser, setSelectedUser] = useState("admin"); // Default role
+  const [username, setUsername] = useState(""); // 🔄 Use actual username
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -16,9 +16,21 @@ const Login = () => {
     setError("");
 
     try {
-      const data = await loginUser(selectedUser, password);
+      const data = await loginUser(username, password);
+
+      // Save token and user info to localStorage
       localStorage.setItem("token", data.token);
-      navigate("/dashboard");
+      localStorage.setItem("username", data.user.username);
+      localStorage.setItem("role", data.user.role);
+      localStorage.setItem("technicianId", data.user.id); // ✅ This is the fix
+      // Navigate based on role
+      if (data.user.role === "admin") {
+        navigate("/dashboard");
+      } else if (data.user.role === "technician") {
+        navigate("/technician-dashboard");
+      } else {
+        setError("Unknown user role.");
+      }
     } catch (err) {
       setError("Invalid credentials. Please try again.");
     }
@@ -26,16 +38,13 @@ const Login = () => {
 
   return (
     <div className="login-container">
-      {/* Header Section */}
       <header className="header">
         <img src={logo} alt="Company Logo" className="logo" />
         <h1 className="header-title">CPC Head Office</h1>
       </header>
 
-      {/* Background Image */}
       <div className="background-overlay"></div>
 
-      {/* Glassmorphic Login Box */}
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -44,18 +53,17 @@ const Login = () => {
       >
         <h2>Welcome</h2>
 
-        {/* User Selection Dropdown */}
-        <motion.select
-          whileHover={{ scale: 1.05 }}
-          className="user-role"
-          value={selectedUser}
-          onChange={(e) => setSelectedUser(e.target.value)}
-        >
-          <option value="admin">Admin</option>
-          <option value="technician">Technician</option>
-        </motion.select>
+        {/* 🔑 Username Field */}
+        <motion.input
+          whileFocus={{ scale: 1.02 }}
+          type="text"
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          required
+        />
 
-        {/* Password Field */}
+        {/* 🔒 Password Field */}
         <motion.input
           whileFocus={{ scale: 1.02 }}
           type="password"
@@ -65,10 +73,8 @@ const Login = () => {
           required
         />
 
-        {/* Error Message */}
         {error && <p className="error-message">{error}</p>}
 
-        {/* Animated Login Button */}
         <motion.button
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
