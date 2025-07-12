@@ -96,7 +96,17 @@ router.patch("/:issueId/assign-technician", async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
+// Get detailed issue by ID
+router.get("/technician-issue-details/:id", async (req, res) => {
+  try {
+    const issue = await Issue.findById(req.params.id).populate("assetId technicianId");
+    if (!issue) return res.status(404).json({ message: "Issue not found" });
 
+    res.status(200).json(issue);
+  } catch (err) {
+    res.status(500).json({ message: "Server error", error: err.message });
+  }
+});
 
 
 

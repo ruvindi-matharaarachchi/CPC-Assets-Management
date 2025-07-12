@@ -1,16 +1,20 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { FaBell, FaCog } from "react-icons/fa"; // Icons for header
+import logo from "../assets/logo.png"; // Ensure the path is correct
 import "./TechnicianDashboard.css";
 
 const TechnicianDashboard = () => {
+  const navigate = useNavigate();
   const [issues, setIssues] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [message, setMessage] = useState("");
 
-  const userId = localStorage.getItem("userId"); // ✅ Use userId for password update
-  const technicianId = localStorage.getItem("technicianId"); // still needed for issue filtering
+  const userId = localStorage.getItem("userId");
+  const technicianId = localStorage.getItem("technicianId");
   const username = localStorage.getItem("username");
 
   useEffect(() => {
@@ -27,10 +31,15 @@ const TechnicianDashboard = () => {
       });
   }, [technicianId]);
 
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate("/");
+  };
+
   const handleChangePassword = async () => {
     try {
       const res = await axios.post("http://localhost:5000/api/auth/change-password", {
-        userId, // ✅ Use userId instead of technicianId
+        userId,
         currentPassword,
         newPassword,
       });
@@ -45,30 +54,49 @@ const TechnicianDashboard = () => {
 
   return (
     <div className="dashboard-container">
-      <h2>👨‍🔧 Welcome, {username}</h2>
-      <h3>Assigned Asset Issues</h3>
+      {/* Header */}
+      <header className="dashboard-header">
+        <img src={logo} alt="Company Logo" className="logo" />
+        <nav>
+          <ul>
+            <li><a href="/technician-dashboard">Dashboard</a></li>
+            <li><a href="#" onClick={() => setShowForm(true)}>Reset Password</a></li>
+          </ul>
+        </nav>
+        <div className="admin-icons">
+          <FaBell className="admin-icon" />
+          <FaCog className="admin-icon" />
+          <button onClick={handleLogout} className="logout-button">Logout</button>
+        </div>
+      </header>
 
+      {/* Welcome Message */}
+      <h2>Welcome, {username}</h2>
+
+      {/* Issue Cards */}
       {issues.length === 0 ? (
         <p>No assigned issues.</p>
       ) : (
         <div className="dashboard-content">
           {issues.map((issue) => (
-            <div className="dashboard-card" key={issue._id}>
+            <div
+              className="dashboard-card"
+              key={issue._id}
+              onClick={() => navigate(`/technician-issue-details/${issue._id}`)}
+              style={{ cursor: "pointer" }}
+            >
               <h3>{issue.assetId?.itemName}</h3>
-              <p>{issue.issueDescription}</p>
+              <p>Issue: {issue.issueDescription}</p>
               <p>Status: {issue.status}</p>
             </div>
           ))}
         </div>
       )}
 
-      <button className="add-asset-button" onClick={() => setShowForm(true)}>
-        Change Password
-      </button>
-
+      {/* Reset Password Form */}
       {showForm && (
         <div className="change-password-form">
-          <h4>Change Password</h4>
+          <h4>Reset Password</h4>
           <input
             type="password"
             placeholder="Current Password"
@@ -95,6 +123,7 @@ const TechnicianDashboard = () => {
         </div>
       )}
 
+      {/* Feedback Message */}
       {message && <p>{message}</p>}
     </div>
   );

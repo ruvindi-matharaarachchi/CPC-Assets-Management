@@ -52,6 +52,8 @@ app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({ message: "Internal Server Error" });
 });
+const technicianIssueRoutes = require("./routes/technicianIssueRoutes");
+app.use("/api", technicianIssueRoutes);
 
 // ✅ Start Server
 const PORT = process.env.PORT || 5000;
