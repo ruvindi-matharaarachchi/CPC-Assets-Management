@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./NSearchUsedAsset.css";
+import { FaBell, FaCog } from "react-icons/fa";
+import { motion } from "framer-motion";
+import logo from "../assets/logo.png";
 
 const NSearchUsedAsset = () => {
   const [query, setQuery] = useState("");
@@ -27,9 +30,42 @@ const NSearchUsedAsset = () => {
   const handleAddIssue = (assetId) => {
     navigate(`/add-asset-issue/${assetId}`);
   };
-
+  
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/");
+  };
   return (
     <div className="issue-asset-container">
+      <div className="background-overlay"></div>
+
+      {/* Header Navigation Bar */}
+      <motion.header
+        initial={{ opacity: 0, y: -50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        className="dashboard-header"
+      >
+        <img src={logo} alt="Company Logo" className="logo" />
+
+        <nav>
+          <ul>
+            <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="/view-common-assets">View Assets List</a></li>
+            <li><a href="/technicians">Technicians</a></li>
+            <li><a href="/view-technicians">View Technicians</a></li>
+            <li><a href="/asset-summary">Reports</a></li>
+            <li><a href="/issue-asset">Issues</a></li>
+
+          </ul>
+        </nav>
+
+        <div className="admin-icons">
+          <FaBell className="admin-icon" />
+          <FaCog className="admin-icon" />
+          <button onClick={handleLogout} className="logout-button">Logout</button>
+        </div>
+      </motion.header>
       <h2>Search Used Asset</h2>
 
       <div className="search-bar-section">

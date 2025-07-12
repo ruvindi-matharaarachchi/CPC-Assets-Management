@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaBell, FaCog } from "react-icons/fa"; // Import Icons
-import { motion } from "framer-motion"; // Animation Library
-import axios from "axios"; // Import Axios for API calls
+import { FaBell, FaCog } from "react-icons/fa"; 
+import { motion } from "framer-motion"; 
+import axios from "axios"; 
 import "./Dashboard.css"; // Import Styles
 import logo from "../assets/logo.png"; // Ensure the logo exists
 import Footer from "../components/Footer"; // Import Footer

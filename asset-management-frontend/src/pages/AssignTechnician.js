@@ -21,10 +21,10 @@ const AssignTechnician = () => {
       await axios.patch(`http://localhost:5000/api/asset-issues/${issueId}/assign-technician`, {
         technicianId: selectedTechnicianId
       });
-      setMessage("✅ Technician assigned successfully.");
+      setMessage("Technician assigned successfully.");
       setTimeout(() => navigate("/view-all-asset-issues"), 1500);
     } catch (err) {
-      setMessage("❌ Failed to assign technician.");
+      setMessage("Failed to assign technician.");
     }
   };
 

@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./NAllAssetIssues.css";
 import { useNavigate } from "react-router-dom";
-
+import { FaBell, FaCog } from "react-icons/fa";
+import { motion } from "framer-motion";
+import logo from "../assets/logo.png"; // Ensure the logo exists
 
 const NAllAssetIssues = () => {
   const [issues, setIssues] = useState([]);
@@ -10,12 +12,16 @@ const NAllAssetIssues = () => {
 
   // Load asset issues
   useEffect(() => {
-  // When coming back from assignment, re-fetch all issues
-  axios.get("http://localhost:5000/api/asset-issues")
-    .then(res => setIssues(res.data))
-    .catch(err => console.error("Failed to load issues", err));
-}, []); // Reloads always when page opens
+    // When coming back from assignment, re-fetch all issues
+    axios.get("http://localhost:5000/api/asset-issues")
+      .then(res => setIssues(res.data))
+      .catch(err => console.error("Failed to load issues", err));
+  }, []); // Reloads always when page opens
 
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/");
+  };
 
   // Format date
   const formatDate = (isoString) => {
@@ -39,7 +45,38 @@ const NAllAssetIssues = () => {
 
   return (
     <div className="view-issues-container">
+      <div className="background-overlay"></div>
+
+      {/* Header Navigation Bar */}
+      <motion.header
+        initial={{ opacity: 0, y: -50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        className="dashboard-header"
+      >
+        <img src={logo} alt="Company Logo" className="logo" />
+
+        <nav>
+          <ul>
+            <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="/view-common-assets">View Assets List</a></li>
+            <li><a href="/technicians">Technicians</a></li>
+            <li><a href="/view-technicians">View Technicians</a></li>
+            <li><a href="/asset-summary">Reports</a></li>
+            <li><a href="/issue-asset">Issues</a></li>
+
+          </ul>
+        </nav>
+
+        <div className="admin-icons">
+          <FaBell className="admin-icon" />
+          <FaCog className="admin-icon" />
+          <button onClick={handleLogout} className="logout-button">Logout</button>
+        </div>
+      </motion.header>
       <h2>All Reported Asset Issues</h2>
+      <button className="back-button" onClick={() => navigate(-1)}>Back</button>
+
       {issues.length === 0 ? (
         <p>No issues found.</p>
       ) : (
