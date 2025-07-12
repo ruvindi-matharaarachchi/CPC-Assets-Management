@@ -1,0 +1,72 @@
+/* Assigned Issues List */
+
+
+/* Change Password Section */
+.change-password-form {
+  margin-top: 30px;
+  background: #fdfdfd;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+.change-password-form h4 {
+  margin-bottom: 15px;
+  color: #7c1426;
+  font-size: 20px;
+  text-align: center;
+}
+
+.change-password-form input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 14px;
+  border: 1px solid #bbb;
+  border-radius: 6px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+.change-password-form input:focus {
+  border-color: #a51829;
+  outline: none;
+}
+
+.change-password-form button {
+  width: 48%;
+  padding: 10px;
+  font-size: 16px;
+  background-color: #a51829;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  margin-right: 4%;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.change-password-form button:last-child {
+  background-color: #777;
+  margin-right: 0;
+}
+
+.change-password-form button:hover {
+  opacity: 0.9;
+}
+
+/* Message Styling */
+.message {
+  margin-top: 16px;
+  font-weight: bold;
+  color: green;
+  text-align: center;
+}
+
+.error-message {
+  color: red;
+  font-weight: bold;
+  text-align: center;
+}

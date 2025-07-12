@@ -6,7 +6,7 @@ import "./Login.css";
 import logo from "../assets/logo.png";
 
 const Login = () => {
-  const [username, setUsername] = useState(""); // 🔄 Use actual username
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -17,13 +17,14 @@ const Login = () => {
 
     try {
       const data = await loginUser(username, password);
-
-      // Save token and user info to localStorage
       localStorage.setItem("token", data.token);
       localStorage.setItem("username", data.user.username);
       localStorage.setItem("role", data.user.role);
-      localStorage.setItem("technicianId", data.user.id); // ✅ This is the fix
-      // Navigate based on role
+      localStorage.setItem("technicianId", data.user.id);
+      localStorage.setItem("userId", data.user.id); // 🟩 needed for password update
+      localStorage.setItem("technicianId", data.user.technicianId); // 🟨 for issue filtering
+
+
       if (data.user.role === "admin") {
         navigate("/dashboard");
       } else if (data.user.role === "technician") {
@@ -38,48 +39,55 @@ const Login = () => {
 
   return (
     <div className="login-container">
+      {/* Header */}
       <header className="header">
-        <img src={logo} alt="Company Logo" className="logo" />
+        <img src={logo} alt="CPC Logo" className="logo" />
         <h1 className="header-title">CPC Head Office</h1>
       </header>
 
+      {/* Background Blur Layer */}
       <div className="background-overlay"></div>
 
+      {/* Login Box */}
       <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.5 }}
         className="login-box"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
       >
-        <h2>Welcome</h2>
+        <h2 className="login-title">User Login</h2>
 
-        {/* 🔑 Username Field */}
+        {/* Username Input */}
         <motion.input
-          whileFocus={{ scale: 1.02 }}
+          whileFocus={{ scale: 1.03 }}
+          className="login-input"
           type="text"
-          placeholder="Username"
+          placeholder="Enter Username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
         />
 
-        {/* 🔒 Password Field */}
+        {/* Password Input */}
         <motion.input
-          whileFocus={{ scale: 1.02 }}
+          whileFocus={{ scale: 1.03 }}
+          className="login-input"
           type="password"
-          placeholder="Password"
+          placeholder="Enter Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
 
+        {/* Error Display */}
         {error && <p className="error-message">{error}</p>}
 
+        {/* Submit Button */}
         <motion.button
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          onClick={handleSubmit}
+          whileHover={{ scale: 1.08 }}
+          whileTap={{ scale: 0.95 }}
           className="login-button"
+          onClick={handleSubmit}
         >
           Login
         </motion.button>

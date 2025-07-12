@@ -18,6 +18,7 @@ import NAddAssetIssue from "./pages/NAddAssetIssue";
 import NAllAssetIssues from "./pages/NAllAssetIssues";
 import AssignTechnician from "./pages/AssignTechnician";
 import TechnicianDashboard from "./pages/TechnicianDashboard";
+import ChangePassword from "./pages/ChangePassword";
 
 const App = () => {
   return (
@@ -41,6 +42,7 @@ const App = () => {
         <Route path="/view-all-asset-issues" element={<NAllAssetIssues />} />
         <Route path="/assign-technician/:issueId" element={<AssignTechnician />} />
         <Route path="/technician-dashboard" element={<TechnicianDashboard />} />
+        <Route path="/change-password" element={<ChangePassword />} />
 
       </Routes>
     </Router>

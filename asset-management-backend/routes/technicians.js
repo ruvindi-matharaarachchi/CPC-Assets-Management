@@ -1,25 +1,26 @@
 const express = require("express");
+const bcrypt = require("bcryptjs");
 const router = express.Router();
 const Technician = require("../models/Technician");
 const User = require("../models/User");
 
 router.post("/add", async (req, res) => {
-  const techData = req.body;
   try {
-    // 1. Save technician
-    const newTech = await Technician.create(techData);
+    const tech = new Technician(req.body);
+    await tech.save();
 
-    // 2. Create user account with default password (e.g., 'tech123')
-    const newUser = new User({
-      username: techData.username,
-      password: "tech123", // Default password
-      role: "technician"
+    const hashedPassword = await bcrypt.hash("tech123", 10); // default password
+    const user = new User({
+      username: req.body.username,
+      password: hashedPassword,
+      role: "technician",
+      technicianRef: tech._id
     });
-    await newUser.save();
+    await user.save();
 
-    res.status(201).json({ message: "Technician and login created" });
+    res.status(201).json({ message: "Technician and user created." });
   } catch (err) {
-    res.status(500).json({ error: "Failed to add technician" });
+    res.status(500).json({ message: "Error creating technician", error: err.message });
   }
 });
 
