@@ -38,7 +38,7 @@
 
 .change-password-form h4 {
   margin-bottom: 15px;
-  color: #7c1426;
+  color: #091753;
   font-size: 20px;
   text-align: center;
 }
@@ -54,7 +54,7 @@
 }
 
 .change-password-form input:focus {
-  border-color: #a51829;
+  border-color: #091753;
   outline: none;
 }
 
@@ -62,7 +62,7 @@
   width: 48%;
   padding: 10px;
   font-size: 16px;
-  background-color: #a51829;
+  background-color: #091753;
   color: white;
   border: none;
   border-radius: 6px;
@@ -92,4 +92,40 @@
   color: red;
   font-weight: bold;
   text-align: center;
+}
+.issue-details-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  padding: 2rem;
+  border: 2px solid #ccc;
+  border-radius: 12px;
+  max-width: 900px;
+  margin: 2rem auto;
+  background-color: #f9f9f9;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.issue-details-form div {
+  display: flex;
+  flex-direction: column;
+}
+
+.issue-details-form label {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.issue-details-form input,
+.issue-details-form textarea {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+}
+
+.issue-details-form textarea {
+  resize: vertical;
+  min-height: 80px;
+  max-height: 150px;
 }

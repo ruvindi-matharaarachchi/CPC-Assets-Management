@@ -12,6 +12,7 @@ const assetIssueSchema = new mongoose.Schema({
   status: { type: String, default: "Open" },
   technicianId: { type: mongoose.Schema.Types.ObjectId, ref: 'Technician' },
   assignmentTime: { type: Date },
+  technicianNotes: { type: String },
 
 }, { timestamps: true });
 
