@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./TechnicianDashboard.css";
+import "./TechnicianIssueDetails.css"; // Ensure the path is correct
 import { FaBell, FaCog } from "react-icons/fa";
 import logo from "../assets/logo.png";
 

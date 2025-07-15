@@ -35,6 +35,10 @@ const TechnicianDashboard = () => {
     localStorage.clear();
     navigate("/");
   };
+  const total = issues.length;
+  const openCount = issues.filter(issue => issue.status === "Open").length;
+  const inProgressCount = issues.filter(issue => issue.status === "In Progress").length;
+  const resolvedCount = issues.filter(issue => issue.status === "Resolved").length;
 
   const handleChangePassword = async () => {
     try {
@@ -53,7 +57,7 @@ const TechnicianDashboard = () => {
   };
 
   return (
-    <div className="dashboard-container">
+    <div className="dashboard-container1">
       {/* Header */}
       <header className="dashboard-header">
         <img src={logo} alt="Company Logo" className="logo" />
@@ -72,6 +76,27 @@ const TechnicianDashboard = () => {
 
       {/* Welcome Message */}
       <h2>Welcome, {username}</h2>
+
+      <div className="issue-summary-container">
+        <div className="issue-summary-card open">
+          <h4>Open</h4>
+          <p>{openCount}</p>
+        </div>
+        <div className="issue-summary-card in-progress">
+          <h4>In Progress</h4>
+          <p>{inProgressCount}</p>
+        </div>
+        <div className="issue-summary-card resolved">
+          <h4>Resolved</h4>
+          <p>{resolvedCount}</p>
+        </div>
+        <div className="issue-summary-card total">
+          <h4>Total</h4>
+          <p>{total}</p>
+        </div>
+      </div>
+
+
 
       {/* Issue Cards */}
       {issues.length === 0 ? (
